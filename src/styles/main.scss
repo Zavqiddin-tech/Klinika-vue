@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap');
+@import './vars/colors.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+}
+.container {
+    max-width: 1140px;
+    margin: auto;
+}
+
+.d-flex {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.align-center {
+    align-items: center;
+}
+.text-center {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    color: $gray;
+}
+.title-small {
+    font-size: 24px;
+    font-weight: 600;
+    color: $gray;
+    &.light {
+        font-weight: 200;
+    }
+}
+
+.title-vs-italic {
+    color: #546272;
+    font-size: 44px;
+    font-weight: 600;
+    span {
+        font-family: Cormorant Garamond;
+        font-style: italic;
+    }
+}
+.text {
+    color: $gray;
+}
+.text.big {
+    font-size: 18px;
+    font-weight: 600;
+    color: $gray;
+
+}
+.text.light {
+    font-weight: 200;
+    color: $gray;
+}
+
+.btn-info {
+    padding: 22px 57px !important;
+    font-size: 15px;
+    color: #fff;
+    background-color: #546272;
+    border-radius: 24px;
+    &.full {
+        width: 100%;
+    }
+}
+
+.btn-white {
+    padding: 18px 35px 18px 18px !important;
+    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
+    &.big {
+        font-size: 15px;
+        padding: 22px 57px !important;
+    }
+}
+
+.btn-white__defalut {
+    padding: 20px !important;
+    border-radius: 24px;
+    border: 1px solid #EBEBEB;
+    background: #F9FAFF;
+    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
+}
+
+.width-full {
+    width: 100%;
+}
+.mt-25 {
+    margin-top: 25px;
+}
+
+
+
+
+
+
+@media (max-width: 1140px) {
+ .container {
+    padding: 0px 10px;
+ } 
+}
+
+@media (max-width: 1000px) {
+ .title {
+    font-size: 25px;
+ }
+ .title-vs-italic {
+    font-size: 35px;
+ }
+}
+
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 22px;
+    }
+    .text {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 375px) {
+    .title {
+        font-size: 18px;
+    }
+    .btn-white {
+        font-size: 13px;
+    }
+}
+
+
+
+
+
