@@ -34,15 +34,6 @@ import commentCard from "./comment-card.vue";
             padding: 0px 15px;
         }
     }
-    &-card {
-        height: 100%;
-        padding: 32px;
-        border-radius: 24px;
-        background-color: #fff;
-        .title {
-            padding-bottom: 230px;
-        }
-    }
     
 }
 

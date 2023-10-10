@@ -29,9 +29,23 @@ import { menuLink } from "@/router/menu.js";
     padding-top: 15px;
     display: flex;
     justify-content: space-between;
+    
     .el-menu {
       width: 100%;
       justify-content: space-between;
+      border: 0;
+      .el-menu-item {
+        &:hover {
+          background-color: #F9FAFF;
+          color: #86827b;
+        }
+        &.is-active {
+          border-bottom: 2px solid #cac6c6;
+          color: #546272 !important;
+          background-color: #F9FAFF;
+         
+        }
+      }
     }
     a {
       color: #546272;

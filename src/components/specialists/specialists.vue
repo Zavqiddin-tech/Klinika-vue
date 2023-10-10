@@ -46,6 +46,7 @@ const persons = ref([
     .specialist {
         padding-top: 160px;
         .el-row {
+            padding-top: 42px;
             margin-left: -15px;
             margin-right: -15px;
             .el-col {
@@ -58,6 +59,36 @@ const persons = ref([
         .specialist {
             .el-row {
                 justify-content: center;
+            }
+        }
+    }
+    @media (max-width: 768px) {
+        .specialist {
+            .el-row {
+                .el-col-xs-20 {
+                    max-width: 60%;
+                    flex: 0 0 60%;
+                }
+            }
+        }
+    }
+    @media (max-width: 560px) {
+        .specialist {
+            .el-row {
+                .el-col-xs-20 {
+                    max-width: 80%;
+                    flex: 0 0 80%;
+                }
+            }
+        }
+    }
+    @media (max-width: 410px) {
+        .specialist {
+            .el-row {
+                .el-col-xs-20 {
+                    max-width: 100%;
+                    flex: 0 0 100%;
+                }
             }
         }
     }

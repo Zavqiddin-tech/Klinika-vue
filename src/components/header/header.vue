@@ -7,6 +7,7 @@
                 <header-bottom />
             </div>
         </div>
+        <div class="header-bbg"></div>
     </div>
 </template>
 
@@ -18,12 +19,17 @@ import headerBottom from './header-comp/header-bottom.vue';
 </script>
 <style lang="scss">
     .header {
+        background-color: #fff;
         &-center {
-            padding: 16px 0px;
+            padding-top: 16px;
         }
         &-banner {
             padding-top: 36px;
             background-color: #F9FAFF;;
+        }
+        &-bbg {
+            padding: 16px;
+            background-color: #F9FAFF;
         }
     }
 </style>

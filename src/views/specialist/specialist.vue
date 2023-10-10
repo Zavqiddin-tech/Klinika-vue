@@ -39,4 +39,24 @@ onMounted(()=> {
 })
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.specialist-section {
+  position: relative;
+  .specialists-cards {
+    position: relative;
+    z-index: 1;
+  }
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+  }
+}
+</style>

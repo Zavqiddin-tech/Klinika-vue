@@ -65,6 +65,8 @@ const raiting = ref([
 @import "@/styles/vars/colors.scss";
 
 .raiting {
+  position: relative;
+  z-index: 1;
     padding-top: 60px;
     &-row {
         padding-top: 50px;
@@ -86,8 +88,8 @@ const raiting = ref([
     overflow: hidden;
     img {
       position: absolute;
-      bottom: -8px;
-      right: -10px;
+      bottom: 0px;
+      right: 4px;
     }
   }
   &-number {

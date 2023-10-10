@@ -45,7 +45,20 @@ onMounted(() => {
 
 <style lang="scss">
 .stock {
+  position: relative;
   background-color: #f9faff;
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+  }
   .title {
     padding-top: 58px;
   }

@@ -22,12 +22,13 @@
 
 .about {
     &-cards {
-        transform: translate(0px, 80px);
+        transform: translate(0px, 70px);
         padding: 33px 12px;
         background-color: #fff;
         border-radius: 24px;
         box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
-    }
+        z-index: 10;
+      }
     &-card {
         padding: 0px 12px;
         border-right: 2px solid #EBEBEB;

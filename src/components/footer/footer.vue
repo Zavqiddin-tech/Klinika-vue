@@ -41,6 +41,8 @@ import footerLinks from './footer-comp/footer-links.vue';
 @import "@/styles/vars/colors.scss";
 
 .footer {
+  position: relative;
+  z-index: 1;
   padding: 56px 0px;
   background-color: $gray;
   color: #fff;

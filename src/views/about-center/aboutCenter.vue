@@ -32,9 +32,19 @@ const agreeText = ref(
 <style lang="scss">
 .about-center {
   background-color: #f9faff;
+  position: relative;
+  
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+  }
 }
-
-
-
-
 </style>

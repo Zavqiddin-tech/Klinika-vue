@@ -144,13 +144,25 @@ const backPage = () => {
 
 onMounted(() => {
   setOrderStock(true);
-  console.log(orderStock.value);
 });
 </script>
 
 <style lang="scss">
 .stock-order {
+  position: relative;
   padding-top: 100px;
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+  }
   .stock-banner {
     margin-top: 40px;
     padding: 64px 0px 30px 74px;
@@ -197,6 +209,7 @@ onMounted(() => {
 }
 .el-tree {
   margin-top: 56px;
+  z-index: 1;
   &-node {
     margin-top: 30px;
     padding: 20px 30px;

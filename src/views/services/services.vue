@@ -38,6 +38,19 @@ const servicesAbout = (obj) => {
 
 <style lang="scss">
 .services {
+  position: relative;
+  &:after {
+    content: '';
+    width: 400px;
+    height: 400px;
+    background-image: url('../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
   .title {
     padding-top: 30px;
   }

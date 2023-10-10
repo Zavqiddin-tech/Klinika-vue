@@ -43,4 +43,22 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.home {
+  position: relative;
+  
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../assets/logo/triagles.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+    opacity: 0.4;
+  }
+}
+</style>

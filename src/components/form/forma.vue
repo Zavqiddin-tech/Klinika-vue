@@ -52,6 +52,8 @@ const switchToggle = ()=> {
 <style lang="scss">
 @import '@/styles/vars/colors.scss';
 .form-wrapper {
+        z-index: 1;
+        position: relative;
         padding: 95px 0px;
         .container {
             padding: 32px 0px;

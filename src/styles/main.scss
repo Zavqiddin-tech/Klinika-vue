@@ -83,17 +83,55 @@ a {
     color: #fff;
     background-color: #546272;
     border-radius: 24px;
+    transition: 0.2s;
     &.full {
         width: 100%;
+    }
+    &:hover {
+        background-color: #546272b7;
+        transform: translateY(-2px);
+        color: #fff;
+    }
+    &:focus {
+        background-color: #546272;
+        color: #fff;
+    }
+    &:active {
+        transform: translateY(2px);
     }
 }
 
 .btn-white {
-    padding: 18px 35px 18px 18px !important;
+    padding: 18px !important;
     box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
+    transition: 0.2s;
     &.big {
         font-size: 15px;
         padding: 22px 57px !important;
+        &:hover {
+            background-color: #f5ebe0;
+            transform: translateY(-2px);
+            color: #000;
+        }
+        &:focus {
+            background-color: #ffffff;
+            color: #000;
+        }
+        &:active {
+            transform: translateY(2px);
+        }
+    }
+    &:hover {
+        background-color: #f5ebe0;
+        transform: translateY(-2px);
+        color: #000;
+    }
+    &:focus {
+        background-color: #ffffff;
+        color: #000;
+    }
+    &:active {
+        transform: translateY(5px);
     }
 }
 
@@ -103,6 +141,19 @@ a {
     border: 1px solid #EBEBEB;
     background: #F9FAFF;
     box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
+    transition: 0.2s;
+    &:hover {
+        background-color: #f5ebe0;
+        transform: translateY(-2px);
+        color: #000;
+    }
+    &:focus {
+        background-color: #ffffff;
+        color: #000;
+    }
+    &:active {
+        transform: translateY(2px);
+    }
 }
 
 .width-full {

@@ -38,6 +38,9 @@
   &-info {
     height: 100%;
   }
+  &-subtitle {
+    line-height: 48px;
+  }
   &-top {
     padding: 32px;
     padding-bottom: 60px;
@@ -64,7 +67,9 @@
     padding: 0px 16px;
   }
   &-bottom {
-    padding-top: 32px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-top: 40px;
     &__item {
       padding: 30px;
       display: flex;
@@ -79,6 +84,12 @@
   @media (max-width: 1000px) {
     .contact-wrapper {
       padding: 0;
+    }
+  }
+  @media (max-width: 768px) {
+    .contact-bottom {
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }

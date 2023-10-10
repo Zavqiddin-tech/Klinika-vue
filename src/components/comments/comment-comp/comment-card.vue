@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-card">
+    <div :class="toggle ? 'comment-card orange' : 'comment-card' ">
         <div :class="toggle ? 'title' : 'text'">
             {{ text }}
         </div>
@@ -17,6 +17,15 @@ defineProps([
 </script>
 
 <style lang="scss" scoped>
+    .comment-card {
+        height: 100%;
+        padding: 32px;
+        border-radius: 24px;
+        background-color: #fff;
+        .title {
+            padding-bottom: 230px;
+        }
+    }
     .title {
         font-size: 24px;
         font-weight: 600;
@@ -26,4 +35,7 @@ defineProps([
         font-weight: 200;
         line-height: 24px;
     }   
+    .orange {
+        background-color: #E7E1E0;
+    }
 </style>

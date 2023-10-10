@@ -19,7 +19,21 @@ import forma from "@/components/form/forma.vue";
 <style lang="scss">
 .contact {
   padding-top: 100px;
+  position: relative;
   background-color: #f9fafe;
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../assets/logo/star-big.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    opacity: 0.1;
+    bottom: -70px;
+  }
   &-boxes {
     border-radius: 24px;
     background: #fff;

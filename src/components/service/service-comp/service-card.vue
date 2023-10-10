@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="10" :sm="16" :md="10" :xs="22" class="service-card ">
         <div class="service-box orange">
-          <div class="service-subtitle">Аппаратная косметология</div>
+          <div class="service-subtitle">Аппаратная <span>косметология</span></div>
           <div class="service-text">
             <ul>
               <li>Альтера-терапия</li>
@@ -16,11 +16,11 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="14" :sm="16" :md="14" :xs="21">
+      <el-col :span="14" :sm="16" :md="14" :xs="21" class="service-card2">
         <el-row>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Инъекционная косметология</div>
+              <div class="service-subtitle">Инъекционная <span>косметология</span></div>
               <div class="service-text">
                 <ul>
                   <li>Биоревитализация</li>
@@ -32,7 +32,7 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Эстетическая косметология</div>
+              <div class="service-subtitle">Эстетическая <span>косметология</span></div>
               <div class="service-text">
                 <ul>
                   <li>Гигиеническая чистка</li>
@@ -44,15 +44,14 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Лазерная косметология</div>
+              <div class="service-subtitle">Лазерная <span>косметология</span></div>
             </div>
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
               <div class="service-subtitle">
-                Мужская
-                <span>new</span>
-                косметология
+                Мужская <span class="newspan">new</span> <br>
+                <span>косметология</span>
               </div>
             </div>
           </el-col>
@@ -76,6 +75,9 @@
   &-card {
     padding: 16px;
   }
+  &-card2 {
+    padding: 0px 16px;
+  }
   &-box {
     padding: 32px;
     border-radius: 24px;
@@ -98,11 +100,17 @@
     font-weight: 600;
     line-height: 27.5px;
     span {
-      background-color: #E7E1E0;
-      padding: 0px 5px;
-      border: 1px solid #9A888A;
-      font-size: 20px;
-      border-radius: 30px;
+      font-family: "Manrope";
+      font-size: 22px;
+      font-style: normal;
+      &.newspan {
+        background-color: #E7E1E0;
+        font-family: Cormorant Garamond;
+        padding: 0px 5px;
+        border: 1px solid #9A888A;
+        font-size: 20px;
+        border-radius: 30px;
+      }
     }
   }
   &-text {

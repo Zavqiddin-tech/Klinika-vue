@@ -85,7 +85,20 @@ onMounted(() => {
   color: #546272;
 }
 .stock-detail {
+  position: relative;
   padding-top: 56px;
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    bottom: -70px;
+  }
   .container {
     .stock-banner {
       margin-top: 40px;

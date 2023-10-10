@@ -46,6 +46,33 @@ const { title, titleItalic, textGroup, btnText } = storeToRefs(
 .info-specialist {
   padding-top: 30px;
   background-color: #F9FAFF;
+  position: relative;
+  
+  &:after {
+    content: '';
+    width: 400px;
+    height: 600px;
+    background-image: url('../../../assets/logo/card-bg.png');
+    background-repeat: no-repeat;
+    background-position-x: 200px;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    opacity: 0.1;
+    bottom: 0px;
+  }
+  &:before {
+    content: '';
+    width: 400px;
+    height: 400px;
+    background-image: url('../../../assets/logo/triagles-white.png');
+    background-repeat: no-repeat;
+    background-position-x: 100px;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+  }
   &__title {
     padding-top: 60px;
     padding-bottom: 120px;
