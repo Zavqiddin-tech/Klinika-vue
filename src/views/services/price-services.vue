@@ -1,24 +1,35 @@
 <template>
-    <div class="price-services">
-        <div class="container">
-            <div class="title">Стоимость услуг</div>
-            <el-tree :data="data"/>
-            <el-tree :data="data"/>
-            <el-tree :data="data"/>
-            <el-tree :data="data"/>
-        </div>
-        <forma 
-            title="Запишитесь на консультацию" 
-            text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
-            agreeText="Я соглашаюсь с политикой обработки персональных данных  и пользовательским соглашением, а также даю согласие на обработку персональных данных."
-        />
+  <div class="price-services">
+    <div class="phone-item">
+        <div><img src="../../assets/logo/sms.png" alt="" /></div>
+      </div>
+    <div class="container">
+      <div class="line-star">
+        <img src="../../assets/logo/line-star2.png" alt="">
+      </div>
+      <div class="star">
+        <img src="../../assets/logo/star-big.png" alt="">
+      </div>
+      <div class="title">Стоимость услуг</div>
+      <el-tree :data="data" />
+      <el-tree :data="data" />
+      <el-tree :data="data" />
+      <el-tree :data="data" />
+      <el-tree :data="data" />
+      <el-tree :data="data" />
+      <el-tree :data="data" />
     </div>
+    <forma
+      title="Запишитесь на консультацию"
+      text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
+      agreeText="Я соглашаюсь с политикой обработки персональных данных  и пользовательским соглашением, а также даю согласие на обработку персональных данных."
+    />
+  </div>
 </template>
 
-
 <script setup>
-import {ref} from 'vue'
-import forma from "@/components/form/forma.vue"
+import { ref } from "vue";
+import forma from "@/components/form/forma.vue";
 const data = ref([
   {
     label: "Аппаратная косметология",
@@ -45,12 +56,27 @@ const data = ref([
     ],
   },
 ]);
-
 </script>
 
-
 <style lang="scss">
-    .el-tree {
+.price-services {
+  .container {
+    position: relative;
+  .line-star {
+      position: absolute;
+      left: -200px;
+      bottom: -350px;
+      opacity: 0.3;
+    }
+    .star {
+      position: absolute;
+      right: -320px;
+      top: 400px;
+      opacity: 0.3;
+    }
+  }
+}
+.el-tree {
   margin-top: 56px;
   &-node {
     margin-top: 30px;

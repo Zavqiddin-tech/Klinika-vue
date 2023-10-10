@@ -10,7 +10,7 @@
         </div>
         <div class="header-btn-group">
             <el-button type="info" round>Записаться</el-button>
-            <el-button :icon="User" round>Войти</el-button>
+            <el-button class="btn-white" :icon="User" round>Войти</el-button>
         </div>
         <div class="menu-toggle" @click="menuOpen()">
             <div class="line"></div>
@@ -61,6 +61,13 @@ const menuOpen = ()=> {
             .el-button {
                 padding: 18px 20px;
                 font-size: 15px;
+                &:hover {
+                    transform: translateY(-2px);
+                }
+                &:active {
+                    transform: translateY(2px);
+                }
+                
             }
         }
     }

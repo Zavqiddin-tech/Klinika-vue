@@ -1,6 +1,12 @@
 <template>
   <div class="specialist-section">
     <div class="container">
+      <div class="line-star">
+        <img src="../../assets/logo/line-star2.png" alt="">
+      </div>
+      <div class="star">
+        <img src="../../assets/logo/star-big.png" alt="">
+      </div>
       <div class="title">Наши специалисты</div>
       <div class="about-text">
         Все врачи Центра косметологии Клиники Екатерининская являются
@@ -42,6 +48,21 @@ onMounted(()=> {
 <style lang="scss">
 .specialist-section {
   position: relative;
+  .container {
+    position: relative;
+    .line-star {
+      position: absolute;
+      left: -300px;
+      top: 1000px;
+      opacity: 0.3;
+    }
+    .star {
+      position: absolute;
+      right: -320px;
+      top: 900px;
+      opacity: 0.3;
+    }
+  }
   .specialists-cards {
     position: relative;
     z-index: 1;

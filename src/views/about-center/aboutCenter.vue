@@ -1,6 +1,12 @@
 <template>
   <div class="about-center">
     <div class="container">
+      <div class="line-star">
+        <img src="../../assets/logo/line-star2.png" alt="">
+      </div>
+      <div class="star">
+        <img src="../../assets/logo/star-big.png" alt="">
+      </div>
       <about-banner :button_title="buttonTitle" />
       <analitic :array="aboutCenterAnalitic" />
       <flex-items />
@@ -33,7 +39,21 @@ const agreeText = ref(
 .about-center {
   background-color: #f9faff;
   position: relative;
-  
+  .container {
+    position: relative;
+    .line-star {
+      position: absolute;
+      left: -300px;
+      top: 1000px;
+      opacity: 0.3;
+    }
+    .star {
+      position: absolute;
+      right: -320px;
+      top: 900px;
+      opacity: 0.3;
+    }
+  }
   &:after {
     content: '';
     width: 400px;

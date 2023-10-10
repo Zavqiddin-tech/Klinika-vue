@@ -9,6 +9,12 @@
         :img="stockImg"
         buttonText="Подробнее"
       />
+      <div class="line-star">
+        <img src="../../assets/logo/line-star2.png" alt="">
+      </div>
+      <div class="star">
+        <img src="../../assets/logo/star-big.png" alt="">
+      </div>
       <stock-boxes />
       <forma
         title="Запишитесь на консультацию"
@@ -47,6 +53,21 @@ onMounted(() => {
 .stock {
   position: relative;
   background-color: #f9faff;
+  .container {
+    position: relative;
+    .line-star {
+      position: absolute;
+      left: -200px;
+      bottom: 400px;
+      opacity: 0.3;
+    }
+    .star {
+      position: absolute;
+      right: -320px;
+      top: 900px;
+      opacity: 0.3;
+    }
+  }
   &:after {
     content: '';
     width: 400px;

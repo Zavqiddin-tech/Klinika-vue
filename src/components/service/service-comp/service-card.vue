@@ -1,9 +1,12 @@
 <template>
   <div class="service-cards">
     <el-row>
-      <el-col :span="10" :sm="16" :md="10" :xs="22" class="service-card ">
+      <el-col :span="10" :sm="16" :md="10" :xs="22" class="service-card">
         <div class="service-box orange">
-          <div class="service-subtitle">Аппаратная <span>косметология</span></div>
+          <div class="orange-react"></div>
+          <div class="service-subtitle">
+            Аппаратная <span>косметология</span>
+          </div>
           <div class="service-text">
             <ul>
               <li>Альтера-терапия</li>
@@ -20,7 +23,9 @@
         <el-row>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Инъекционная <span>косметология</span></div>
+              <div class="service-subtitle">
+                Инъекционная <span>косметология</span>
+              </div>
               <div class="service-text">
                 <ul>
                   <li>Биоревитализация</li>
@@ -32,7 +37,9 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Эстетическая <span>косметология</span></div>
+              <div class="service-subtitle">
+                Эстетическая <span>косметология</span>
+              </div>
               <div class="service-text">
                 <ul>
                   <li>Гигиеническая чистка</li>
@@ -44,13 +51,15 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
-              <div class="service-subtitle">Лазерная <span>косметология</span></div>
+              <div class="service-subtitle">
+                Лазерная <span>косметология</span>
+              </div>
             </div>
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
               <div class="service-subtitle">
-                Мужская <span class="newspan">new</span> <br>
+                Мужская <span class="newspan">new</span> <br />
                 <span>косметология</span>
               </div>
             </div>
@@ -64,9 +73,11 @@
 <script setup></script>
 
 <style lang="scss">
+@import '@/styles/vars/phone.scss';
 .service {
   &-cards {
     padding-top: 42px;
+    position: relative;
     .el-row {
       margin-left: -16px;
       margin-right: -16px;
@@ -86,10 +97,19 @@
   }
   &-box.orange {
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     background-color: #e7e1e0;
-    background-image: url('@/assets/logo/card-bg.png');
-    background-repeat: no-repeat;
-    background-position: 275px 100px;
+    .orange-react {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url("@/assets/logo/card-bg.png");
+      background-repeat: no-repeat;
+      opacity: 0.3;
+      background-position: 260px 40px;
+    }
   }
   &-subtitle {
     width: 155px;
@@ -104,10 +124,10 @@
       font-size: 22px;
       font-style: normal;
       &.newspan {
-        background-color: #E7E1E0;
+        background-color: #e7e1e0;
         font-family: Cormorant Garamond;
         padding: 0px 5px;
-        border: 1px solid #9A888A;
+        border: 1px solid #9a888a;
         font-size: 20px;
         border-radius: 30px;
       }
@@ -128,7 +148,6 @@
     }
   }
 }
-
 
 @media (max-width: 1000px) {
   .service-cards {

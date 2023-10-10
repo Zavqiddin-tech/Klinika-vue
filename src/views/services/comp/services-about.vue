@@ -1,5 +1,8 @@
 <template>
   <div class="services-about">
+    <div class="phone-item">
+        <div><img src="../../../assets/logo/phone2.png" alt="" /></div>
+      </div>
     <div class="container">
       <servicesBanner :obj="servicesAboutObj" />
       <div class="title">О процедуре</div>
@@ -56,6 +59,7 @@ const { servicesAboutAnalitic } = useAnaliticStore();
 </script>
 
 <style lang="scss">
+@import '../../../styles/vars/phone.scss';
 .services-about {
   position: relative;
   &:after {

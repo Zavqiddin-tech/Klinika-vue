@@ -1,6 +1,12 @@
 <template>
   <div class="info-specialist">
     <div class="container">
+      <div class="line-star">
+        <img src="../../../assets/logo/line-star2.png" alt="">
+      </div>
+      <div class="star">
+        <img src="../../../assets/logo/star-big.png" alt="">
+      </div>
       <about-top
         class="info-specialist__banner"
         :infoImg="infoImg"
@@ -47,7 +53,24 @@ const { title, titleItalic, textGroup, btnText } = storeToRefs(
   padding-top: 30px;
   background-color: #F9FAFF;
   position: relative;
-  
+  .container {
+    position: relative;
+    .info-card, .demo-collapse {
+      position: relative;
+    }
+    .line-star {
+      position: absolute;
+      left: -300px;
+      top: 1000px;
+      opacity: 0.3;
+    }
+    .star {
+      position: absolute;
+      right: -320px;
+      top: 900px;
+      opacity: 0.3;
+    }
+  }
   &:after {
     content: '';
     width: 400px;

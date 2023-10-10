@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+      <div class="phone-item">
+        <div><img src="../../assets/logo/phone2.png" alt="" /></div>
+      </div>
     <banner-slider :button_title="buttonTitle" />
     <service-vue />
     <about-vue />
@@ -8,7 +11,7 @@
       <comment />
       <contact />
       <raiting />
-      <forma :title="title" :text="text" :agreeText="agreeText"/>
+      <forma :title="title" :text="text" :agreeText="agreeText" />
     </div>
   </div>
 </template>
@@ -44,14 +47,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+@import "../../styles/vars/phone.scss";
 .home {
   position: relative;
-  
+
   &:after {
-    content: '';
+    content: "";
     width: 400px;
     height: 600px;
-    background-image: url('../../assets/logo/triagles.png');
+    background-image: url("../../assets/logo/triagles.png");
     background-repeat: no-repeat;
     background-position-x: 100px;
     background-size: contain;

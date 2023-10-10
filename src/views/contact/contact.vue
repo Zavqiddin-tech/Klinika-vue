@@ -2,6 +2,9 @@
   <div class="contact">
     <div class="container">
       <contact-box />
+      <div class="line-star">
+        <img src="../../assets/logo/line-star.png" alt="">
+      </div>
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -21,6 +24,15 @@ import forma from "@/components/form/forma.vue";
   padding-top: 100px;
   position: relative;
   background-color: #f9fafe;
+  .container {
+    position: relative;
+    .line-star {
+      position: absolute;
+      bottom: 0px;
+      left: -200px;
+      opacity: 0.3;
+    }
+  }
   &:after {
     content: '';
     width: 400px;
@@ -37,6 +49,8 @@ import forma from "@/components/form/forma.vue";
   &-boxes {
     border-radius: 24px;
     background: #fff;
+    position: relative;
+    z-index: 1;
     box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
     .el-row {
       padding: 16px;
