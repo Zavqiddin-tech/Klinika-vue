@@ -3,7 +3,7 @@
     :spaceBetween="30"
     :centeredSlides="true"
     :autoplay="{
-      delay: 2500,
+      delay: 1500,
       disableOnInteraction: false,
     }"
     :pagination="{
@@ -25,18 +25,10 @@
   </swiper>
 </template>
 <script>
-// Import Swiper Vue.js components
+
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/pagination";
-// import 'swiper/css/navigation';
-
-// import './style.css';
-
-// import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 
 export default {

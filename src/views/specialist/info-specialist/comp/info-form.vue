@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="12" :xs="24">
         <div class="info-form__slider">
-          <img src="@/assets/img/info-form.png" alt="" />
+          <info-slider />
         </div>
       </el-col>
       <el-col :span="12" :xs="24">
@@ -23,7 +23,7 @@
 
 <script setup>
 import formaInput from "@/components/form/form-comp/forma-input.vue";
-
+import infoSlider from './info-slider.vue'
 </script>
 
 <style lang="scss">
