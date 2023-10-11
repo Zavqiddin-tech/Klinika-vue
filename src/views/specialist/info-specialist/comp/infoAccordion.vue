@@ -3,7 +3,8 @@
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="Образование" name="1">
         <div>
-          Кубанский государственный медицинский университет, квалификация Врач по специальности Лечебное дело , 2010 г.
+          Кубанский государственный медицинский университет, квалификация Врач
+          по специальности Лечебное дело , 2010 г.
         </div>
         <div>
           Интернатура КубГМУ по специальности Дерматовенерология, 2017 г.
@@ -11,7 +12,8 @@
       </el-collapse-item>
       <el-collapse-item title="Дополнительное образование" name="2">
         <div>
-          Кубанский государственный медицинский университет, квалификация Врач по специальности Лечебное дело , 2010 г.
+          Кубанский государственный медицинский университет, квалификация Врач
+          по специальности Лечебное дело , 2010 г.
         </div>
         <div>
           Интернатура КубГМУ по специальности Дерматовенерология, 2017 г.
@@ -19,7 +21,8 @@
       </el-collapse-item>
       <el-collapse-item title="Направления работы специалиста" name="3">
         <div>
-          Кубанский государственный медицинский университет, квалификация Врач по специальности Лечебное дело , 2010 г.
+          Кубанский государственный медицинский университет, квалификация Врач
+          по специальности Лечебное дело , 2010 г.
         </div>
         <div>
           Интернатура КубГМУ по специальности Дерматовенерология, 2017 г.
@@ -27,7 +30,8 @@
       </el-collapse-item>
       <el-collapse-item title="Сертификаты" name="4">
         <div>
-          Кубанский государственный медицинский университет, квалификация Врач по специальности Лечебное дело , 2010 г.
+          Кубанский государственный медицинский университет, квалификация Врач
+          по специальности Лечебное дело , 2010 г.
         </div>
         <div>
           Интернатура КубГМУ по специальности Дерматовенерология, 2017 г.
@@ -44,28 +48,80 @@
   .el-collapse {
     padding-top: 30px;
     padding-bottom: 60px;
-  &-item {
-    margin-top: 30px;
-    background: #fff;
-    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
-    &__wrap {
+    &-item {
       border-radius: 24px;
     }
-    &__header {
-      padding: 20px 30px;
-      font-weight: 600;
-      color: #546272;
-      border-radius: 24px;
-
-    }
-    div {
-      font-size: 12px;
-      color: #546272;
-    }
-    &__content {
-      padding-left: 30px;
+    &-item {
+      margin-top: 30px;
+      background: #fff;
+      box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
+      &__wrap {
+        border-radius: 24px;
+      }
+      &__header {
+        padding: 20px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #546272;
+        border-radius: 24px;
+      }
+      &__content {
+        padding-left: 30px;
+        div {
+          font-weight: 200;
+          font-size: 16px;
+        }
+      }
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .demo-collapse {
+    .el-collapse {
+      &-item {
+        &__header {
+          font-size: 17px;
+        }
+        &__content {
+          div {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 800px) {
+  .demo-collapse {
+    .el-collapse {
+      &-item {
+        &__header {
+          font-size: 16px;
+        }
+        &__content {
+          div {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .demo-collapse {
+    .el-collapse {
+      &-item {
+        &__header {
+          font-size: 15px;
+        }
+        &__content {
+          div {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

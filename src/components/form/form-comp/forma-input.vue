@@ -8,7 +8,9 @@
   >
     <el-form-item prop="number">
       <div class="form-input">
-        <img src="@/assets/logo/phone.png" alt="" />
+        <div class="form-input__img">
+          <img src="@/assets/logo/phone.png" alt="" />
+        </div>
         <el-input
           v-model="priceprod.number"
           v-maska
@@ -36,6 +38,7 @@
   </el-form>
 </template>
 <script setup>
+import phoneIcon from "@/assets/logo/phone.png"
 defineProps(["infoForm"]);
 
 import { ElMessage } from "element-plus";
@@ -104,21 +107,41 @@ const add = async (formEl) => {
   &-btn {
     transform: translateY(-10px);
   }
+  .el-form-item {
+    border: 1px solid #d9d9d9;
+    border-radius: 24px;
+  }
+  .el-form-item.is-error .el-input__wrapper {
+    box-shadow: 0 0 0;
+  }
+  .el-form-item.is-error  {
+    border: 1px solid red;
+  }
   &-input {
     width: 360px;
-    padding-left: 15px;
     gap: 10px;
     display: flex;
     align-items: center;
     border-radius: 24px;
     background-color: #fff;
+    &__img {
+      padding: 8px;
+      border-right: 1px solid #d9d9d9;
+      img {
+        vertical-align: middle;
+      }
+    }
     .el-input {
       &__wrapper {
-        padding: 8px;
+        padding: 0px;
         border-radius: 24px;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
-        border-left-color: #d9d9d9;
+        border-lef: 2px solid #d9d9d9;
+        &.is-focus {
+          box-shadow: unset;
+        }
+        box-shadow: unset;
       }
     }
   }
