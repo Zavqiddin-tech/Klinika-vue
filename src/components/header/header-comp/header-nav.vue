@@ -9,7 +9,7 @@
             8 (861) <span>202-0-202</span>
         </div>
         <div class="header-btn-group">
-            <el-button type="info" round>Записаться</el-button>
+            <el-button class="nav-btn" round>Записаться</el-button>
             <el-button class="btn-white" :icon="User" round>Войти</el-button>
         </div>
         <div class="menu-toggle" @click="menuOpen()">
@@ -49,9 +49,16 @@ const menuOpen = ()=> {
                 padding-left: 17px;
             }
         }
+        .nav-btn {
+            background-color: #546272;
+            color: #fff;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
         &-number {
             font-size: 18px;
-            font-weight: 200;
+            font-weight: 200;   
             span {
                 font-weight: 600;
                 color: #546272;

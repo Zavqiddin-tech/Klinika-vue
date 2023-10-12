@@ -24,7 +24,7 @@
             font-size: 13px;
             color: #546272;
             &:hover {
-                background-color: #fff;
+                background-color: #FEFEFE;
             }
         }
     }

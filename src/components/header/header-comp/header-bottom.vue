@@ -25,8 +25,6 @@ import { menuLink } from "@/router/menu.js";
 <style lang="scss">
 .header {
   &-bottom {
-    padding: 0px 17px;
-    padding-top: 15px;
     display: flex;
     justify-content: space-between;
     
