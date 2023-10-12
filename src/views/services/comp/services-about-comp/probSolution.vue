@@ -76,6 +76,9 @@ const probMenu = ref([
   .el-tabs__item.is-active {
     color: #9A888A;
   }
+  .el-tabs__item:hover {
+    color: #9A888A;
+  }
   .el-tabs__active-bar {
     background-color: #9A888A;
   }

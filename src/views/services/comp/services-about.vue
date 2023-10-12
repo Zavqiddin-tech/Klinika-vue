@@ -61,6 +61,7 @@ const { servicesAboutAnalitic } = useAnaliticStore();
 <style lang="scss">
 @import '../../../styles/vars/phone.scss';
 .services-about {
+  margin-top: 100px;
   position: relative;
   &:after {
     content: '';

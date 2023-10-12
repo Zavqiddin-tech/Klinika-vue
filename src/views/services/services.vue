@@ -45,6 +45,7 @@ const servicesAbout = (obj) => {
 
 <style lang="scss">
 .services {
+  padding-top: 70px;
   position: relative;
   .container {
     position: relative;

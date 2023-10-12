@@ -47,6 +47,7 @@ onMounted(()=> {
 
 <style lang="scss">
 .specialist-section {
+  margin-top: 100px;
   position: relative;
   .container {
     position: relative;

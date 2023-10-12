@@ -37,6 +37,7 @@ const agreeText = ref(
 
 <style lang="scss">
 .about-center {
+  margin-top: 100px;
   background-color: #f9faff;
   position: relative;
   .container {

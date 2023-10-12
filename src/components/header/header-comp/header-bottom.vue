@@ -46,6 +46,15 @@ import { menuLink } from "@/router/menu.js";
          
         }
       }
+      .el-sub-menu {
+        &:hover {
+          .el-icon {
+            transition: 0.3s linear;
+            transform: rotate(180deg);
+            color: #546272;
+          }
+        }
+      }
     }
     a {
       color: #546272;

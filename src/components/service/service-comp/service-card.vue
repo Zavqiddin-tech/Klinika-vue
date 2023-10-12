@@ -23,6 +23,7 @@
         <el-row>
           <el-col :span="12" class="service-card">
             <div class="service-box">
+              <div class="service-box__bg one"></div>
               <div class="service-subtitle">
                 Инъекционная <span>косметология</span>
               </div>
@@ -37,6 +38,7 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
+              <div class="service-box__bg two"></div>
               <div class="service-subtitle">
                 Эстетическая <span>косметология</span>
               </div>
@@ -51,6 +53,7 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
+              <div class="service-box__bg three"></div>
               <div class="service-subtitle">
                 Лазерная <span>косметология</span>
               </div>
@@ -58,6 +61,7 @@
           </el-col>
           <el-col :span="12" class="service-card">
             <div class="service-box">
+              <div class="service-box__bg four"></div>
               <div class="service-subtitle">
                 Мужская <span class="newspan">new</span> <br />
                 <span>косметология</span>
@@ -100,10 +104,35 @@
     padding: 0px 16px;
   }
   &-box {
+    position: relative;
     padding: 32px;
     border-radius: 24px;
     background: #fff;
     box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
+    overflow: hidden;
+    .service-box__bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-repeat: no-repeat;
+      opacity: 0.3;
+      &.one {
+        background-position: 180px 140px;
+        background-image: url('@/assets/logo/starfour.png');
+      }
+      &.two {
+        background-position: 160px -10px;
+        background-image: url('@/assets/logo/star-normal.png');
+      }
+      &.three {
+        background-position: 180px -10px;
+        background-image: url('@/assets/logo/startwo.png');
+      }
+      &.four {
+        background-position: 120px -30px;
+        background-image: url('@/assets/logo/starreact.png');
+      }
+    }
   }
   &-box.orange {
     height: 100%;

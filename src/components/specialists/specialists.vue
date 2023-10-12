@@ -4,7 +4,7 @@
             <service-top :title="title" :text="text"/> 
             <el-row>
                 <el-col :span="8" :sm="10" :md="8" :xs="20" v-for="item of persons">
-                    <specialists-card :img="item.img" :title="item.title" :text="item.text"/>
+                    <specialists-card :img="item.img" :title="item.title" :text="item.text" :profession="item.profession"/>
                 </el-col>
             </el-row>
         </div>
@@ -36,7 +36,8 @@ const persons = ref([
     {
         img: specialist4,
         title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
+        text: 'Дерматовенеролог cтаж 11 лет',
+        profession: "+ 2 специальности"
     },
 ])
 

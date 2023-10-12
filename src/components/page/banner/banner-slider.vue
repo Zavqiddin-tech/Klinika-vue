@@ -25,6 +25,7 @@ defineProps(['button_title'])
 
 <style lang="scss">
 .banner-slider {
+  margin-top: 32px;
 .el-carousel__item {
     .el-row {
       height: 100%;     

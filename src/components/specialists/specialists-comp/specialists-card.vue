@@ -4,11 +4,12 @@
     <div class="specialists-info">
       <div class="specialists-title">{{ title }}</div>
       <div class="specialists-text">{{ text }}</div>
+      <div v-show="profession" class="profession">{{ profession }}</div>
     </div>
   </div>
 </template>
 <script setup>
-defineProps(["img", "title", "text"]);
+defineProps(["img", "title", "text", "profession"]);
 </script>
 <style lang="scss">
 .specialists-card {
@@ -26,6 +27,16 @@ defineProps(["img", "title", "text"]);
   margin-left: 32px;
   position: absolute;
   bottom: 30px;
+  .profession {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 200;
+    border: 1px solid #C9BABA;
+    color: #C9BABA;
+    display: inline-block;
+  }
 }
 
 .specialists-title {
