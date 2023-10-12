@@ -150,7 +150,7 @@ onMounted(() => {
 <style lang="scss">
 .stock-order {
   position: relative;
-  padding-top: 100px;
+  padding-top: 50px;
   &:after {
     content: '';
     width: 400px;

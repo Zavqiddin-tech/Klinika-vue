@@ -75,6 +75,16 @@
 <style lang="scss">
 @import '@/styles/vars/phone.scss';
 .service {
+ &-text__lists {
+  border: 1px solid red;
+  z-index: 100;
+  li {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+ }
   &-cards {
     padding-top: 42px;
     position: relative;
@@ -141,10 +151,15 @@
     font-weight: 200;
     line-height: 27px;
     ul {
+      position: relative;
       padding-top: 27px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      li:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 }

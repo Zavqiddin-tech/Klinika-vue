@@ -64,17 +64,21 @@ const probMenu = ref([
 </script>
 
 <style lang="scss">
-
-
 .prob-solution {
   padding-top: 60px;
   .el-tabs__header {
     padding: 0px 0px 30px;
   }
   .el-tabs__nav {
-  width: 100%;
-  justify-content: space-between;
-}
+    width: 100%;
+    justify-content: space-between;
+  }
+  .el-tabs__item.is-active {
+    color: #9A888A;
+  }
+  .el-tabs__active-bar {
+    background-color: #9A888A;
+  }
   .title {
     padding-bottom: 40px;
   }
@@ -83,7 +87,6 @@ const probMenu = ref([
     font-size: 24px;
   }
 }
-
 
 @media (max-width: 1000px) {
   .prob-solution .el-tabs__nav {
