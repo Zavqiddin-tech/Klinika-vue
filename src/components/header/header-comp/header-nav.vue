@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <div class="header-number">
-            8 (861) <span>202-0-202</span>
+           <a href="#">8 (861) <span>202-0-202</span></a>
         </div>
         <div class="header-btn-group">
             <el-button class="nav-btn" round>Записаться</el-button>
@@ -62,6 +62,9 @@ const menuOpen = ()=> {
             span {
                 font-weight: 600;
                 color: #546272;
+            }
+            &:hover {
+                text-decoration: underline;
             }
         }
         &-btn-group {

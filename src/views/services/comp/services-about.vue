@@ -29,7 +29,8 @@
       <services-process :process="process" />
       <specialists />
       <indications />
-      <cost-service />
+      <infoAccordion :infoAccordion="infoSrAccordion"/>
+      <servicesCost />
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -48,7 +49,8 @@ import probSolution from "./services-about-comp/probSolution.vue";
 import servicesProcess from "./services-about-comp/services-process.vue";
 import specialists from "@/components/specialists/specialists.vue";
 import indications from "./services-about-comp/indications.vue";
-import costService from "../../../components/cost-service/cost-service.vue";
+import infoAccordion from "../../specialist/info-specialist/comp/infoAccordion.vue";
+import servicesCost from "./services-about-comp/servicesCost.vue";
 import forma from "@/components/form/forma.vue";
 
 import { useServicesStore } from "../../../stores/services/services";
@@ -56,6 +58,9 @@ const { servicesAboutObj, process } = storeToRefs(useServicesStore());
 
 import { useAnaliticStore } from "../../../stores/analitic/analitic";
 const { servicesAboutAnalitic } = useAnaliticStore();
+
+import { useAccordionStore } from "../../../stores/accordion/accordion";
+const {infoSrAccordion} = storeToRefs(useAccordionStore())
 </script>
 
 <style lang="scss">

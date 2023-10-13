@@ -20,7 +20,7 @@
         перемены.
       </div>
       <info-specialist-card />
-      <info-accordion />
+      <info-accordion :infoAccordion="infoStAccordion"/>
       <info-cards />
       <info-blog />
       <info-form />
@@ -44,6 +44,9 @@ import { infoSpecialistStore } from "../../../stores/specialist/info-specialist"
 const { title, titleItalic, textGroup, btnText } = storeToRefs(
   infoSpecialistStore()
 );
+
+import { useAccordionStore } from "../../../stores/accordion/accordion";
+const {infoStAccordion} = storeToRefs(useAccordionStore())
 //store
 </script>
 
