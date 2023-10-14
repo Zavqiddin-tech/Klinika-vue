@@ -1,6 +1,10 @@
 <template>
   <div class="contact">
     <div class="container">
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Контакты</span>
+      </div>
       <contact-box />
       <div class="line-star">
         <img src="../../assets/logo/line-star.png" alt="">
@@ -21,7 +25,6 @@ import forma from "@/components/form/forma.vue";
 
 <style lang="scss">
 .contact {
-  padding-top: 100px;
   position: relative;
   background-color: #f9fafe;
   .container {
@@ -51,7 +54,7 @@ import forma from "@/components/form/forma.vue";
     background: #fff;
     position: relative;
     z-index: 1;
-    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
+    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
     .el-row {
       padding: 16px;
       .el-col {
@@ -80,7 +83,7 @@ import forma from "@/components/form/forma.vue";
   }
   &-maps {
     height: 100%;
-    box-shadow: 0px 0px 16px 0px rgba(180, 180, 180, 0.5);
+    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.50);
     overflow: hidden;
     border-radius: 24px;
     div {

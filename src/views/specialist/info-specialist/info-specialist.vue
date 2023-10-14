@@ -7,6 +7,11 @@
       <div class="star">
         <img src="../../../assets/logo/star-big.png" alt="">
       </div>
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Наши специалисты</span>
+        <span>Бекетова Екатерина Николаевна</span>
+      </div>
       <about-top
         class="info-specialist__banner"
         :infoImg="infoImg"
@@ -53,7 +58,6 @@ const {infoStAccordion} = storeToRefs(useAccordionStore())
 <style lang="scss">
 @import "@/styles/vars/colors.scss";
 .info-specialist {
-  padding-top: 30px;
   background-color: #F9FAFF;
   position: relative;
   .container {

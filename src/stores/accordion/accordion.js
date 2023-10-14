@@ -222,9 +222,13 @@ export const useAccordionStore = defineStore("accordion", () => {
       id: 1,
       title: "Аппаратная косметология",
       author: "infoPrice",
+      active: false,
       priceServices: [
         {
+          id: 1,
+          author: "infoPriceChildren",
           priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
           children: [
             {
               priceText:
@@ -239,7 +243,82 @@ export const useAccordionStore = defineStore("accordion", () => {
           ],
         },
         {
+          id: 2,
+          author: "infoPriceChildren",
           priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 3,
+          author: "infoPriceChildren",
+          priceTitle: "Лазерная шлифовка",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 4,
+          author: "infoPriceChildren",
+          priceTitle: "Микротоки Biogenie",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 5,
+          author: "infoPriceChildren",
+          priceTitle: "Фототерапия BBL",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 6,
+          author: "infoPriceChildren",
+          priceTitle: "Фракционный микроигольчатый RF-лифтинг",
+          active: false,
           children: [
             {
               priceText:
@@ -254,48 +333,321 @@ export const useAccordionStore = defineStore("accordion", () => {
           ],
         },
       ],
+    },
+    {
+      id: 2,
+      title: "Инъекционная косметология",
+      author: "infoPrice",
       active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Эстетическая косметология",
+      author: "infoPrice",
+      active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: "Лазерная косметология",
+      author: "infoPrice",
+      active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: "Трихология",
+      author: "infoPrice",
+      active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: "Подология",
+      author: "infoPrice",
+      active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 7,
+      title: "Консультация",
+      author: "infoPrice",
+      active: false,
+      priceServices: [
+        {
+          id: 1,
+          author: "infoPriceChildren",
+          priceTitle: "Ультразвуковое лечение кожи. Альтера-терапия",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+        {
+          id: 2,
+          author: "infoPriceChildren",
+          priceTitle: "Гидропилинг HydraFacial MD",
+          active: false,
+          children: [
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+            {
+              priceText:
+                "Прием (осмотр, консультация) врача-косметолога первичный",
+              priceSumma: "от 1 200 ₽",
+            },
+          ],
+        },
+      ],
     },
   ]);
 
   const setInfoAccordion = (id, author) => {
     if (author == "infospes") {
-      for (let i = 0; i < infoStAccordion.value.length; i++) {
-        if (id == infoStAccordion.value[i].id) {
-          infoStAccordion.value[i].active = !infoStAccordion.value[i].active;
+      infoStAccordion.value.forEach((item) => {
+        if (id == item.id) {
+          item.active = !item.active;
         } else {
-          infoStAccordion.value[i].active = false;
+          item.active = false;
         }
-      }
+      });
     }
     if (author == "infoservices") {
-      for (let i = 0; i < infoSrAccordion.value.length; i++) {
-        if (id == infoSrAccordion.value[i].id) {
-          infoSrAccordion.value[i].active = !infoSrAccordion.value[i].active;
+      infoSrAccordion.value.forEach((item) => {
+        if (id == item.id) {
+          item.active = !item.active;
         } else {
-          infoSrAccordion.value[i].active = false;
+          item.active = false;
         }
-      }
+      });
     }
     if (author == "infoCost") {
-      for (let i = 0; i < infoCostAccordion.value.length; i++) {
-        if (id == infoCostAccordion.value[i].id) {
-          infoCostAccordion.value[i].active =
-            !infoCostAccordion.value[i].active;
+      infoCostAccordion.value.forEach((item) => {
+        if (id == item.id) {
+          item.active = !item.active;
         } else {
-          infoCostAccordion.value[i].active = false;
+          item.active = false;
         }
-      }
+      });
     }
     if (author == "infoPrice") {
-      for (let i = 0; i < infoPriceAccordion.value.length; i++) {
-        if (id == infoPriceAccordion.value[i].id) {
-          infoPriceAccordion.value[i].active =
-            !infoPriceAccordion.value[i].active;
+      infoPriceAccordion.value.forEach((item) => {
+        if (id == item.id) {
+          item.active = !item.active;
         } else {
-          infoPriceAccordion.value[i].active = false;
+          item.active = false;
         }
-      }
+      });
+    }
+    if (author == "infoPriceChildren") {
+      infoPriceAccordion.value.forEach((item) => {
+        item.priceServices.forEach((itemPrice) => {
+          if (itemPrice.id == id) {
+            item.active = !item.active;
+            itemPrice.active = !itemPrice.active;
+          } else {
+            itemPrice.active = false;
+          }
+        });
+      });
     }
   };
 

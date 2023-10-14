@@ -7,6 +7,10 @@
       <div class="star">
         <img src="../../assets/logo/star-big.png" alt="">
       </div>
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Наши специалисты</span>
+      </div>
       <div class="title">Наши специалисты</div>
       <div class="about-text">
         Все врачи Центра косметологии Клиники Екатерининская являются
@@ -47,7 +51,6 @@ onMounted(()=> {
 
 <style lang="scss">
 .specialist-section {
-  margin-top: 100px;
   position: relative;
   .container {
     position: relative;

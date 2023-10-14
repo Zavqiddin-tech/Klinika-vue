@@ -1,6 +1,10 @@
 <template>
   <div class="stock">
     <div class="container">
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Акции</span>
+      </div>
       <div class="title">Акции</div>
       <stock-banner
         title="Ценные подарки"
@@ -79,9 +83,6 @@ onMounted(() => {
     position: absolute;
     right: 0;
     bottom: -70px;
-  }
-  .title {
-    padding-top: 58px;
   }
   .stock-banner {
     margin-top: 40px;

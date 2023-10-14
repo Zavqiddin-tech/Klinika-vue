@@ -7,6 +7,10 @@
       <div class="star">
         <img src="../../assets/logo/star-big.png" alt="">
       </div>
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>О центре</span>
+      </div>
       <about-banner :button_title="buttonTitle" />
       <analitic :array="aboutCenterAnalitic" />
       <flex-items />
@@ -37,9 +41,11 @@ const agreeText = ref(
 
 <style lang="scss">
 .about-center {
-  margin-top: 100px;
   background-color: #f9faff;
   position: relative;
+  .breadcrumb {
+    padding-bottom: 90px;
+  }
   .container {
     position: relative;
     .line-star {

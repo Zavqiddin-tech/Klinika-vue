@@ -7,14 +7,32 @@
     >
       <div class="demo-accordion__title">{{ item.title }}</div>
       <div class="demo-info">
-        <div v-show="item.costTexts" v-for="itemCost in item.costTexts" class="demo-info__prices">
-            <div class="demo-accordion__text">{{ itemCost.text }}</div>
-            <div class="demo-accordion__price">{{ itemCost.price }}</div>
+        <div
+          v-show="item.costTexts"
+          v-for="itemCost in item.costTexts"
+          class="demo-info__prices"
+        >
+          <div class="demo-accordion__text">{{ itemCost.text }}</div>
+          <div class="demo-accordion__price">{{ itemCost.price }}</div>
         </div>
-        <div v-show="item.priceServices" v-for="priceItems in item.priceServices" class="demo-info__price-services">
-          <div class="price-services__info">
+
+
+        <div
+          v-show="item.priceServices"
+          v-for="priceItems, index in item.priceServices"
+          :class="
+            priceItems.active
+              ? 'demo-info__price-services active'
+              : 'demo-info__price-services'
+          "
+          @click="openAccor(priceItems.id, priceItems.author)"
+        >
+          <div class="demo-info__price-bottom">
             <div class="price-services__title">{{ priceItems.priceTitle }}</div>
-            <div class="price-services__bottom" v-for="list in priceItems.children">
+            <div
+              class="price-services__bottom"
+              v-for="list in priceItems.children"
+            >
               <div class="demo-accordion__text">{{ list.priceText }}</div>
               <div class="demo-accordion__price">{{ list.priceSumma }}</div>
             </div>
@@ -35,6 +53,10 @@ const { setInfoAccordion } = useAccordionStore();
 
 const openAccor = (id, author) => {
   setInfoAccordion(id, author);
+};
+
+const openPriceAccor = (author) => {
+  alert(author)
 };
 </script>
 

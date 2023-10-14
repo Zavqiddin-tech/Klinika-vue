@@ -10,9 +10,12 @@
       <div class="star">
         <img src="../../assets/logo/star-big.png" alt="" />
       </div>
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Услуги</span>
+      </div>
       <div class="title">Стоимость услуг</div>
       <infoAccordion :infoAccordion="infoPriceAccordion" />
-      
     </div>
     <forma
       title="Запишитесь на консультацию"
@@ -40,12 +43,62 @@ const { infoPriceAccordion } = storeToRefs(useAccordionStore());
         .demo-info {
           padding-left: 0;
         }
-        .demo-info__prices {
-          padding: 22px 0;
-          padding-left: 64px;
-          border-bottom: 1px solid #d6d6d6;
+        .demo-info__price-services {
           &:last-child {
-            border-bottom: unset;
+            .price-services__title {
+              border-bottom: unset;
+            }
+            .price-services__bottom {
+              border-bottom: unset;
+              &:last-child {
+                border-bottom: unset;
+              }
+            }
+          }
+          &.active {
+            .price-services__title {
+              border-bottom: 1px solid #d6d6d6;
+            }
+            .price-services__bottom {
+              max-height: 300px;
+              overflow: auto;
+              border-bottom: 1px solid #d6d6d6;
+            }
+            .price-services__title::after {
+              border-color: #000;
+            }
+          }
+          .price-services__bottom {
+            max-height: 0;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            transition: 0.3s;
+            .demo-accordion__text {
+              padding: 22px 0;
+              padding-left: 80px;
+            }
+            .demo-accordion__price {
+              padding-top: 22px;
+            }
+          }
+          .price-services__title {
+            padding: 21px 32px;
+            border-bottom: 1px solid #d6d6d6;
+            padding-left: 64px;
+            color: #546272;
+            font-size: 18px;
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 40px;
+              height: 40px;
+              border: 1px solid #d6d6d6;
+              top: 13px;
+              right: 32px;
+              border-radius: 50%;
+            }
           }
         }
         &__price {
@@ -70,7 +123,7 @@ const { infoPriceAccordion } = storeToRefs(useAccordionStore());
     .line-star {
       position: absolute;
       left: -200px;
-      top: 60px;
+      top: 500px;
       opacity: 0.3;
     }
     .star {

@@ -1,0 +1,21 @@
+.breadcrumb {
+    padding-top: 30px;
+    padding-bottom: 56px;
+    color: #6C757D;
+    font-size: 13px;
+    display: flex;
+    gap: 20px;
+    font-weight: 200;
+    span {
+        position: relative;
+        &:last-child::after {
+            content: '';
+        }
+        cursor: pointer;
+    }
+    span::after {
+        content: '/';
+        position: absolute;
+        right: -13px;
+    }
+}

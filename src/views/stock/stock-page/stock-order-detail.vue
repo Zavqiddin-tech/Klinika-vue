@@ -1,6 +1,11 @@
 <template>
   <div class="stock-detail">
     <div class="container">
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Акции</span>
+        <span>-50% на перманентный макияж весь март</span>
+      </div>
       <div class="d-flex align-center justify-between">
         <el-button class="btn-white__defalut" round @click="backPage()"
           >Назад</el-button
@@ -86,7 +91,6 @@ onMounted(() => {
 }
 .stock-detail {
   position: relative;
-  padding-top: 56px;
   &:after {
     content: '';
     width: 400px;
@@ -101,7 +105,7 @@ onMounted(() => {
   }
   .container {
     .stock-banner {
-      margin-top: 40px;
+      margin-top: 56px;
       border-radius: 24px;
       background-color: #ded6d5;
     }

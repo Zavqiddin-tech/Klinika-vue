@@ -1,6 +1,11 @@
 <template>
   <div class="stock-order">
     <div class="container">
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Акции</span>
+        <span>Ценные подарки для самых близких!</span>
+      </div>
       <div class="d-flex align-center justify-between">
         <el-button class="btn-white__defalut" round @click="backPage()"
           >Назад</el-button
@@ -150,7 +155,6 @@ onMounted(() => {
 <style lang="scss">
 .stock-order {
   position: relative;
-  padding-top: 50px;
   &:after {
     content: '';
     width: 400px;
@@ -164,7 +168,7 @@ onMounted(() => {
     bottom: -70px;
   }
   .stock-banner {
-    margin-top: 40px;
+    margin-top: 56px;
     padding: 64px 0px 30px 74px;
     border-radius: 24px;
     background-color: #ded6d5;

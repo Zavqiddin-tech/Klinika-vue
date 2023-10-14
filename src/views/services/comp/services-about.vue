@@ -4,6 +4,11 @@
         <div><img src="../../../assets/logo/phone2.png" alt="" /></div>
       </div>
     <div class="container">
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Аппаратная косметология</span>
+        <span>Фракционный микроигольчатый RF-лифтинг</span>
+      </div>
       <servicesBanner :obj="servicesAboutObj" />
       <div class="title">О процедуре</div>
       <ul class="services-about__texts">
@@ -66,7 +71,6 @@ const {infoSrAccordion} = storeToRefs(useAccordionStore())
 <style lang="scss">
 @import '../../../styles/vars/phone.scss';
 .services-about {
-  margin-top: 100px;
   position: relative;
   &:after {
     content: '';

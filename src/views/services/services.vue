@@ -10,6 +10,10 @@
       <div class="star">
         <img src="../../assets/logo/star-big.png" alt="" />
       </div>
+      <div class="breadcrumb">
+        <span>Главная</span>
+        <span>Услуги</span>
+      </div>
       <div class="title">Услуги</div>
       <div class="services-items">
         <services-banner
@@ -44,8 +48,8 @@ const servicesAbout = (obj) => {
 </script>
 
 <style lang="scss">
+@import '@/styles/vars/phone.scss';
 .services {
-  padding-top: 70px;
   position: relative;
   .container {
     position: relative;
@@ -74,9 +78,7 @@ const servicesAbout = (obj) => {
     right: 0;
     bottom: 0;
   }
-  .title {
-    padding-top: 30px;
-  }
+ 
   background-color: #f4f3f7;
   &-banner {
     transition: 0.25s;
