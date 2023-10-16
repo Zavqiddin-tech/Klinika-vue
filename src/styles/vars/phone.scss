@@ -1,32 +1,182 @@
-.phone-item {
+.wrapper { 
     position: fixed;
-    top: 300px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
+    top: 600px;
+    right: 100px;
+    cursor: pointer;
+    z-index: 100;
+    
+  }
+  
+  .loading::after {
+    content: '\2026'; /* ascii code for the ellipsis character */
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;   
+    animation: ellipsis steps(4,end) 2s infinite;  
+    width: 0px;
+    position: absolute;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  
+   
+  
+    &::before {
+      transform: rotate(45deg);
+    }
+  
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  
+  @keyframes ellipsis {
+    to {
+      width: 1.05em;    
+    }
+  }
+  
+  .call {
+    width: 0;
+    height: 0;
+    background: #da3737;
+    border-radius: 50%;
+    box-shadow: 0 0 40px 0 #ff0707;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e6e3e8;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: 0.3s;
-    div {
-      width: 55px;
-      height: 55px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      background-color: #9A888A;
+    position: absolute;	
+    flex-wrap: wrap;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 0.5s;
+    transition-delay: 0.2s;
+    transform-origin: 50% 50%;
+    opacity: 0;
+    overflow: hidden;
+    
+  
+    p {
+      color: #fff;
+      font-weight: bold;
+      font-size: 100px;
+      margin: 0;
+      transform: scale(0);
+      transform-origin: 50% 50%;
+      transition: all 0.5s;
+      transition-delay: 1s;
     }
-    &:hover {
-      div {
-        width: 70px;
-        height: 70px;
-        transition: 0.3s cubic-bezier(0,-0.7,1,1.63);
-        
-      }
+  
+    span:not(.counter) {
+      display: block;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 100;
+      transform: scale(0);
+      transform-origin: 50% 50%;
+      transition: all 0.5s;
+      margin-left: -15px;
+        margin-top: 10px;
+      transition-delay: 1s;
+    }
+  }
+  
+  .phone {
+    width: 50px;
+    height: 50px;
+    background: #9A888A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;	
+    transition: all 3s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    transform-origin: 30% 55%;
+  
+ 
+  
+    &::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      border-radius: 50%;
+      background: #ffffff;
+      transform-origin: 50% 50%;
+      z-index: -1;
+      transition: all 500ms;
+      animation: scale-after 3s ease-out 0s infinite normal;
+      mix-blend-mode: color;
+    }
+    
+    &::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      border-radius: 50%;
+      background: #49e60c;
+      transform-origin: 50% 50%;
+      z-index: -1; 
+      transition: all 500ms;
+      animation: scale-before 3s ease-in-out 0.5s infinite normal;
+      mix-blend-mode: color;
+    }
+  }
+  
+  @keyframes scale-after {
+    0% {transform: scale(1)}
+    35% {transform: scale(0.95)}
+    75% {transform: scale(1.05)}
+    100% {transform: scale(1)}
+  }
+  
+  @keyframes scale-before {
+    0% {transform: scale(1)}
+    35% {transform: scale(0.92)}
+    75% {transform: scale(1.07)}
+    100% {transform: scale(1)}
+  }
+  
+  @keyframes width-after {
+    to {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  
+  @keyframes width-before {
+    to {
+      width: 270px;
+      height: 270px;
+    }
+  }
+   
+  @keyframes rotate {
+    to {
+      transform: rotate(180deg);
+      width: 0;
+      height: 0;
+    }
+  } 
+
+
+
+  @media (max-width: 800px) {
+    .wrapper {
+      right: 40px;
     }
   }

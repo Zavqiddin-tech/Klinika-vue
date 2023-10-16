@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-      <el-tree :data="data" />
+      <infoAccordion :infoAccordion="infoCostAccordion" />
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -84,18 +84,19 @@
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import stockBanner from "./stock-banner.vue";
+import infoAccordion from "@/views/specialist/info-specialist/comp/infoAccordion.vue";
 import forma from "@/components/form/forma.vue";
 import router from "@/router/index.js";
 
 const text = ref(
   "Наши любимые и близкие такие разные. Так хочется порадовать всех и подарить что-то действительно нужное, но угадать с подарком сложно."
 );
-import stockImg from "@/assets/img/stock-card.png"
-
+import stockImg from "@/assets/img/stock-card.png";
 
 import { useStock } from "@/stores/stock/stock.js";
-const { orderStock } = storeToRefs(useStock());
 const { setOrderStock } = useStock();
+import { useAccordionStore } from "@/stores/accordion/accordion";
+const { infoCostAccordion } = storeToRefs(useAccordionStore());
 
 const data = ref([
   {
@@ -155,11 +156,43 @@ onMounted(() => {
 <style lang="scss">
 .stock-order {
   position: relative;
+  .demo-collapse {
+    .demo-accordion {
+      .demo-info {
+        padding-left: 0;
+      }
+      .demo-info__prices {
+        padding: 22px 0;
+        padding-left: 64px;
+        border-bottom: 1px solid #d6d6d6;
+        &:last-child {
+          border-bottom: unset;
+        }
+      }
+      &__price {
+        padding-right: 32px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #546272;
+        white-space: nowrap;
+      }
+      &__text {
+        padding-top: 0;
+        max-width: 80%;
+        &::before {
+          display: none;
+        }
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
   &:after {
-    content: '';
+    content: "";
     width: 400px;
     height: 600px;
-    background-image: url('../../../assets/logo/triagles-white.png');
+    background-image: url("../../../assets/logo/triagles-white.png");
     background-repeat: no-repeat;
     background-position-x: 100px;
     background-size: contain;
@@ -263,7 +296,6 @@ onMounted(() => {
   }
 }
 
-
 @media (max-width: 1000px) {
   .stock-order {
     .el-tree-node__label {
@@ -297,9 +329,7 @@ onMounted(() => {
       justify-content: center;
       flex-wrap: wrap;
       gap: 30px;
-      
     }
   }
 }
-
 </style>

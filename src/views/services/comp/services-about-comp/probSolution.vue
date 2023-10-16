@@ -60,6 +60,7 @@ const probMenu = ref([
       text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
     },
   },
+  
 ]);
 </script>
 
@@ -72,15 +73,36 @@ const probMenu = ref([
   .el-tabs__nav {
     width: 100%;
     justify-content: space-between;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      height: 5px;
+    }
+    &-wrap::after {
+      display: none;
+    }
   }
   .el-tabs__item.is-active {
-    color: #9A888A;
+    color: #ffffff;
+    background-color: #9a888a;
+    border-radius: 24px;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  .el-tabs--top .el-tabs__item.is-top:nth-child(2) {
+    padding: 0 20px;
+  }
+  .el-tabs--top .el-tabs__item.is-top:last-child {
+    padding: 0 20px;
   }
   .el-tabs__item:hover {
-    color: #9A888A;
+    color: #9a888a;
+  }
+  .el-tabs__item {
+    margin-bottom: 20px;
   }
   .el-tabs__active-bar {
-    background-color: #9A888A;
+    display: none;
   }
   .title {
     padding-bottom: 40px;

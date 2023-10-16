@@ -12,6 +12,9 @@
             content: '';
         }
         cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
     }
     span::after {
         content: '/';

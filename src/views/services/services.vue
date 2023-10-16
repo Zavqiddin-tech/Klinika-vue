@@ -1,7 +1,9 @@
 <template>
   <div class="services">
-    <div class="phone-item">
-      <div><img src="../../assets/logo/phone2.png" alt="" /></div>
+    <div class="wrapper">
+      <div class="phone">
+        <img src="@/assets/logo/phone2.png" alt="" />
+      </div>
     </div>
     <div class="container">
       <div class="line-star">
@@ -48,9 +50,10 @@ const servicesAbout = (obj) => {
 </script>
 
 <style lang="scss">
-@import '@/styles/vars/phone.scss';
+@import "@/styles/vars/phone.scss";
 .services {
   position: relative;
+  background-color: #f4f3f7;
   .container {
     position: relative;
     .line-star {
@@ -78,15 +81,12 @@ const servicesAbout = (obj) => {
     right: 0;
     bottom: 0;
   }
- 
-  background-color: #f4f3f7;
   &-banner {
     transition: 0.25s;
     cursor: pointer;
-    &:hover {
-      box-shadow: 0px 5px 10px #595959;
-      transform: translateY(-8px);
-    }
+    border-radius: 24px;
+    background: #e7e1e0;
+    box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
   }
   &-items {
     padding-top: 66px;

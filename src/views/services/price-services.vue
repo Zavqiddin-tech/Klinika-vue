@@ -1,7 +1,9 @@
 <template>
   <div class="price-services">
-    <div class="phone-item">
-      <div><img src="../../assets/logo/sms.png" alt="" /></div>
+    <div class="wrapper">
+      <div class="phone">
+          <img src="@/assets/logo/sms.png" alt="" />
+        </div>
     </div>
     <div class="container">
       <div class="line-star">

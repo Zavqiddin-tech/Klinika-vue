@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span="12" :xs="24">
         <div class="services-banner__img">
-          <img src="@/assets/img/services-1.png" alt="" />
+          <img src="@/assets/img/services-about.png" alt="" />
           <img :src="obj.img" alt="">
         </div>
       </el-col>
@@ -36,7 +36,7 @@
           </div>
         </el-col>
         <div v-if="obj.bottomBtn" class="width-full mt-25 d-flex justify-center">
-          <el-button round>Показать еще</el-button>
+          <el-button class="btn-white" round>Показать еще</el-button>
         </div>
       </el-row>
     </div>
@@ -61,9 +61,6 @@ const props = defineProps(["obj"]);
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
-      button {
-        margin: 0;
-      }
     }
     .title-vs-italic {
       width: 230px;

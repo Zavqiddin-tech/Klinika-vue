@@ -27,6 +27,11 @@ export const useStock = defineStore('stock', ()=> {
             text: "Специалист по перманентному макияжу (дермапигментации)",
             img: specialist1,
         },
+        {
+            title: "Бондарь Мария Викторовна",
+            text: "Специалист по перманентному макияжу (дермапигментации)",
+            img: specialist1,
+        },
     ])
 
     return {

@@ -44,11 +44,7 @@
           (861) 202-0-202
         </div>
       </div>
-      <div class="d-flex align-center justify-between">
-        <div class="title">Наши специалисты</div>
-        <el-button class="btn-white" round>Все специалисты</el-button>
-      </div>
-      <specialists-cards :specialPersons="stockPersons" />
+      <specialists :persons="stockPersons" />
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -61,7 +57,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import stockBanner from "./stock-banner.vue";
-import specialistsCards from "@/components/specialists/specialists-comp/specialists-cards.vue";
+import specialists from "@/components/specialists/specialists.vue";
 import forma from "@/components/form/forma.vue";
 import router from "@/router/index.js";
 import stockImg from "@/assets/img/stock-girl.png";
@@ -102,6 +98,9 @@ onMounted(() => {
     position: absolute;
     right: 0;
     bottom: -70px;
+  }
+  .specialist {
+    padding-top: 0;
   }
   .container {
     .stock-banner {

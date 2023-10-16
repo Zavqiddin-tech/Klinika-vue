@@ -1,13 +1,22 @@
 <template>
   <div class="home">
-      <div class="phone-item">
-        <div><img src="../../assets/logo/phone2.png" alt="" /></div>
+    <div class="wrapper">
+      <div class="phone">
+        <img src="../../assets/logo/phone2.png" alt="" />
       </div>
+    </div>
+    <div class="phone-item">
+      <div><img src="../../assets/logo/phone2.png" alt="" /></div>
+    </div>
     <banner-slider :button_title="buttonTitle" />
     <service-vue />
     <about-vue />
     <div class="main">
-      <specialists />
+      <specialists
+        :persons="persons"
+        title="Наши специалисты"
+        text="Все специалисты"
+      />
       <comment />
       <contact />
       <raiting />
@@ -35,6 +44,31 @@ import comment from "../../components/comments/comment.vue";
 import contact from "../../components/contact/contact.vue";
 import raiting from "../../components/raiting/raiting.vue";
 import forma from "../../components/form/forma.vue";
+
+import specialist4 from "@/assets/img/specialist-4.png";
+const persons = ref([
+  {
+    img: specialist4,
+    title: "Бекетова Екатерина Николаевна",
+    text: "Дерматовенеролог cтаж 11 лет",
+  },
+  {
+    img: specialist4,
+    title: "Бекетова Екатерина Николаевна",
+    text: "Дерматовенеролог cтаж 11 лет",
+  },
+  {
+    img: specialist4,
+    title: "Бекетова Екатерина Николаевна",
+    text: "Дерматовенеролог cтаж 11 лет",
+  },
+  {
+    img: specialist4,
+    title: "Бекетова Екатерина Николаевна",
+    text: "Дерматовенеролог cтаж 11 лет",
+    profession: "+ 2 специальности",
+  },
+]);
 
 // store
 import { specialistStore } from "../../stores/specialist/specialist";

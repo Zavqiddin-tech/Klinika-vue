@@ -1,96 +1,105 @@
 <template>
-    <div class="specialist">
-        <div class="container">
-            <service-top :title="title" :text="text"/> 
-            <el-row>
-                <el-col :span="8" :sm="10" :md="8" :xs="20" v-for="item of persons">
-                    <specialists-card :img="item.img" :title="item.title" :text="item.text" :profession="item.profession"/>
-                </el-col>
-            </el-row>
-        </div>
+  <div class="specialist">
+    <div class="container">
+      <service-top :title="title" :text="text" />
+      <swiper
+        :slidesPerView="3"
+        :spaceBetween="0"
+        :autoplay="{
+          delay: 1500,
+        }"
+        :pagination="{
+          clickable: true,
+        }"
+        :navigation="false"
+        :modules="modules"
+        :breakpoints="{
+          100: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          
+          530: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          
+          
+          820: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
+        }"
+        class="mySwiper"
+      >
+        <swiper-slide v-for="item of persons">
+          <specialists-card
+            @click="detail()"
+            :img="item.img"
+            :title="item.title"
+            :text="item.text"
+            :profession="item.profession"
+          />
+        </swiper-slide>
+      </swiper>
     </div>
+  </div>
 </template>
 
-<script setup>
-import serviceTop from '../service/service-comp/service-top.vue';
-import specialistsCard from './specialists-comp/specialists-card.vue';
+<script>
+import serviceTop from "../service/service-comp/service-top.vue";
+import specialistsCard from "./specialists-comp/specialists-card.vue";
+import router from "@/router/index.js";
+// const title = ref('Наши специалисты')
+// const text = ref('Все специалисты')
 
-import {ref} from 'vue'
-const title = ref('Наши специалисты')
-const text = ref('Все специалисты')
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-
-import specialist4 from '@/assets/img/specialist-4.png'
-
-const persons = ref([
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+const title = 'salom'
+export default {
+  props: ["persons", "title", "text"],
+  components: {
+    Swiper,
+    SwiperSlide,
+    serviceTop,
+    specialistsCard,
+  },
+  data() {
+    return {
+      title: 'Наши специалисты',
+      text: 'Все специалисты'
+    }
+  },
+  methods: {
+    detail: function () {
+      router.push("specialist/:id");
     },
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
-    },
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет',
-        profession: "+ 2 специальности"
-    },
-])
-
+  },
+  setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
+};
 </script>
 
 <style lang="scss">
-    .specialist {
-        padding-top: 160px;
-        .el-row {
-            padding-top: 42px;
-            margin-left: -15px;
-            margin-right: -15px;
-            .el-col {
-                padding: 15px;
-            }
-        }
+.specialist {
+  padding-top: 160px;
+  .swiper {
+    padding-top: 42px;
+    margin-left: -15px;
+    margin-right: -15px;
+    &-slide {
+      padding: 15px;
     }
-
-    @media (max-width: 1000px) {
-        .specialist {
-            .el-row {
-                justify-content: center;
-            }
-        }
+    &-pagination {
+      display: none;
     }
-    @media (max-width: 768px) {
-        .specialist {
-            .el-row {
-                .el-col-xs-20 {
-                    max-width: 60%;
-                    flex: 0 0 60%;
-                }
-            }
-        }
-    }
-    @media (max-width: 560px) {
-        .specialist {
-            .el-row {
-                .el-col-xs-20 {
-                    max-width: 80%;
-                    flex: 0 0 80%;
-                }
-            }
-        }
-    }
-    @media (max-width: 410px) {
-        .specialist {
-            .el-row {
-                .el-col-xs-20 {
-                    max-width: 100%;
-                    flex: 0 0 100%;
-                }
-            }
-        }
-    }
+  }
+}
 </style>

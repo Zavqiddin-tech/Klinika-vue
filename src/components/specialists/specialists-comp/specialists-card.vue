@@ -16,9 +16,12 @@ defineProps(["img", "title", "text", "profession"]);
   position: relative;
   background-color: #f8ece9;
   border-radius: 24px;
-  
   cursor: pointer;
   transition: 0.25s;
+  img {
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
     transform: translateY(-5px);
   }
@@ -53,16 +56,20 @@ defineProps(["img", "title", "text", "profession"]);
 }
 
 
-@media (max-width: 768px) {
-  .specialists-card {
-    display: flex;
-    justify-content: center;
-    &.consul {
-      display: block;
+@media (max-width: 940px) {
+  .specialists {
+    &-title {
+      font-size: 18px;
+      line-height: 25px;
     }
-  }
-  .specialists-info {
-    margin-left: 0;
+    &-text {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    &-info {
+      margin-left: 10px;
+      bottom: 20px;
+    }
   }
 }
 </style>

@@ -9,6 +9,11 @@
         <span>Аппаратная косметология</span>
         <span>Фракционный микроигольчатый RF-лифтинг</span>
       </div>
+      <div class="wrapper">
+      <div class="phone">
+          <img src="@/assets/logo/phone2.png" alt="" />
+        </div>
+    </div>
       <servicesBanner :obj="servicesAboutObj" />
       <div class="title">О процедуре</div>
       <ul class="services-about__texts">
@@ -32,7 +37,7 @@
       <analitic :array="servicesAboutAnalitic" />
       <prob-solution />
       <services-process :process="process" />
-      <specialists />
+      <specialists :persons="persons" title="Наши специалисты" text="Все специалисты"/>
       <indications />
       <infoAccordion :infoAccordion="infoSrAccordion"/>
       <servicesCost />
@@ -66,6 +71,31 @@ const { servicesAboutAnalitic } = useAnaliticStore();
 
 import { useAccordionStore } from "../../../stores/accordion/accordion";
 const {infoSrAccordion} = storeToRefs(useAccordionStore())
+
+import specialist4 from '@/assets/img/specialist-4.png'
+const persons = ref([
+    {
+        img: specialist4,
+        title: 'Бекетова Екатерина Николаевна',
+        text: 'Дерматовенеролог cтаж 11 лет'
+    },
+    {
+        img: specialist4,
+        title: 'Бекетова Екатерина Николаевна',
+        text: 'Дерматовенеролог cтаж 11 лет'
+    },
+    {
+        img: specialist4,
+        title: 'Бекетова Екатерина Николаевна',
+        text: 'Дерматовенеролог cтаж 11 лет'
+    },
+    {
+        img: specialist4,
+        title: 'Бекетова Екатерина Николаевна',
+        text: 'Дерматовенеролог cтаж 11 лет',
+        profession: "+ 2 специальности"
+    },
+])
 </script>
 
 <style lang="scss">

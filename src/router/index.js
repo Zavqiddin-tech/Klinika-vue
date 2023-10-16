@@ -16,11 +16,15 @@ const router = createRouter({
         },
         ...menuLink,
         {
-          path: 'specialist/:id',
+          path: '/specialist/:id',
           component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue')
         },
         {
-          path: 'services-detail/:id',
+          path: '/services-detail/specialist/:id',
+          component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue')
+        },
+        {
+          path: '/services-detail/:id',
           component: ()=> import('@/views/services/comp/services-about.vue')
         },
         {
