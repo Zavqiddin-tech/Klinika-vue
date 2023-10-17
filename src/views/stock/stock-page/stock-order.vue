@@ -150,12 +150,12 @@ const backPage = () => {
 
 onMounted(() => {
   setOrderStock(true);
+  window.scrollTo(0, 0)
 });
 </script>
 
 <style lang="scss">
 .stock-order {
-  margin-top: 150px;
   position: relative;
   .demo-collapse {
     .demo-accordion {

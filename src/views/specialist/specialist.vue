@@ -2,10 +2,10 @@
   <div class="specialist-section">
     <div class="container">
       <div class="line-star">
-        <img src="../../assets/logo/line-star2.png" alt="">
+        <img src="../../assets/logo/line-star2.png" alt="" />
       </div>
       <div class="star">
-        <img src="../../assets/logo/star-big.png" alt="">
+        <img src="../../assets/logo/star-big.png" alt="" />
       </div>
       <div class="breadcrumb">
         <span>Главная</span>
@@ -21,37 +21,34 @@
         Врачи-косметологи регулярно повышают свою квалификацию, проходя обучение
         в Москве, Санкт-Петербурге и зарубежных образовательных центрах.
       </div>
-      <specialists-cards :specialPersons="specialPersons"/>
+      <specialists-cards :specialPersons="specialPersons" />
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue'
-import { storeToRefs } from 'pinia';
-
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
 import specialistsCards from "@/components/specialists/specialists-comp/specialists-cards.vue";
 
 // store
-import { specialistStore } from '../../stores/specialist/specialist';
-const {specialistToggle} = specialistStore()
-const {setSpecialist} = specialistStore()
+import { specialistStore } from "../../stores/specialist/specialist";
+const { specialistToggle } = specialistStore();
+const { setSpecialist } = specialistStore();
 
-import { specialPersonsStore } from '../../stores/specialist/special-persons';
-const {specialPersons} = storeToRefs(specialPersonsStore())
+import { specialPersonsStore } from "../../stores/specialist/special-persons";
+const { specialPersons } = storeToRefs(specialPersonsStore());
 // store
 
-
-
-onMounted(()=> {
-    setSpecialist(true)
-})
+onMounted(() => {
+  window.scrollTo(0, 0);
+  setSpecialist(true);
+});
 </script>
 
 <style lang="scss">
 .specialist-section {
-  margin-top: 150px;
   position: relative;
   .container {
     position: relative;
@@ -73,10 +70,10 @@ onMounted(()=> {
     z-index: 1;
   }
   &:after {
-    content: '';
+    content: "";
     width: 400px;
     height: 600px;
-    background-image: url('../../assets/logo/triagles-white.png');
+    background-image: url("../../assets/logo/triagles-white.png");
     background-repeat: no-repeat;
     background-position-x: 100px;
     background-size: contain;

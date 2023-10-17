@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import aboutTop from "../../../components/about/about-comp/about-top.vue";
 import infoImg from "@/assets/img/infoSpecialImg.png";
@@ -53,12 +53,15 @@ const { title, titleItalic, textGroup, btnText } = storeToRefs(
 import { useAccordionStore } from "../../../stores/accordion/accordion";
 const {infoStAccordion} = storeToRefs(useAccordionStore())
 //store
+
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
 @import "@/styles/vars/colors.scss";
 .info-specialist {
-  margin-top: 150px;
   background-color: #F9FAFF;
   position: relative;
   .container {

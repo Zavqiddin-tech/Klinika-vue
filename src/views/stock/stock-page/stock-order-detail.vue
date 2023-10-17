@@ -77,6 +77,7 @@ const backPage = () => {
 
 onMounted(() => {
   setSpecialist(false);
+  window.scrollTo(0, 0)
 });
 </script>
 
@@ -86,7 +87,6 @@ onMounted(() => {
   color: #546272;
 }
 .stock-detail {
-  margin-top: 150px;
   position: relative;
   &:after {
     content: '';

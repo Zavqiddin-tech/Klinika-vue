@@ -19,12 +19,16 @@
 </template>
 
 <script setup>
+import {onMounted} from 'vue'
 import contactBox from "./comp/contactBox.vue";
 import forma from "@/components/form/forma.vue";
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
-.contact {margin-top: 92px;
+.contact {
   position: relative;
   background-color: #f9fafe;
   .container {

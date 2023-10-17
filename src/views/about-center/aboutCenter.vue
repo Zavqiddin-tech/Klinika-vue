@@ -28,7 +28,7 @@ import flexItems from "./components/flex-items.vue";
 import { useAnaliticStore } from "../../stores/analitic/analitic";
 const { aboutCenterAnalitic } = useAnaliticStore();
 
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 const buttonTitle = ref("Посетить центр");
 const title = ref("Запишитесь на консультацию");
 const text = ref(
@@ -37,11 +37,14 @@ const text = ref(
 const agreeText = ref(
   "Я соглашаюсь с политикой обработки персональных данных и пользовательским соглашением, а также даю согласие на обработку персональных данных."
 );
+
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
 .about-center {
-  margin-top: 150px;
   background-color: #f9faff;
   position: relative;
   .breadcrumb {

@@ -5,9 +5,7 @@
         <img src="../../assets/logo/phone2.png" alt="" />
       </div>
     </div>
-    <div class="phone-item">
-      <div><img src="../../assets/logo/phone2.png" alt="" /></div>
-    </div>
+    
     <banner-slider :button_title="buttonTitle" />
     <service-vue />
     <about-vue />
@@ -77,13 +75,14 @@ const { setSpecialist } = specialistStore();
 
 onMounted(() => {
   setSpecialist(false);
+  window.scrollTo(0, 0)
 });
 </script>
 
 <style lang="scss">
 @import "../../styles/vars/phone.scss";
 .home {
-  margin-top: 110px;
+  
   position: relative;
   &:after {
     content: "";

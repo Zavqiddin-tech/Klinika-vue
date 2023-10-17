@@ -49,13 +49,12 @@ const { setOrderStock } = useStock();
 
 onMounted(() => {
   setOrderStock(false);
-  console.log(orderStock.value);
+  window.scrollTo(0, 0)
 });
 </script>
 
 <style lang="scss">
 .stock {
-  margin-top: 150px;
   position: relative;
   background-color: #f9faff;
   .container {

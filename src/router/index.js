@@ -16,27 +16,27 @@ const router = createRouter({
         },
         ...menuLink,
         {
-          path: '/specialist/:id',
+          path: 'specialist/:id',
           component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue')
         },
         {
-          path: '/services-detail/specialist/:id',
+          path: 'services-detail/specialist/:id',
           component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue')
         },
         {
-          path: '/services-detail/:id',
+          path: 'services-detail/:id',
           component: ()=> import('@/views/services/comp/services-about.vue')
         },
         {
-          path: '/price-services',
+          path: 'price-services',
           component: ()=> import('@/views/services/price-services.vue')
         },
         {
-          path: '/stock-order',
+          path: 'stock-order',
           component: ()=> import('@/views/stock/stock-page/stock-order.vue')
         },
         {
-          path: '/stock-order:detail',
+          path: 'stock-order:detail',
           component: ()=> import('@/views/stock/stock-page/stock-order-detail.vue')
         },
       ]

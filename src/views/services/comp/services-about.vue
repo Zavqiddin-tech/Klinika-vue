@@ -1,8 +1,5 @@
 <template>
   <div class="services-about">
-    <div class="phone-item">
-        <div><img src="../../../assets/logo/phone2.png" alt="" /></div>
-      </div>
     <div class="container">
       <div class="breadcrumb">
         <span>Главная</span>
@@ -96,12 +93,16 @@ const persons = ref([
         profession: "+ 2 специальности"
     },
 ])
+
+
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
 @import '../../../styles/vars/phone.scss';
 .services-about {
-  margin-top: 120px;
   position: relative;
   &:after {
     content: '';

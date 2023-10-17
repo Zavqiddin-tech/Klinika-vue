@@ -7,11 +7,16 @@
 </template>
 
 <script setup>
+import {ref, onMounted} from 'vue'
+
+
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
     .prices {
-        margin-top: 170px;
         background-color: #fff;
         height: 400px;
         .container {

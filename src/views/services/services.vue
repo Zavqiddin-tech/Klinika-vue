@@ -38,6 +38,7 @@ import router from "@/router/index.js";
 import servicesBanner from "@/views/services/comp/services-banner.vue";
 import forma from "@/components/form/forma.vue";
 
+import {ref, onMounted} from 'vue'
 import { storeToRefs } from "pinia";
 import { useServicesStore } from "@/stores/services/services";
 const { servicesArray } = storeToRefs(useServicesStore());
@@ -47,12 +48,15 @@ const servicesAbout = (obj) => {
   setServicesAboutObj(obj);
   router.push("/services-detail/:id");
 };
+
+onMounted(()=> {
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style lang="scss">
 @import "@/styles/vars/phone.scss";
 .services {
-  margin-top: 150px;
   position: relative;
   background-color: #f4f3f7;
   .container {
