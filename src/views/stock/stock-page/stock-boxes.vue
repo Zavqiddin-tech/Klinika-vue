@@ -1,7 +1,7 @@
 <template>
   <div class="stock-boxes">
     <el-row>
-      <el-col :span="8" :sm="10" :md="8" :xs="15" v-for="i in 6">
+      <el-col :span="8" :sm="12" :md="8" :xs="12" v-for="i in 6">
         <div class="stock-box">
           <div class="stock-box__img">
             <img src="@/assets/img/stock-1.png" alt="" />
@@ -83,20 +83,20 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .stock-boxes {
     .el-row {
-      .el-col-xs-15 {
+      .el-col-xs-12 {
         max-width: 80%;
         flex: 0 0 80%;
       }
     }
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .stock-boxes {
     .el-row {
-      .el-col-xs-15 {
+      .el-col-xs-12 {
         max-width: 100%;
         flex: 0 0 100%;
       }

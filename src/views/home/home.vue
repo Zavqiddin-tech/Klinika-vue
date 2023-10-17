@@ -82,7 +82,7 @@ onMounted(() => {
 <style lang="scss">
 @import "../../styles/vars/phone.scss";
 .home {
-  
+  transition: 0.4s;
   position: relative;
   &:after {
     content: "";

@@ -20,7 +20,7 @@
             </ul>
             <ul>
               <li class="text light">Социальные сети</li>
-              <li class="text big email">beautyclinic23ru</li>
+              <li class="text big">beautyclinic23ru</li>
             </ul>
           </div>
         </div>

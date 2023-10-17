@@ -43,16 +43,35 @@ import { menuLink } from "@/router/menu.js";
           background-color: #F9FAFF;
          
         }
+        .el-sub-menu {
+      border-bottom: unset;
+      div {
+        padding: 0;
+      }
+      &.is-active {
+        .el-sub-menu__title {
+            border-bottom: 2px solid #546272;
+            .el-icon {
+                color: #546272 !important;
+            }
+        } 
+      }
+    }
       }
       .el-sub-menu {
-        &:hover {
-          .el-icon {
-            transition: 0.3s linear;
-            transform: rotate(180deg);
-            color: #546272;
-          }
-        }
+      border-bottom: unset;
+      div {
+        padding: 0;
       }
+      &.is-active {
+        .el-sub-menu__title {
+            border-bottom: 2px solid #546272;
+            .el-icon {
+                color: #546272 !important;
+            }
+        } 
+      }
+    }
     }
     a {
       color: #546272;

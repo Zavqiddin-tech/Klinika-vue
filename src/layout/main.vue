@@ -22,7 +22,7 @@ import menuVue from "@/components/page/menu/menu.vue";
   overflow-x: hidden;
   .menu-wrapper {
     position: fixed;
-    z-index: 1009000000000;
+    z-index: 100;
     background-color: rgba(255, 255, 255, 0.514);
     backdrop-filter: blur(10px);
     width: 100%;

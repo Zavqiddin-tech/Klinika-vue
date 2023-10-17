@@ -59,6 +59,10 @@ const menuOpen = ()=> {
         &-number {
             font-size: 18px;
             font-weight: 200;   
+            a {
+                color: #546272;
+
+            }
             span {
                 font-weight: 600;
                 color: #546272;
@@ -87,7 +91,7 @@ const menuOpen = ()=> {
         display: none;
         flex-direction: column;
         gap: 5px;
-        z-index: 11;
+        z-index: 100;
         display: none;
         cursor: pointer;
         &:hover {
@@ -122,14 +126,16 @@ const menuOpen = ()=> {
 
 
     @media (max-width: 650px) {
-        .header-number {
-            display: none;
-        }
-        .header-btn-group {
-            display: none;
-        }
-        .menu-toggle {
-            display: flex;
+        .header {
+            .header-number {
+                display: none;
+            }
+            .header-btn-group {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
         }
     }
 </style>
