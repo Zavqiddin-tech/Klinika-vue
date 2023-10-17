@@ -58,6 +58,7 @@ const {infoStAccordion} = storeToRefs(useAccordionStore())
 <style lang="scss">
 @import "@/styles/vars/colors.scss";
 .info-specialist {
+  margin-top: 150px;
   background-color: #F9FAFF;
   position: relative;
   .container {

@@ -101,6 +101,7 @@ const persons = ref([
 <style lang="scss">
 @import '../../../styles/vars/phone.scss';
 .services-about {
+  margin-top: 120px;
   position: relative;
   &:after {
     content: '';

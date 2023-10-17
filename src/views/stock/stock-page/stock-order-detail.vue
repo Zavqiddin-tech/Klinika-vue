@@ -86,6 +86,7 @@ onMounted(() => {
   color: #546272;
 }
 .stock-detail {
+  margin-top: 150px;
   position: relative;
   &:after {
     content: '';

@@ -52,6 +52,7 @@ const servicesAbout = (obj) => {
 <style lang="scss">
 @import "@/styles/vars/phone.scss";
 .services {
+  margin-top: 150px;
   position: relative;
   background-color: #f4f3f7;
   .container {

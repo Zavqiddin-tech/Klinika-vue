@@ -11,6 +11,7 @@
 
 <style lang="scss">
     .prices {
+        margin-top: 170px;
         background-color: #fff;
         height: 400px;
         .container {

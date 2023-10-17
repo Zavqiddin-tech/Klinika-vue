@@ -24,7 +24,7 @@ import forma from "@/components/form/forma.vue";
 </script>
 
 <style lang="scss">
-.contact {
+.contact {margin-top: 92px;
   position: relative;
   background-color: #f9fafe;
   .container {

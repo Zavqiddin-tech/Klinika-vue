@@ -41,6 +41,7 @@ const agreeText = ref(
 
 <style lang="scss">
 .about-center {
+  margin-top: 150px;
   background-color: #f9faff;
   position: relative;
   .breadcrumb {

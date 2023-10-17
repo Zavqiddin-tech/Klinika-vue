@@ -83,8 +83,8 @@ onMounted(() => {
 <style lang="scss">
 @import "../../styles/vars/phone.scss";
 .home {
+  margin-top: 110px;
   position: relative;
-
   &:after {
     content: "";
     width: 400px;

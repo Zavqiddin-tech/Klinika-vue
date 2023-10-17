@@ -55,6 +55,7 @@ onMounted(() => {
 
 <style lang="scss">
 .stock {
+  margin-top: 150px;
   position: relative;
   background-color: #f9faff;
   .container {

@@ -155,6 +155,7 @@ onMounted(() => {
 
 <style lang="scss">
 .stock-order {
+  margin-top: 150px;
   position: relative;
   .demo-collapse {
     .demo-accordion {
