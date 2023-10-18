@@ -21,7 +21,6 @@
         <services-banner
           v-for="obj in servicesArray"
           :obj="obj"
-          @click="servicesAbout(obj)"
         />
         <forma
           title="Запишитесь на консультацию"
@@ -42,12 +41,7 @@ import {ref, onMounted} from 'vue'
 import { storeToRefs } from "pinia";
 import { useServicesStore } from "@/stores/services/services";
 const { servicesArray } = storeToRefs(useServicesStore());
-const { setServicesAboutObj } = useServicesStore();
 
-const servicesAbout = (obj) => {
-  setServicesAboutObj(obj);
-  router.push("/services-detail/:id");
-};
 
 onMounted(()=> {
   window.scrollTo(0, 0)

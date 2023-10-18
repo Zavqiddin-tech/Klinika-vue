@@ -1,6 +1,6 @@
 <template>
     <div class="header-nav">
-        <div class="logo">
+        <div class="logo" @click="pressLogo()">
             <router-link to="/main">
                 <img src="@/assets/logo/nav-logo.png" alt="logo">
             </router-link>
@@ -28,6 +28,12 @@ import { useMenuToggleStore } from '../../../stores/menu/menuToggle';
 const {menuToggle} = storeToRefs(useMenuToggleStore())
 const {setMenuToggle} = useMenuToggleStore()
 
+import {useMenuStore} from '@/router/menu'
+const {noActiveLink} = useMenuStore()
+
+const pressLogo = ()=> {
+    noActiveLink()
+}
 
 const menuOpen = ()=> {
     if (menuToggle.value) {

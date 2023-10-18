@@ -23,7 +23,6 @@ import contactInfo from './contact-comp/contact-info.vue';
 
 <style lang="scss">
     .contact {
-        padding-top: 58px;
         &-card__items {
             padding-top: 42px;
             margin-left: -16px;

@@ -89,7 +89,7 @@ const menuOpen = ()=> {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
   .header-scroll {
     padding: 20px;
     justify-content: space-between;
@@ -101,4 +101,23 @@ const menuOpen = ()=> {
     }
   }
 }
+
+@media (max-width: 500px) {
+  .header-center {
+    .header-nav {
+      border-bottom: unset;
+    }
+    .header-bottom {
+      display: none;
+    }
+  }
+
+  .header-scroll {
+    &.sticky {
+      transform: translateY(-100px);
+    }
+
+  }
+}
+
 </style>

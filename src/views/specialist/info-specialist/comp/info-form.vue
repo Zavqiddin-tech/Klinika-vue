@@ -30,6 +30,11 @@ import infoSlider from './info-slider.vue'
 .info-form {
   padding-top: 80px;
   padding-bottom: 100px;
+  .swiper {
+    &-pagination {
+      display: none;
+    }
+  }
   &__slider {
     height: 100%;
     overflow: hidden;

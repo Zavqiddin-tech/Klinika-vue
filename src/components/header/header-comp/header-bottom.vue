@@ -1,12 +1,17 @@
 <template>
   <div class="header-bottom">
     <el-menu
-    :default-active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
     :router="true"
   >
-    <el-menu-item v-for="item, index of menuLink" :index="item.path" :key="index">
+    <el-menu-item 
+      :class="item.active ? 'el-menu-item store-active' : 'el-menu-item'"
+      v-for="item of menuLinkStore" 
+      @click="pressedItem(item.id)" 
+      :index="item.path" 
+      :key="index"
+      >
       {{ item.title }}
     </el-menu-item>
   </el-menu>
@@ -15,11 +20,16 @@
 
 <script setup>
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia';
+import {useMenuStore} from '../../../router/menu'
+const {menuLinkStore} = storeToRefs(useMenuStore())
+const {setMenuLinkStore} = useMenuStore()
 
-const activeIndex = ref('1')
-const activeIndex2 = ref('1')
 
-import { menuLink } from "@/router/menu.js";
+
+const pressedItem = (index)=> {
+  setMenuLinkStore(index)
+}
 </script>
 
 <style lang="scss">
@@ -38,10 +48,14 @@ import { menuLink } from "@/router/menu.js";
           color: #86827b;
         }
         &.is-active {
+          border-bottom: 0;
+          color: #000 !important;
+          background-color: unset;
+        }
+        &.store-active {
           border-bottom: 2px solid #cac6c6;
           color: #546272 !important;
           background-color: #F9FAFF;
-         
         }
         .el-sub-menu {
       border-bottom: unset;
