@@ -1,5 +1,6 @@
 <template>
   <div class="services-banner">
+    <Dialog />
     <el-row>
       <el-col :span="12" :xs="24">
         <div class="services-banner__info">
@@ -41,146 +42,26 @@
           v-if="obj.bottomBtn"
           class="width-full mt-25 d-flex justify-center"
         >
-          <el-button class="btn-white" round @click="servicesAbout(obj)"
+          <el-button class="btn-white" round
             >Показать еще</el-button
           >
         </div>
       </el-row>
     </div>
   </div>
-
-  <el-dialog
-    v-model="dialogVisible"
-    title="Записаться"
-    width="500px"
-    :before-close="handleClose"
-  >
-    <el-form
-      ref="servisForm"
-      :model="ruleForm"
-      :rules="rules"
-      labelPosition="top"
-    >
-      <el-form-item label="Имя" prop="name">
-        <el-input v-model="ruleForm.name" />
-      </el-form-item>
-      <el-form-item label="Фамилия" prop="surname">
-        <el-input v-model="ruleForm.surname" />
-      </el-form-item>
-      <el-form-item label="Номер телефона" prop="number">
-        <el-input
-          v-model="ruleForm.number"
-          v-maska
-          data-maska="+998 (##) ###-##-##"
-        />
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button @click="serviceAdd(servisForm)" type="primary">
-          Send
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup>
 const props = defineProps(["obj"]);
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
-import router from "@/router/index.js";
-import { ElNotification } from "element-plus";
-import { vMaska } from "maska";
-const notifWarning = () => {
-  ElNotification({
-    title: "Предупреждение",
-    message: "Заполните все поля",
-    type: "warning",
-    position: "bottom-left",
-  });
-};
-const successWarning = () => {
-  ElNotification({
-    title: "Успех",
-    message: "Информация отправлена",
-    type: "success",
-    position: "bottom-left",
-  });
-};
+import Dialog from "../../../components/page/dialog/dialog.vue";
 
-const servicesModal = () => {
-  dialogVisible.value = true;
-};
-const dialogVisible = ref(false);
+import { useDialogStore } from "@/stores/dialog/dialog";
+const {setRecordDialog} = useDialogStore()
 
-const servisForm = ref();
-let ruleForm = ref({
-  number: "+998",
-});
-const rules = ref({
-  name: [
-    {
-      required: true,
-      message: "Введите ваше имя",
-      trigger: "blur",
-    },
-    {
-      min: 3,
-      message: "имя должно состоять более чем из 3 букв",
-    },
-  ],
-  surname: [
-    {
-      required: true,
-      message: "Введите ваше фамилия",
-      trigger: "blur",
-    },
-    {
-      min: 3,
-      message: "Фамилия должно состоять более чем из 3 букв",
-    },
-  ],
-  number: [
-    {
-      required: true,
-      message: "Введите свой номер телефона",
-      trigger: "blur",
-    },
-    {
-      min: 19,
-      max: 19,
-      message: "Введите полный номер",
-      trigger: "blur",
-    },
-  ],
-});
-const handleClose = () => {
-  dialogVisible.value = false;
-};
-const serviceAdd = async (formEl) => {
-  if (!formEl) return;
-  await formEl.validate((valid) => {
-    if (valid) {
-      successWarning();
-      ruleForm = ref({
-        number: "+998",
-      });
-      handleClose();
-    } else {
-      notifWarning();
-    }
-  });
-};
 
-import { useServicesStore } from "@/stores/services/services";
-const { setServicesAboutObj } = useServicesStore();
-
-const servicesAbout = (val) => {
-  setServicesAboutObj(val);
-  router.push("/services-detail/:id");
-};
+const servicesModal = ()=> {
+setRecordDialog(true)
+}
 </script>
 
 <style lang="scss">

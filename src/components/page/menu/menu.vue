@@ -9,8 +9,8 @@
       </div>
 
       <div class="header-btn-group">
-        <el-button type="info" round>Записаться</el-button>
-        <el-button :icon="User" round>Войти</el-button>
+        <el-button @click="recordModal()" type="info" class="nav-btn" round>Записаться</el-button>
+        <el-button @click="signModal()" class="btn-white" :icon="User" round>Войти</el-button>
       </div>
     </div>
     <div class="menu-router">  
@@ -48,6 +48,16 @@ const menuOpen = () => {
     setMenuToggle(true);
   }
 };
+
+
+import { useDialogStore } from "@/stores/dialog/dialog";
+const {setRecordDialog, setSignDialog} = useDialogStore()
+const recordModal = ()=> {
+setRecordDialog(true)
+}
+const signModal = ()=> {
+setSignDialog(true)
+}
 </script>
 
 <style lang="scss">
@@ -60,9 +70,9 @@ const menuOpen = () => {
   height: 100vh;
   gap: 30px;
   z-index: 10;
-  transition: 0.5s;
-  transform: translateX(10000px);
-  opacity: 0;
+  transition: 0.7s ease;
+  transform: translateX(5000px);
+  opacity: 1;
   .menu-header {
     padding: 20px 10px;
     display: flex;
@@ -94,6 +104,13 @@ const menuOpen = () => {
   }
   .header-btn-group {
     display: flex;
+    .nav-btn {
+            background-color: #546272;
+            color: #fff;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
   }
   &.open {
     transform: translateX(0px);

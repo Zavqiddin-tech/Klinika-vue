@@ -70,6 +70,9 @@ export default {
     padding-top: 40px;
     padding-bottom: 40px;
     &-pagination {
+      display: flex;
+      justify-content: center;
+      bottom: 0px !important;
       &-bullet {
         &.swiper-pagination-bullet-active {
           background-color: #9a888a;

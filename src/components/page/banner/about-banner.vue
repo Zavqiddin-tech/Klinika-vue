@@ -14,7 +14,7 @@
             услуг. К вашим услугам лазерная и инъекционная косметология,
             аппаратные методики, профессиональный уход за кожей.
           </div>
-          <el-button round class="btn-info">{{ button_title }}</el-button>
+          <el-button round class="btn-info" @click="nextAboutCenter()">{{ button_title }}</el-button>
         </div>
       </el-col>
       <el-col :span="12" :xs="20">
@@ -28,6 +28,11 @@
 
 <script setup>
 defineProps(["button_title"]);
+import router from '@/router/index'
+
+const nextAboutCenter = ()=> {
+  router.push('/about-center')
+}
 </script>
 
 <style lang="scss">

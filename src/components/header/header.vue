@@ -1,4 +1,7 @@
 <template>
+  <signDialog />
+  <Dialog />
+  <regisDialog />
   <div class="header">
     <header-top />
     <div class="container">
@@ -27,6 +30,9 @@
 import headerTop from "./header-comp/header-top.vue";
 import headerNav from "./header-comp/header-nav.vue";
 import headerBottom from "./header-comp/header-bottom.vue";
+import Dialog from "../page/dialog/dialog.vue";
+import signDialog from "../page/dialog/signDialog.vue";
+import regisDialog from "../page/dialog/regisDialog.vue";
 
 window.addEventListener("scroll", function () {
   let header = document.querySelector(".header");
@@ -40,7 +46,6 @@ import { useMenuToggleStore } from '../../stores/menu/menuToggle';
 const {menuToggle} = storeToRefs(useMenuToggleStore())
 const {setMenuToggle} = useMenuToggleStore()
 
-
 const menuOpen = ()=> {
     if (menuToggle.value) {
         setMenuToggle(false)
@@ -48,7 +53,6 @@ const menuOpen = ()=> {
         setMenuToggle(true)
     }
 }
-
 
 
 </script>

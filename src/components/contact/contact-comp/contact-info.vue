@@ -15,14 +15,18 @@
       <el-row>
         <el-col :span="12" :sm="15" :md="12" :xs="24" class="contact-wrapper">
           <div class="contact-bottom__item">
-            <img src="@/assets/logo/vk.png" alt="" />
-            <div class="contact-bottom__text">beautyclinic23ru</div>
+            <a href="https://vk.com/vk" target="_blank">
+              <img src="@/assets/logo/vk.png" alt="" />
+              <div class="contact-bottom__text">beautyclinic23ru</div>
+            </a>
           </div>
         </el-col>
         <el-col :span="12" :sm="15" :md="12" :xs="24" class="contact-wrapper">
           <div class="contact-bottom__item">
-            <img src="@/assets/logo/email.png" alt="" />
-            <div class="contact-bottom__text">ek@clinic23.ru</div>
+            <a href="https://mail.google.com">
+              <img src="@/assets/logo/email.png" alt="" />
+              <div class="contact-bottom__text">ek@clinic23.ru</div>
+            </a>
           </div>
         </el-col>
       </el-row>
@@ -72,12 +76,18 @@
     padding-top: 40px;
     &__item {
       padding: 30px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
       border-radius: 24px;
       background: #fff;
       box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #000;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 

@@ -2,14 +2,24 @@
   <div class="service-top">
     <div class="service-title">{{ title }}</div>
     <div>
-      <el-button round class="btn-white">{{ text }}</el-button>
+      <el-button class="btn-white" round @click="nextSpecialists(data)">{{ text }}</el-button>
     </div>
   </div>
 </template>
 <script setup>
-defineProps([
-  'title', 'text'
+const props = defineProps([
+  'title', 'text', 'data'
 ])
+import router from "@/router/index"
+
+const nextSpecialists = (val)=> {
+  if (val == 'specialists') {
+    router.push("/specialist")
+  }
+  if (val == 'allservices') {
+    router.push('/services')
+  }
+}
 </script>
 <style lang="scss">
 .service {

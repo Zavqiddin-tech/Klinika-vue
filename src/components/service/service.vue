@@ -1,7 +1,7 @@
 <template>
     <div class="service">
         <div class="container">
-            <service-top :title="title" :text="text"/>
+            <service-top :title="title" :text="text" data="allservices"/>
             <service-card />
         </div>
     </div>

@@ -32,7 +32,9 @@ import infoSlider from './info-slider.vue'
   padding-bottom: 100px;
   .swiper {
     &-pagination {
-      display: none;
+      display: flex;
+      justify-content: center;
+      bottom: 10px !important;
     }
   }
   &__slider {

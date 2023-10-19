@@ -31,6 +31,11 @@ import contactInfo from './contact-comp/contact-info.vue';
         &-card__item {
             padding: 0px 16px;
         }
+        .swiper-pagination {
+            display: flex;
+            justify-content: center;
+            bottom: 10px !important;
+        }
     }
 
     @media (max-width: 1000px) {

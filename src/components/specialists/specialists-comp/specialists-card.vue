@@ -3,13 +3,17 @@
     <img :src="img" alt="" />
     <div class="specialists-info">
       <div class="specialists-title">{{ title }}</div>
-      <div class="specialists-text">{{ text }}</div>
+      <div class="specialists-text" @click="sayhello()">{{ text }}</div>
       <div v-show="profession" class="profession">{{ profession }}</div>
     </div>
   </div>
 </template>
 <script setup>
 defineProps(["img", "title", "text", "profession"]);
+
+const sayhello = ()=> {
+  alert('salom')
+}
 </script>
 <style lang="scss">
 .specialists-card {

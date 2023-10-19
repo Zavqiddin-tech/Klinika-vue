@@ -1,7 +1,7 @@
 <template>
   <div class="specialist">
     <div class="container">
-      <service-top :title="title" :text="text" />
+      <service-top :title="title" :text="text" data="specialists"/>
       <swiper
         :slidesPerView="3"
         :spaceBetween="0"

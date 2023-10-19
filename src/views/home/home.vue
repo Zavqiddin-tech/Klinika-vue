@@ -5,7 +5,6 @@
         <img src="../../assets/logo/phone2.png" alt="" />
       </div>
     </div>
-    
     <banner-slider :button_title="buttonTitle" />
     <service-vue />
     <about-vue />

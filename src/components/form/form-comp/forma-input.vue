@@ -38,10 +38,10 @@
   </el-form>
 </template>
 <script setup>
-import phoneIcon from "@/assets/logo/phone.png"
+import phoneIcon from "@/assets/logo/phone.png";
 defineProps(["infoForm"]);
 
-import { ElMessage } from "element-plus";
+import { ElNotification } from "element-plus";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { vMaska } from "maska";
@@ -70,13 +70,13 @@ const rules = ref({
   number: [
     {
       required: true,
-      message: "Telefon raqamingizni kiriting",
+      message: "Введите свой номер телефона",
       trigger: "blur",
     },
     {
       min: 19,
       max: 19,
-      message: "Raqamni to'liq kiriting",
+      message: "Введите полный номер",
       trigger: "blur",
     },
   ],
@@ -90,8 +90,19 @@ const add = async (formEl) => {
       }
       priceprod.value = {};
       handleClose();
+      ElNotification({
+        title: "Успешно",
+        message: "Информация отправлена",
+        type: "success",
+        position: "bottom-left",
+      });
     } else {
-      ElMessage.error("Barcha maydonlarni to`ldiring");
+      ElNotification({
+        title: "Предупреждение",
+        message: "Введите свой номер",
+        type: "warning",
+        position: "bottom-left",
+      });
     }
   });
 };
@@ -114,7 +125,7 @@ const add = async (formEl) => {
   .el-form-item.is-error .el-input__wrapper {
     box-shadow: 0 0 0;
   }
-  .el-form-item.is-error  {
+  .el-form-item.is-error {
     border: 1px solid red;
   }
   &-input {
@@ -163,7 +174,6 @@ const add = async (formEl) => {
     gap: 10px;
   }
 }
-
 
 @media (max-width: 375px) {
   .form .form-agree {
