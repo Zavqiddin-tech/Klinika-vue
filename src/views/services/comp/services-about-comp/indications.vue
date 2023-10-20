@@ -65,23 +65,12 @@
             gap: 30px;
             justify-content: center;
             .el-col-12 {
-                max-width: 80%;
-                flex: 0 0 80%;
-            }
-        }
-    }
-}
-@media (max-width: 375px) {
-    .indications {
-        .el-row {
-            padding-top: 30px;
-            justify-content: center;
-            .el-col-12 {
                 max-width: 100%;
                 flex: 0 0 100%;
             }
         }
     }
 }
+
 
 </style>

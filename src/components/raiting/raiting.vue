@@ -96,10 +96,12 @@ const raiting = ref([
     font-size: 40px;
     font-weight: 600;
     color: $brownBlack;
+    z-index: 10;
   }
   &-title {
     font-size: 18px;
     font-weight: 600;
+    white-space: nowrap;
     color: $brownBlack;
     line-height: 27px;
   }
@@ -108,9 +110,18 @@ const raiting = ref([
     font-weight: 200;
     color: $brownBlack;
     line-height: 20px;
+    z-index: 10;
   }
 }
 
+
+@media (max-width: 1070px) {
+  .raiting {
+    &-item {
+      padding-left: 10px;
+    }
+  }
+}
 
 
 @media (max-width: 1000px) {
@@ -123,10 +134,42 @@ const raiting = ref([
     }
   }
 }
+
+@media (max-width: 992px) {
+  .raiting {
+    &-item {
+      padding-left: 30px;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .raiting {
     .raiting-row {
       justify-content: center;
+    }
+    .title {
+      padding-left: 20px;
+    }
+  }
+}
+@media (max-width: 650px) {
+  .raiting {
+    &-col {
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .raiting {
+    .title {
+      padding-left: 0;
+    }
+    &-row {
+      .el-col-xs-20 {
+        max-width: 92%;
+        flex: 0 0 92%;
+      }
     }
   }
 }

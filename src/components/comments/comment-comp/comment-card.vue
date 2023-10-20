@@ -3,7 +3,7 @@
         <div :class="toggle ? 'title' : 'text'">
             {{ text }}
         </div>
-        <el-button v-if="toggle" round class="btn-info full">
+        <el-button v-if="toggle" round class="btn-info full" @click="openModal()">
             Оставить отзыв
         </el-button>
     </div>
@@ -14,6 +14,11 @@
 defineProps([
     'toggle', 'title', 'text' 
 ])
+import {useDialogStore} from "@/stores/dialog/dialog"
+const {setFeedbackDialog} = useDialogStore()
+const openModal = ()=> {
+    setFeedbackDialog(true)
+}
 </script>
 
 <style lang="scss" scoped>

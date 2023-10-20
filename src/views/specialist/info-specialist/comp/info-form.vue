@@ -58,6 +58,8 @@ import infoSlider from './info-slider.vue'
     padding: 32px;
     border-radius: 24px;
     background-color: #e7e1e0;
+    position: relative;
+    z-index: 10;
     .title {
       padding-bottom: 30px;
       font-weight: 600;
@@ -92,6 +94,11 @@ import infoSlider from './info-slider.vue'
   .info-form {
     .el-row {
       gap: 40px;
+    }
+    .form {
+      .el-button {
+        margin-top: 20px;
+      }
     }
   }
 }

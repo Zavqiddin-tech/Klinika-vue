@@ -1,7 +1,8 @@
 <template>
-  <signDialog />
   <Dialog />
+  <signDialog />
   <regisDialog />
+  <feedbackDialog />
   <div class="header">
     <header-top />
     <div class="container">
@@ -12,7 +13,8 @@
     </div>
   </div>
   <div class="header-scroll">
-    <div class="logo">
+    <div class="header-scroll__wrapper">
+      <div class="logo">
           <router-link to="/main">
               <img src="@/assets/logo/nav-logo.png" alt="logo">
           </router-link>
@@ -22,7 +24,8 @@
         <div class="line"></div>
         <div class="line"></div>
       </div>
-    <header-bottom />
+      <header-bottom />
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ import headerBottom from "./header-comp/header-bottom.vue";
 import Dialog from "../page/dialog/dialog.vue";
 import signDialog from "../page/dialog/signDialog.vue";
 import regisDialog from "../page/dialog/regisDialog.vue";
+import feedbackDialog from "../page/dialog/feedbackDialog.vue";
 
 window.addEventListener("scroll", function () {
   let header = document.querySelector(".header");
@@ -76,20 +80,27 @@ const menuOpen = ()=> {
 }
 .header-scroll {
   width: 100%;
-  padding: 10px;
+  padding-top: 10px;
   background-color: #fff;
   transform: translateY(-300px);
   position: fixed;
   display: flex;
-  align-items: center;
   justify-content: center;
   transition: 0.4s;
   z-index: 100;
   &.sticky {
   transform: translateY(-166px);
   }
-  .header-bottom {
-    width: 70%;
+  &__wrapper {
+    width: 1240px;
+    max-width: 1240px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header-bottom {
+      width: 70%;
+    }
   }
 }
 

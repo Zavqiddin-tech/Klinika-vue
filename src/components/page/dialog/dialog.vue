@@ -108,6 +108,7 @@ const rules = ref({
 
 const handleClose = () => {
   setRecordDialog(false);
+  ruleForm.value = {number: "+998"}
 };
 const serviceAdd = async (formEl) => {
   if (!formEl) return;

@@ -81,5 +81,11 @@ const switchToggle = ()=> {
         width: 90%;
   }
 
+  @media (max-width: 1000px) {
+    .form-wrapper {
+        padding: 30px 10px;
+    }
+  }
+
 
 </style>

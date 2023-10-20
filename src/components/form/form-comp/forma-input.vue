@@ -86,16 +86,16 @@ const add = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      if (editToggle) {
-      }
-      priceprod.value = {};
-      handleClose();
       ElNotification({
-        title: "Успешно",
-        message: "Информация отправлена",
+        title: "Номер отправлен",
+        message: "Мы свяжемся с вами в ближайшее время",
         type: "success",
         position: "bottom-left",
       });
+      switchForm.value = false
+      buttonForm.value =  true
+      priceprod.value = { number: "+998" };
+      handleClose();
     } else {
       ElNotification({
         title: "Предупреждение",

@@ -1,5 +1,6 @@
 <template>
     <div class="prices">
+        <loader />
         <div class="container">
             <img src="@/assets/img/no-page.jpg" alt="">
         </div>
@@ -8,7 +9,7 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
-
+import loader from '../../components/page/loader/loader.vue';
 
 onMounted(()=> {
   window.scrollTo(0, 0)
@@ -18,8 +19,9 @@ onMounted(()=> {
 <style lang="scss">
     .prices {
         background-color: #fff;
-        height: 400px;
+        height: 80vh;
         .container {
+            padding-top: 100px;
             max-width: 600px;
         }
         img {

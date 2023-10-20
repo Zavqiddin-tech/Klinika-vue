@@ -89,6 +89,7 @@ const rules = ref({
 
 const handleClose = () => {
   setSignDialog(false);
+  userdata.value = {}
 };
 const serviceAdd = async (formEl) => {
   if (!formEl) return;

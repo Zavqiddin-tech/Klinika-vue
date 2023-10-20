@@ -1,9 +1,12 @@
 <template>
   <div class="home">
+    <loader />
     <div class="wrapper">
-      <div class="phone">
+      <a href="tel:+998931234567">
+        <div class="phone">
         <img src="../../assets/logo/phone2.png" alt="" />
       </div>
+      </a>
     </div>
     <banner-slider :button_title="buttonTitle" />
     <service-vue />
@@ -41,6 +44,7 @@ import comment from "../../components/comments/comment.vue";
 import contact from "../../components/contact/contact.vue";
 import raiting from "../../components/raiting/raiting.vue";
 import forma from "../../components/form/forma.vue";
+import loader from "../../components/page/loader/loader.vue";
 
 import specialist4 from "@/assets/img/specialist-4.png";
 const persons = ref([

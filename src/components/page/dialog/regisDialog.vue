@@ -111,6 +111,7 @@ const rules = ref({
 
 const handleClose = () => {
   setRegisDialog(false);
+  userdata.value = {number: "+998"}
 };
 const serviceAdd = async (formEl) => {
   if (!formEl) return;

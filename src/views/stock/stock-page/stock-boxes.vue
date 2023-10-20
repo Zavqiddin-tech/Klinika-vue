@@ -32,11 +32,13 @@
     }
   }
   .stock-box {
+    position: relative;
     padding: 12px;
     border-radius: 24px;
     background: #fff;
     box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
     transition: 0.25s;
+    z-index: 2;
     &:hover {
       transform: translateY(-5px);
     }

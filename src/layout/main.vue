@@ -20,6 +20,5 @@ import menuVue from "@/components/page/menu/menu.vue";
   position: relative;
   background-color: #f9faff;
   overflow-x: hidden;
-  
 }
 </style>

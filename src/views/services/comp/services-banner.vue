@@ -12,7 +12,10 @@
             {{ obj.text }}
           </div>
           <div class="btn-group">
-            <el-button v-if="obj.leftBtn" round class="btn-white big"
+            <el-button @click="servicesDetail(obj)"
+              v-if="obj.leftBtn" 
+              round 
+              class="btn-white big"
               >Подробнее
             </el-button>
             <el-button @click="servicesModal()" class="btn-info"
@@ -35,7 +38,7 @@
             <div class="services-card__text">
               {{ item.text }}
             </div>
-            <el-button class="btn-white" round>Подробнее</el-button>
+            <el-button @click="servicesDetail(obj)" class="btn-white" round>Подробнее</el-button>
           </div>
         </el-col>
         <div
@@ -53,14 +56,22 @@
 
 <script setup>
 const props = defineProps(["obj"]);
+import router from '@/router/index'
 import Dialog from "../../../components/page/dialog/dialog.vue";
 
 import { useDialogStore } from "@/stores/dialog/dialog";
 const {setRecordDialog} = useDialogStore()
-
-
 const servicesModal = ()=> {
 setRecordDialog(true)
+}
+
+
+import { useServicesStore } from "@/stores/services/services";
+const { setServicesAboutObj } = useServicesStore();
+
+const servicesDetail = (val)=> {
+  setServicesAboutObj(val)
+  router.push("/services-detail/:id");
 }
 </script>
 

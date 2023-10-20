@@ -1,5 +1,6 @@
 <template>
   <div class="about-center">
+    <loader />
     <div class="container">
       <div class="line-star">
         <img src="../../assets/logo/line-star2.png" alt="">
@@ -24,6 +25,7 @@ import forma from "../../components/form/forma.vue";
 import aboutBanner from "@/components/page/banner/about-banner.vue";
 import analitic from "../../components/page/analistic/analitic.vue";
 import flexItems from "./components/flex-items.vue";
+import loader from "../../components/page/loader/loader.vue";
 
 import { useAnaliticStore } from "../../stores/analitic/analitic";
 const { aboutCenterAnalitic } = useAnaliticStore();

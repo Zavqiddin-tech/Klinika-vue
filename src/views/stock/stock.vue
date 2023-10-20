@@ -1,5 +1,6 @@
 <template>
   <div class="stock">
+    <loader />
     <div class="container">
       <div class="breadcrumb">
         <span>Главная</span>
@@ -35,6 +36,7 @@ import stockBoxes from "./stock-page/stock-boxes.vue";
 import forma from "@/components/form/forma.vue";
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import loader from "../../components/page/loader/loader.vue";
 
 
 

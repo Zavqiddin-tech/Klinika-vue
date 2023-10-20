@@ -1,5 +1,6 @@
 <template>
   <div class="price-services">
+    <loader />
     <div class="wrapper">
       <div class="phone">
           <img src="@/assets/logo/sms.png" alt="" />
@@ -28,12 +29,19 @@
 </template>
 
 <script setup>
+import {onMounted} from 'vue'
 import { storeToRefs } from "pinia";
 import infoAccordion from "../specialist/info-specialist/comp/infoAccordion.vue";
 import forma from "@/components/form/forma.vue";
+import loader from '../../components/page/loader/loader.vue';
 
 import { useAccordionStore } from "@/stores/accordion/accordion";
 const { infoPriceAccordion } = storeToRefs(useAccordionStore());
+
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+});
 </script>
 
 <style lang="scss">

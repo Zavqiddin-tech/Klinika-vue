@@ -13,7 +13,7 @@
     </div>
     <div class="contact-bottom">
       <el-row>
-        <el-col :span="12" :sm="15" :md="12" :xs="24" class="contact-wrapper">
+        <el-col :span="12"  class="contact-wrapper">
           <div class="contact-bottom__item">
             <a href="https://vk.com/vk" target="_blank">
               <img src="@/assets/logo/vk.png" alt="" />
@@ -21,9 +21,9 @@
             </a>
           </div>
         </el-col>
-        <el-col :span="12" :sm="15" :md="12" :xs="24" class="contact-wrapper">
+        <el-col :span="12" class="contact-wrapper">
           <div class="contact-bottom__item">
-            <a href="https://mail.google.com">
+            <a href="https://mail.google.com" target="_blank">
               <img src="@/assets/logo/email.png" alt="" />
               <div class="contact-bottom__text">ek@clinic23.ru</div>
             </a>
@@ -95,11 +95,21 @@
     .contact-wrapper {
       padding: 0;
     }
+    .contact-bottom {
+      .el-col-12 {
+        max-width: 95%;
+        flex: 0 0 95%;
+      }
+    }
   }
   @media (max-width: 768px) {
     .contact-bottom {
       margin-left: 0;
       margin-right: 0;
+      .el-col-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
+      }
     }
   }
 }

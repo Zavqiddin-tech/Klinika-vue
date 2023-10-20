@@ -161,13 +161,27 @@ onMounted(()=> {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
   .info-specialist__banner {
     .about-top__info {
       padding-top: 40px; 
       padding-left: 30px;
       .about-text {
         ul {
+          gap: 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .info-specialist__banner {
+    .about-top__info {
+      padding-top: 20px; 
+      padding-left: 10px;
+      .about-text {
+        ul {
+          width: 70%;
           gap: 5px;
         }
       }

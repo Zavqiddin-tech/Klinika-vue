@@ -44,6 +44,30 @@ import contactInfo from './contact-comp/contact-info.vue';
                 justify-content: center;
                 gap: 40px;
             }
+            &-card__item {
+                padding: 0;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            padding-top: 50px;
+            &-card__items {
+                padding-top: 30px;
+            }
+            .container > {
+                .title {
+                padding-left: 20px;
+            }
+            }
+        }
+    }
+    @media (max-width: 550px) {
+        .contact {
+            .title {
+                padding-left: 0px;
+            }
         }
     }
 </style>

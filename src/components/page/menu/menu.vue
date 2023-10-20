@@ -7,17 +7,16 @@
           <img src="@/assets/logo/nav-logo.png" alt="logo" />
         </router-link>
       </div>
-
-      <div class="header-btn-group">
-        <el-button @click="recordModal()" type="info" class="nav-btn" round>Записаться</el-button>
-        <el-button @click="signModal()" class="btn-white" :icon="User" round>Войти</el-button>
-      </div>
     </div>
     <div class="menu-router">  
         <div class="menu-router__links" v-for="item of menuLinkStore"  @click="pressedItem(item.id)" >
             <router-link :to="item.path" :class="item.active ? 'active' : ''">{{ item.title }}</router-link>
         </div>
     </div>
+    <div class="header-btn-group">
+        <el-button @click="recordModal()" type="info" class="nav-btn" round>Записаться</el-button>
+        <el-button @click="signModal()" class="btn-white" :icon="User" round>Войти</el-button>
+      </div>
   </div>
 </template>
 
@@ -63,7 +62,7 @@ setSignDialog(true)
 <style lang="scss">
 .menu-wrapper {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.514);
+  background-color: rgba(255, 255, 255, 0.863);
   z-index: 110 !important;
   backdrop-filter: blur(10px);
   width: 100%;
@@ -72,7 +71,7 @@ setSignDialog(true)
   z-index: 10;
   transition: 0.7s ease;
   transform: translateX(5000px);
-  opacity: 1;
+  opacity: 0;
   .menu-header {
     padding: 20px 10px;
     display: flex;
@@ -103,6 +102,8 @@ setSignDialog(true)
       }
   }
   .header-btn-group {
+    padding-top: 40px;
+    padding-left: 20px;
     display: flex;
     .nav-btn {
             background-color: #546272;
@@ -118,7 +119,7 @@ setSignDialog(true)
   }
   .el-icon {
     position: absolute;
-    top: 300px;
+    top: 30px;
     right: 20px;
     font-size: 25px;
     cursor: pointer;
@@ -129,13 +130,13 @@ setSignDialog(true)
   }
 }
 
-
-@media (max-width: 430px) {
-    .menu-wrapper {
-        .menu-header {
-            justify-content: center;
-            gap: 20px;
-        }
+@media(max-width: 350px) {
+  .menu-wrapper {
+    .header-btn-group {
+      justify-content: center;
+      padding-left: 0px;
     }
+  }
 }
+
 </style>
