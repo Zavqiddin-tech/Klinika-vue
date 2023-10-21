@@ -52,6 +52,8 @@
 .flex {
   &-items {
     padding-top: 60px;
+    position: relative;
+    z-index: 2;
     .el-row__main {
       padding-top: 40px;
       padding-bottom: 24px;

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { menuLink } from "./menu";
+import { dashMenuLink } from './menu';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +46,15 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: ()=> import('@/layout/dashboard.vue')
+      component: ()=> import('@/layout/dashboard.vue'),
+      children: [
+        {
+          path: '/dashboard',
+          name: 'dashboard',
+          component: ()=> import("../dashboard/views/dash-basic.vue")
+        },
+        ...dashMenuLink
+      ]
     }
   ]
 })

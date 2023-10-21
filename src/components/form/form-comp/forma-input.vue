@@ -130,6 +130,7 @@ const add = async (formEl) => {
   }
   &-input {
     width: 360px;
+    max-width: 360px;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -175,12 +176,23 @@ const add = async (formEl) => {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 420px) {
   .form .form-agree {
     margin-bottom: 20px;
   }
-  .form-input {
-    width: 300px;
+  .form .form-input {
+    width: 320px;
   }
+  
+}
+@media (max-width: 370px) {
+  .form .form-input {
+    width: 300px;
+  } 
+}
+@media (max-width: 340px) {
+  .form .form-input {
+    width: 280px;
+  } 
 }
 </style>

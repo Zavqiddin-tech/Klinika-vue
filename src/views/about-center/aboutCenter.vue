@@ -67,6 +67,9 @@ onMounted(()=> {
       opacity: 0.3;
     }
   }
+  .analitic {
+    position: relative;
+  }
   &:after {
     content: '';
     width: 400px;

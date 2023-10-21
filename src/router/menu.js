@@ -1,4 +1,4 @@
-import {ref} from 'vue'
+import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const menuLink = [
@@ -50,9 +50,9 @@ export const menuLink = [
     active: false,
     component: () => import("@/views/contact/contact.vue"),
   },
-]
+];
 
-export const useMenuStore = defineStore('menuLink', ()=> {
+export const useMenuStore = defineStore("menuLink", () => {
   const menuLinkStore = ref([
     {
       id: 1,
@@ -102,27 +102,50 @@ export const useMenuStore = defineStore('menuLink', ()=> {
       active: false,
       component: () => import("@/views/contact/contact.vue"),
     },
-  ])
+  ]);
   const setMenuLinkStore = (val) => {
-    menuLinkStore.value.forEach(item => {
+    menuLinkStore.value.forEach((item) => {
       if (item.id == val) {
-        item.active = true
+        item.active = true;
       } else {
-        item.active =  false
+        item.active = false;
       }
     });
-  }
+  };
 
-  const noActiveLink = ()=> {
-    menuLinkStore.value.forEach(item => {
-      item.active = false
-    })
-  }
+  const noActiveLink = () => {
+    menuLinkStore.value.forEach((item) => {
+      item.active = false;
+    });
+  };
 
   return {
     menuLinkStore,
     setMenuLinkStore,
     noActiveLink,
-  }
-})
+  };
+});
 
+export const dashMenuLink = [
+  {
+    title: "Специалисты",
+    icon: 'user',
+    path: "/dash-specialist",
+    name: "dash-specialist",
+    component: () => import("../dashboard/views/dash-specialist.vue"),
+  },
+  {
+    title: "Услуги",
+    icon: 'set-up',
+    path: "/dash-services",
+    name: "dash-services",
+    component: () => import("../dashboard/views/dash-services.vue"),
+  },
+  {
+    title: "Цены",
+    icon: 'money',
+    path: "/dash-prices",
+    name: "dash-prices",
+    component: () => import("../dashboard/views/dash-prices.vue"),
+  },
+];
