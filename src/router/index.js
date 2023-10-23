@@ -44,8 +44,7 @@ const router = createRouter({
       
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
+      path: '/',
       component: ()=> import('@/layout/dashboard.vue'),
       children: [
         {
@@ -55,7 +54,12 @@ const router = createRouter({
         },
         ...dashMenuLink
       ]
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: ()=> import('@/layout/auth.vue')
+    },
   ]
 })
 

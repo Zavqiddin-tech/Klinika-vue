@@ -1,5 +1,6 @@
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import VueCookies from 'vue-cookies'
 
 
 import { createApp } from 'vue'
@@ -17,8 +18,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(createPinia())
-
+app.use(VueCookies, {expires: '1d'})
 app.use(router)
-
 app.use(ElementPlus)
 app.mount('#app')

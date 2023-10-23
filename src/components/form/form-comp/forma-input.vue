@@ -130,7 +130,6 @@ const add = async (formEl) => {
   }
   &-input {
     width: 360px;
-    max-width: 360px;
     gap: 10px;
     display: flex;
     align-items: center;

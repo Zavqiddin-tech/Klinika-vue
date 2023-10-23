@@ -11,13 +11,14 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",
-    "axios": "^1.5.0",
+    "axios": "^1.5.1",
     "element-plus": "^2.3.12",
     "maska": "^2.1.10",
     "pinia": "^2.1.6",
     "sass": "^1.66.1",
     "swiper": "^10.3.1",
     "vue": "^3.3.4",
+    "vue-cookies": "^1.8.3",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
