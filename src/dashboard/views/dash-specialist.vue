@@ -3,7 +3,6 @@
     <div class="dash-specialist__nav">
       <h1>Специалисты</h1>
       <el-button type="primary" @click="openDialog()">Добавлять</el-button>
-
       <el-dialog
         v-model="dialogVisible"
         title="Добавить эксперта"
@@ -33,6 +32,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { ElNotification } from 'element-plus'
 const dialogVisible = ref(false);
 const openDialog = () => {
   dialogVisible.value = true;
@@ -75,18 +75,25 @@ const rules = ref({
       message: "Специальность должно состоять более чем из 3 букв",
     },
   ],
-  
 });
 
 const addSpecialist = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      successWarning();
-      specialists = ref({});
       handleClose();
+      ElNotification({
+        title: "Успешный",
+        message: "данные отправлены",
+        type: "success",
+      });
+      specialists.value = {};
     } else {
-      notifWarning();
+      ElNotification({
+        title: "Ошибка",
+        message: "информация не отправлена",
+        type: "error",
+      });
     }
   });
 };

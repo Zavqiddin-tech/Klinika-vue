@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { menuLink } from "./menu";
 import { dashMenuLink } from './menu';
 
+import { useAuthStore } from '../stores/admin/user/auth';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -61,6 +63,17 @@ const router = createRouter({
       component: ()=> import('@/layout/auth.vue')
     },
   ]
+})
+
+router.beforeEach((to, from, next)=> {
+  if(['login','main'].includes(to.name)) {
+    next()
+  }
+  else {
+    const authStore = useAuthStore()
+    authStore.checkUser()
+    next()
+  }
 })
 
 export default router

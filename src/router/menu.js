@@ -148,4 +148,11 @@ export const dashMenuLink = [
     name: "dash-prices",
     component: () => import("../dashboard/views/dash-prices.vue"),
   },
+  {
+    title: "Профессии",
+    icon: 'suitcase',
+    path: "/dash-prof",
+    name: "dash-prof",
+    component: () => import("../dashboard/views/dash-prof.vue"),
+  },
 ];
