@@ -51,6 +51,7 @@ export const useApiStore = defineStore("api", () => {
   };
 
   const deleteAxios = (payload) => {
+    console.log(payload);
     return axios
       .delete(`${url}/${payload.url}`, {
         ...tokenStore.header,
