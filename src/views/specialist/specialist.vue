@@ -22,7 +22,7 @@
         Врачи-косметологи регулярно повышают свою квалификацию, проходя обучение
         в Москве, Санкт-Петербурге и зарубежных образовательных центрах.
       </div>
-      <specialists-cards :specialPersons="specialPersons" />
+      <specialists-cards :experts="expertsActive" />
     </div>
   </div>
 </template>
@@ -35,17 +35,14 @@ import specialistsCards from "@/components/specialists/specialists-comp/speciali
 import loader from "../../components/page/loader/loader.vue";
 
 // store
-import { specialistStore } from "../../stores/specialist/specialist";
-const { specialistToggle } = specialistStore();
-const { setSpecialist } = specialistStore();
-
-import { specialPersonsStore } from "../../stores/specialist/special-persons";
-const { specialPersons } = storeToRefs(specialPersonsStore());
+import {useExpertsStore} from '@/stores/data/expert'
+const {get_active_experts} = useExpertsStore()
+const {expertsActive} = storeToRefs(useExpertsStore())
 // store
 
 onMounted(() => {
   window.scrollTo(0, 0);
-  setSpecialist(true);
+  get_active_experts()
 });
 </script>
 

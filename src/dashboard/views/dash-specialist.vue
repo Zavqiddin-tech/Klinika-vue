@@ -24,8 +24,9 @@
           <el-form-item label="Отчество" prop="sname">
             <el-input v-model="specialist.sname" />
           </el-form-item>
-          <el-form-item prop="specialty">
+          <el-form-item label="Выберите профессию" prop="profession">
             <el-select
+              multiple
               v-model="specialist.profession"
               placeholder="Специальность"
               clearable
@@ -70,7 +71,7 @@
 import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { ElMessage, ElNotification } from "element-plus";
-import expertsTable from "../components/table/experts-table.vue";
+import expertsTable from "@/dashboard/components/table/experts-table.vue";
 
 // store
 import { useHelperStore } from "@/stores/admin/helpers/index";
@@ -145,6 +146,13 @@ const rules = ref({
     {
       min: 3,
       message: "Фамилия должно состоять более чем из 3 букв",
+    },
+  ],
+  profession: [
+    {
+      required: true,
+      message: "Выберите профессию",
+      trigger: "blur",
     },
   ],
   avatar: [

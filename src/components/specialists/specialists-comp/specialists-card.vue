@@ -2,18 +2,22 @@
   <div class="specialists-card">
     <img :src="img" alt="" />
     <div class="specialists-info">
-      <div class="specialists-title">{{ title }}</div>
-      <div class="specialists-text" @click="sayhello()">{{ text }}</div>
-      <div v-show="profession" class="profession">{{ profession }}</div>
+      <div class="specialists-title">{{ name }} {{ lname }} {{ sname }}</div>
+      <div class="specialists-text">
+        {{ profs[0].title }}
+        <span v-if="profs.length >= 2" class="profession">
+          + 2 специальности
+        </span>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-defineProps(["img", "title", "text", "profession"]);
+defineProps(["img", "name", "lname", "sname", "profs"]);
 
-const sayhello = ()=> {
-  alert('salom')
-}
+const sayhello = () => {
+  alert("salom");
+};
 </script>
 <style lang="scss">
 .specialists-card {
@@ -35,13 +39,13 @@ const sayhello = ()=> {
   position: absolute;
   bottom: 30px;
   .profession {
-    margin-top: 10px;
+    margin-left: 10px;
     padding: 5px 10px;
     border-radius: 24px;
     font-size: 13px;
     font-weight: 200;
-    border: 1px solid #C9BABA;
-    color: #C9BABA;
+    border: 1px solid #c9baba;
+    color: #c9baba;
     display: inline-block;
   }
 }
@@ -58,7 +62,6 @@ const sayhello = ()=> {
   font-weight: 200;
   line-height: 24px;
 }
-
 
 @media (max-width: 940px) {
   .specialists {

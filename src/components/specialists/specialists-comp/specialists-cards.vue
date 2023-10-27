@@ -1,12 +1,14 @@
 <template>
   <div class="specialists-cards">
     <el-row>
-      <el-col :span="8" :xs="12"   v-for="person of specialPersons">
+      <el-col :span="8" :xs="12"   v-for="person of experts">
         <specialists-card
           @click="detail()"
-          :img="person.img"
-          :title="person.title"
-          :text="person.text"
+          :img="`${url}/${person.avatar[0].response}`"
+          :name="person.name"
+          :lname="person.lname"
+          :sname="person.sname"
+          :profs="person.profession"
         />
       </el-col>
       <el-col :span="8" :xs="15">
@@ -28,13 +30,16 @@
   </div>
 </template>
 <script setup>
-defineProps(["specialPersons"]);
+defineProps(["experts"]);
 import {storeToRefs} from 'pinia'
 import specialistsCard from "./specialists-card.vue";
 
 import router from '@/router/index.js'
 
 // stores
+import { useHelperStore } from '../../../stores/admin/helpers';
+const {url} = storeToRefs(useHelperStore())
+
 import { specialistStore } from "../../../stores/specialist/specialist";
 const {specialistToggle} = storeToRefs(specialistStore()) 
 // stores

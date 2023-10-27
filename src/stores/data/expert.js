@@ -7,6 +7,7 @@ import { ElNotification } from "element-plus";
 export const useExpertsStore = defineStore("expertession", () => {
   const experts = ref([]);
   const expertsCount = ref(0);
+  const expertsActive = ref([])
 
   const api = useApiStore();
 
@@ -18,7 +19,17 @@ export const useExpertsStore = defineStore("expertession", () => {
       experts.value = [...res.data.specialists];
       expertsCount.value = res.data.count;
     })
-    
+  };
+  
+  
+  // barcha Aktive expertlarni olib beardi
+  const get_active_experts = async () => {
+    await api.getAxios({
+      url: "specialist/active",
+    }).then((res) => {
+      console.log(res);
+      expertsActive.value = [...res.data];
+    })
   };
 
   // yangi expert qo'shish
@@ -108,8 +119,10 @@ export const useExpertsStore = defineStore("expertession", () => {
 
   return {
     experts,
+    expertsActive,
     expertsCount,
     get_all_experts,
+    get_active_experts,
     new_expert,
     get_expert,
     save_expert,
