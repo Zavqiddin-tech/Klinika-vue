@@ -52,9 +52,19 @@ const router = createRouter({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: ()=> import("../dashboard/views/dash-basic.vue")
+          component: ()=> import("../dashboard/views/dash-sidebar/dash-basic.vue")
         },
-        ...dashMenuLink
+        ...dashMenuLink,
+        {
+          path: 'more-spec/:id',
+          name: 'more-spec',
+          component: ()=> import("@/dashboard/views/specialist/more-spec.vue")
+        },
+        {
+          path: 'more-specForm/:id',
+          name: 'more-specForm',
+          component: ()=> import("@/dashboard/views/specialist/more-specForm.vue")
+        },
       ]
     },
     {

@@ -3,11 +3,10 @@
     <img :src="img" alt="" />
     <div class="specialists-info">
       <div class="specialists-title">{{ name }} {{ lname }} {{ sname }}</div>
-      <div class="specialists-text">
-        {{ profs[0].title }}
-        <span v-if="profs.length >= 2" class="profession">
-          + 2 специальности
-        </span>
+      <div class="specialists-text" >
+        <span v-for="item of profs">
+          {{ item.title }}
+        </span> 
       </div>
     </div>
   </div>
@@ -15,9 +14,6 @@
 <script setup>
 defineProps(["img", "name", "lname", "sname", "profs"]);
 
-const sayhello = () => {
-  alert("salom");
-};
 </script>
 <style lang="scss">
 .specialists-card {
@@ -61,6 +57,8 @@ const sayhello = () => {
 .specialists-text {
   font-weight: 200;
   line-height: 24px;
+  display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 940px) {

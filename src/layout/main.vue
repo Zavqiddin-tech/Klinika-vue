@@ -13,12 +13,15 @@
 import headerVue from "../components/header/header.vue";
 import footerVue from "../components/footer/footer.vue";
 import menuVue from "@/components/page/menu/menu.vue";
+
+
+
 </script>
 
 <style lang="scss">
 .main {
   position: relative;
   background-color: #f9faff;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 </style>

@@ -36,13 +36,13 @@ import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { ElMessage, ElNotification } from "element-plus";
 
-import professionTable from '../components/table/profession-table.vue'
+import professionTable from '../../components/table/profession-table.vue'
 
-import { useDialogStore } from "../../stores/dialog/dialog";
+import { useDialogStore } from "@/stores/dialog/dialog";
 const { toggle, editToggle } = storeToRefs(useDialogStore());
 const { setToggle, setEditToggle } = useDialogStore();
 
-import { useProfessionStore } from "../../stores/data/profession";
+import { useProfessionStore } from "@/stores/data/profession";
 const store = useProfessionStore();
 const {get_all_profs, new_prof, save_prof, get_prof } = store;
 
@@ -70,7 +70,6 @@ const add = async (formEl) => {
       if(editToggle.value) {
         save_prof(profession.value)
       } else {
-        console.log('new prof');
         new_prof(profession.value);
       }
       profession.value = {}

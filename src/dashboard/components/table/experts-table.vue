@@ -3,7 +3,7 @@
     <el-table-column lebel="#" type="index" />
     <el-table-column label="ф.и.о">
       <template #default="scope">
-        <div class="d-flex align-center">
+        <div class="d-flex align-center" @click="moreExpert(scope.row._id)">
           <el-image
             class="table-img"
             style="width: 50px; height: 50px"
@@ -71,8 +71,8 @@
 const emit = defineEmits([
   'edit'
 ])
-
 import { storeToRefs } from "pinia";
+import router from "@/router/";
 
 import { useHelperStore } from "../../../stores/admin/helpers";
 const { url } = storeToRefs(useHelperStore());
@@ -99,6 +99,12 @@ const editExpert = (_id) => {
   dialog.setToggle(true)
   dialog.setEditToggle(true)
 };
+
+
+
+const moreExpert = (id)=> {
+  router.push(`/more-spec/${id}`)
+}
 </script>
 
 <style lang="scss">

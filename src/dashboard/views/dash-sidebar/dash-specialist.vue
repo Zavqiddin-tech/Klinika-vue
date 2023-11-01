@@ -88,7 +88,7 @@ import { useProfessionStore } from "@/stores/data/profession";
 const { activeProfs } = storeToRefs(useProfessionStore());
 const { get_active_profs } = useProfessionStore();
 
-import { useExpertsStore } from "../../stores/data/expert";
+import { useExpertsStore } from "@/stores/data/expert";
 const {get_all_experts, get_expert, new_expert, save_expert} = useExpertsStore()
 // store
 

@@ -36,6 +36,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import router from "../../../router";
 import aboutTop from "../../../components/about/about-comp/about-top.vue";
 import infoImg from "@/assets/img/infoSpecialImg.png";
 import infoSpecialistCard from "./comp/infoSpecialistCard.vue";

@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="8" :xs="12"   v-for="person of experts">
         <specialists-card
-          @click="detail()"
+          @click="detail(person._id)"
           :img="`${url}/${person.avatar[0].response}`"
           :name="person.name"
           :lname="person.lname"
@@ -46,10 +46,8 @@ const {specialistToggle} = storeToRefs(specialistStore())
 
 
 
-const detail = ()=> {
-  if (specialistToggle.value) {
-    router.push('specialist/:id')
-  }
+const detail = (id)=> {
+    router.push(`specialist/${id}`)
 }
 </script>
 
