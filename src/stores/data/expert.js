@@ -27,14 +27,12 @@ export const useExpertsStore = defineStore("expertession", () => {
     await api.getAxios({
       url: "specialist/active",
     }).then((res) => {
-      console.log(res);
-      expertsActive.value = [...res.data];
+        expertsActive.value = [...res.data];
     })
   };
 
   // yangi expert qo'shish
   const new_expert = async (data) => {
-    console.log(data);
     await api
       .postAxios({
         url: "specialist",

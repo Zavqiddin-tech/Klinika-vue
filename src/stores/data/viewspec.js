@@ -38,15 +38,11 @@ export const useViewSpecStore = defineStore("viewSpecession", () => {
 
   //ma'lumotni yangilab saqlash
   const save_viewSpec = async (data) => {
-    console.log(data);
     await api
       .putAxios({
         url: "viewspec",
         data,
       })
-      .then((res) => {
-        console.log(res.data);
-      });
   };
 
   //  o'chirish

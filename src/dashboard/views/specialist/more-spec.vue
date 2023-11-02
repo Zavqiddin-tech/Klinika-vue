@@ -1,5 +1,5 @@
 <template>
-  <div class="more-spec">
+  <div class="more-spec" v-if="expertNames.name">
     <div class="more-spec__banner"></div>
     <div class="more-spec__top">
       <div class="more-spec__img">
@@ -12,13 +12,17 @@
       <div class="more-spec__nav">
         <div class="more-spec__names">
           <div v-if="oneSpec.title" class="more-spec__title verify">
-            {{ oneSpec.title }} {{ oneSpec.subtitle }}
+            {{ expertNames.name }} {{ expertNames.lname }}
             <img src="@/assets/logo/verify.png" alt="" />
           </div>
           <div class="more-spec__subtext">{{ oneSpec.subtexts }}</div>
         </div>
+
         <el-button class="more-btn" type="primary" round @click="moreForm(id)">
           Информация доктора
+        </el-button>
+        <el-button type="info" round @click="backPage()">
+          back <i class="bx bx-log-out-circle"></i>
         </el-button>
       </div>
     </div>
@@ -53,8 +57,9 @@
           <i class="bx bxs-check-shield"></i>
           <div class="more-box__title verify">Сертификат</div>
           <el-row>
-            <el-col :span="12"
-            class="certificate-img"
+            <el-col
+              :span="12"
+              class="certificate-img"
               v-for="list of oneSpec.certificate"
             >
               <img
@@ -69,46 +74,67 @@
       </el-col>
     </el-row>
   </div>
+  <div class="no-data" v-else>
+    <img src="@/assets/img/nodata.jpg" alt="">
+  </div>
 </template>
 
 <script setup>
-import {ref, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import router from "@/router/";
+const expertNames = ref({})
 
 import { useHelperStore } from "../../../stores/admin/helpers";
 const { url } = storeToRefs(useHelperStore());
-
+import { useExpertsStore } from "../../../stores/data/expert";
+const {experts} = storeToRefs(useExpertsStore())
+const {get_all_experts} = useExpertsStore()
 import { useViewSpecStore } from "@/stores/data/viewspec";
 const { get_viewSpec, setDoctorID } = useViewSpecStore();
 
-
-
-
-const paramsID = useRoute().params.id
-
-
+const paramsID = useRoute().params.id;
 
 const moreForm = () => {
   router.push(`/more-specForm/${paramsID}`);
 };
 
-
-
-const oneSpec = ref({})
-const provider = async(id)=> {
-  await get_viewSpec(id).then(res => {
-    oneSpec.value =  res.data
-    setDoctorID(res.data._id)
+const oneSpec = ref({});
+const provider = async (id) => {
+  await get_viewSpec(id).then((res) => {
+    oneSpec.value = res.data;
+    setDoctorID(res.data._id);
+  });
+  experts.value.forEach((item) => {
+    if(item._id == id) {
+      expertNames.value = {...item}
+    }
   })
-}
-onMounted(() => {
-provider(useRoute().params.id)
+  
+};
+
+
+const backPage = () => {
+  router.push('/dash-specialist');
+};
+onMounted(async () => {
+  get_all_experts()
+  provider(useRoute().params.id);
 });
 </script>
 
 <style lang="scss">
+.no-data {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  background-color: #fff;
+  img {
+    width: 600px;
+    object-fit: cover;
+  }
+}
 .more-spec {
   font-family: "Inter", sans-serif;
   color: #333;
@@ -173,7 +199,7 @@ provider(useRoute().params.id)
       height: 100%;
       padding: 15px;
       border-radius: 10px;
-      background-image: url('@/assets/img/more-bg.jpg');
+      background-image: url("@/assets/img/more-bg.jpg");
       background-size: cover;
       box-shadow: 0px 2px 20px #b8b8b8;
       cursor: pointer;

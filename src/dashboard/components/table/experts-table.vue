@@ -68,9 +68,8 @@
 </template>
 
 <script setup>
-const emit = defineEmits([
-  'edit'
-])
+const emit = defineEmits(["edit"]);
+import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import router from "@/router/";
 
@@ -82,7 +81,7 @@ const { experts } = storeToRefs(useExpertsStore());
 const { status_expert, delete_expert } = useExpertsStore();
 
 import { useDialogStore } from "../../../stores/dialog/dialog";
-const dialog = useDialogStore()
+const dialog = useDialogStore();
 
 const changeStatus = (_id) => {
   status_expert(_id);
@@ -95,16 +94,14 @@ const remove = (_id) => {
 };
 
 const editExpert = (_id) => {
-  emit('edit', _id)
-  dialog.setToggle(true)
-  dialog.setEditToggle(true)
+  emit("edit", _id);
+  dialog.setToggle(true);
+  dialog.setEditToggle(true);
 };
 
-
-
-const moreExpert = (id)=> {
-  router.push(`/more-spec/${id}`)
-}
+const moreExpert = (id) => {
+  router.push(`/more-spec/${id}`);
+};
 </script>
 
 <style lang="scss">
