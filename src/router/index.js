@@ -65,6 +65,11 @@ const router = createRouter({
           name: 'more-specForm',
           component: ()=> import("@/dashboard/views/specialist/more-specForm.vue")
         },
+        {
+          path: 'more-service/:id',
+          name: 'more-service',
+          component: ()=> import("@/dashboard/views/service/more-service.vue")
+        },
       ]
     },
     {

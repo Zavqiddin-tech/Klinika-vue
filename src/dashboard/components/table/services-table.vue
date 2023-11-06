@@ -1,10 +1,10 @@
 <template>
   <el-table :data="services" style="width: 100%">
     <el-table-column lebel="#" type="index"/>
-    
     <el-table-column>
       <template #default="scope">
         <el-image
+        @click="nextPage(scope.row._id)"
           class="table-img"
           style="width: 50px; height: 50px"
           :src="`${url}/${scope.row.img[0].response}`"
@@ -67,6 +67,7 @@ const emit = defineEmits([
   'edit'
 ])
 import { storeToRefs } from "pinia";
+import router from "@/router/index";
 
 import {useHelperStore} from '../../../stores/admin/helpers/index'
 const {url} = storeToRefs(useHelperStore())
@@ -88,6 +89,11 @@ const editProf = (_id)=> {
   emit('edit', _id)
   setToggle(true)
   setEditToggle(true)
+}
+
+
+const nextPage = (id)=> {
+  router.push(`/more-service/${id}`)
 }
 </script>
 

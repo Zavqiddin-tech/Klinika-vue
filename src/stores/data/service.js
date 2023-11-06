@@ -42,7 +42,6 @@ export const useServiceStore = defineStore('service', ()=> {
         data,
       })
       .then((res) => {
-        console.log(res.data);
         services.value = [res.data, ...services.value];
         servicesCount.value += 1;
         ElNotification({
