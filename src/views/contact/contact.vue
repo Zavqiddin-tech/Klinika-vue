@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-    <loader />
+
     <div class="container">
       <div class="breadcrumb">
         <span>Главная</span>
@@ -23,7 +23,6 @@
 import {onMounted} from 'vue'
 import contactBox from "./comp/contactBox.vue";
 import forma from "@/components/form/forma.vue";
-import loader from '../../components/page/loader/loader.vue';
 
 onMounted(()=> {
   window.scrollTo(0, 0)

@@ -128,29 +128,36 @@ export const useMenuStore = defineStore("menuLink", () => {
 
 export const dashMenuLink = [
   {
+    title: "Главная",
+    icon: 'home_app_logo',
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("../dashboard/views/dash-sidebar/dash-basic.vue"),
+  },
+  {
     title: "Специалисты",
-    icon: 'user',
+    icon: 'groups',
     path: "/dash-specialist",
     name: "dash-specialist",
     component: () => import("../dashboard/views/dash-sidebar/dash-specialist.vue"),
   },
   {
     title: "Услуги",
-    icon: 'set-up',
+    icon: 'medical_information',
     path: "/dash-services",
     name: "dash-services",
     component: () => import("../dashboard/views/dash-sidebar/dash-services.vue"),
   },
   {
     title: "Цены",
-    icon: 'money',
+    icon: 'paid',
     path: "/dash-prices",
     name: "dash-prices",
     component: () => import("../dashboard/views/dash-sidebar/dash-prices.vue"),
   },
   {
     title: "Профессии",
-    icon: 'suitcase',
+    icon: 'medication',
     path: "/dash-prof",
     name: "dash-prof",
     component: () => import("../dashboard/views/dash-sidebar/dash-prof.vue"),

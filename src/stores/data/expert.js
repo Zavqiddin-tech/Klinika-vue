@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { storeToRefs } from "pinia";
 import { useApiStore } from "../admin/helpers/api";
 import { ElNotification } from "element-plus";
 
@@ -75,7 +74,6 @@ export const useExpertsStore = defineStore("expertession", () => {
           type: "success",
         });
       });
-
   };
 
   // expertni o'chirish

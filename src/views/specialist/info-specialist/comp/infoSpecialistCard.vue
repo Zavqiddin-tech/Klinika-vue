@@ -2,23 +2,29 @@
   <div class="info-card">
     <el-row>
       <el-col :span="10" :sm="24" :md="10" :xs="24" class="info-card__img">
-        <img src="@/assets/img/specialist-5.png" alt="" />
+        <img :src="`${url}/${img}`" alt="" />
       </el-col>
       <el-col :span="14" :sm="20" :md="14" :xs="24" class="info-card__info">
         <div class="info-card__title">
-          <span>Эксперт</span> <br />
-          в области современных методик в косметологии
+          <span>{{ title }}</span> <br />
+          {{ subtitle }}
         </div>
         <ul>
-            <li>Специалист в сфере аппаратной и эстетической косметологии</li>
-            <li>Использует в работе передовые методы в трихологии</li>
+            <li>{{ subtexts }}</li>
+            
         </ul>
       </el-col>
     </el-row>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps(['title', 'subtitle', 'subtexts', 'img'])
+import { storeToRefs } from 'pinia';
+
+import { useHelperStore } from '../../../../stores/admin/helpers';
+const {url} = storeToRefs(useHelperStore())
+</script>
 
 <style lang="scss">
 .info-card {
@@ -27,6 +33,7 @@
     padding-left: 60px;
     ul li {
         padding-top: 24px;
+        line-height: 40px;
         font-weight: 200;
     }
   }

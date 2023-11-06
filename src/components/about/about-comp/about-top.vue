@@ -9,10 +9,10 @@
           </div>
           <div class="about-text">
             <ul>
-              <li class="about-list" v-for="text of textGroup" >
-                {{ text.text }}
+              <span class="about-list" v-for="text of textGroup" >
+                {{ text.title }}
                 <span v-if="text.price">{{ text.price }}</span>
-              </li>
+              </span>
             </ul>
           </div>
           <el-button round class="btn-info"> {{ btnText }} </el-button>
@@ -60,7 +60,7 @@ defineProps(['title', 'titleItalic', 'infoImg', 'textGroup', 'btnText'])
     font-size: 18px;
     font-style: normal;
     font-weight: 200;
-    line-height: 27px; /* 150% */
+    line-height: 27px; 
   }
 }
 

@@ -188,6 +188,9 @@ onMounted(async () => {
       }
     }
   }
+  &__subtext {
+    font-weight: 300;
+  }
   .card {
     padding-top: 40px;
     .el-col-8 {

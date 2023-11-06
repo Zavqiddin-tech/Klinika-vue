@@ -105,9 +105,6 @@ const moreExpert = (id) => {
 </script>
 
 <style lang="scss">
-.el-table {
-  margin-top: 30px;
-}
 .table-img {
   margin-right: 10px;
   border-radius: 50%;

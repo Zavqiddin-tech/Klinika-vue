@@ -220,6 +220,7 @@ const delForm = (id) => {
 
 const provider = async (id) => {
   await get_viewSpec(id).then((res) => {
+    console.log(res.data);
     moreSpec.value = res.data;
     console.log(moreSpec.value);
     moreSpec.value.img.forEach((item) => {
@@ -255,7 +256,7 @@ const workInput = () => {
   }
 };
 const backPage = () => {
-  router.push(`/more-spec/${moreSpec.value.specId._id}`);
+  router.push(`/more-spec/${moreSpec.value.specId}`);
 };
 onMounted(async () => {
   setDoctorID(false);

@@ -99,6 +99,7 @@ const openDialog = () => {
 const handleClose = () => {
   setToggle(false);
   setEditToggle(false)
+  specialist.value = {}
 };
 const handleBefore = (file) => {
   if (file.size / 1024 > 500) {
@@ -203,7 +204,6 @@ watch(editToggle, async ()=> {
       console.log(res.data);
        specialist.value = {...res.data}
        if(specialist.value.avatar) {
-        console.log(specialist.value);
         specialist.value.avatar[0].url = `${url.value}/${specialist.value.avatar[0].response}`
        }
     })

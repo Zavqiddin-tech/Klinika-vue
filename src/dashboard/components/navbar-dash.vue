@@ -23,10 +23,14 @@ import formDash from "./form-dash.vue";
 <style lang="scss">
     .navbar-dash {
         min-height: 10vh;
+        position: sticky;
+        top: 0;
+        z-index: 10;
         padding: 12px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #fff;
         border-bottom: 2px solid #E5E7EB;
         &__left {
             display: flex;

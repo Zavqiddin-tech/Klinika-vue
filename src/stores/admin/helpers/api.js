@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ref} from 'vue'
 import { defineStore } from "pinia";
 import { useHelperStore } from ".";
 import { useTokenStore } from "../user/token";
@@ -7,11 +8,16 @@ import { ElNotification } from 'element-plus'
 import router from "../../../router";
 
 
+
 export const useApiStore = defineStore("api", () => {
   const helperStore = useHelperStore();
   const { url } = helperStore;
 
   const tokenStore = useTokenStore();
+  const notPage = ref(true)
+  const setNotPage = (val) => {
+    notPage.value = val
+  }
 
   const getAxios = (payload) => {
     return axios.get(`${url}/${payload.url}`, {
@@ -23,7 +29,17 @@ export const useApiStore = defineStore("api", () => {
           router.push({name: 'login'})
           return false
         }
-        ElMessage.error(e.response.data);
+        if(e.response.status == 403) {
+          setNotPage(false)
+        }
+        if(e.response.status != 403) {
+          setNotPage(true)
+        }
+        ElNotification({
+          title: 'не найдено',
+          message: e.response.data.message,
+          type: 'error',
+        })
       });
   };
 
@@ -65,5 +81,7 @@ export const useApiStore = defineStore("api", () => {
     postAxios,
     putAxios,
     deleteAxios,
+    notPage,
+    setNotPage,
   };
 });

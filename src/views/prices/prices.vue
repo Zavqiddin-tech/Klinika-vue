@@ -1,6 +1,5 @@
 <template>
     <div class="prices">
-        <loader />
         <div class="container">
             <img src="@/assets/img/no-page.jpg" alt="">
         </div>
@@ -9,7 +8,6 @@
 
 <script setup>
 import {ref, onMounted} from 'vue'
-import loader from '../../components/page/loader/loader.vue';
 
 onMounted(()=> {
   window.scrollTo(0, 0)

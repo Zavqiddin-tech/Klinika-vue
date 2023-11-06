@@ -1,6 +1,5 @@
 <template>
   <div class="specialist-section">
-    <loader />
     <div class="container">
       <div class="line-star">
         <img src="../../assets/logo/line-star2.png" alt="" />
@@ -32,7 +31,6 @@ import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 
 import specialistsCards from "@/components/specialists/specialists-comp/specialists-cards.vue";
-import loader from "../../components/page/loader/loader.vue";
 
 // store
 import {useExpertsStore} from '@/stores/data/expert'

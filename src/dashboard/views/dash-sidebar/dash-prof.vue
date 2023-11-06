@@ -87,11 +87,6 @@ const edit = (val) => {
 
 
 
-onMounted(()=> {
-  get_all_profs()
-})
-
-
 watch(editToggle, async ()=> {
   if(editToggle.value) {
     await get_prof(id.value) 
@@ -99,6 +94,9 @@ watch(editToggle, async ()=> {
       profession.value = {...res.data}
     }) 
   }
+})
+onMounted(()=> {
+  get_all_profs()
 })
 </script>
 

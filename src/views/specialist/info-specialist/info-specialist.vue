@@ -1,6 +1,7 @@
 <template>
+  <loader v-if="loaderToggle"/>
   <div class="info-specialist">
-    <div class="container">
+    <div class="container" v-if="notPage">
       <div class="line-star">
         <img src="../../../assets/logo/line-star2.png" alt="">
       </div>
@@ -12,23 +13,31 @@
         <span>Наши специалисты</span>
         <span>Бекетова Екатерина Николаевна</span>
       </div>
-      <about-top
+      <about-top v-if="dataInfo.img"
         class="info-specialist__banner"
-        :infoImg="infoImg"
-        :title="title"
-        :titleItalic="titleItalic"
-        :textGroup="textGroup"
+        :infoImg="dataInfo.img[1] ? `${url}/${dataInfo.img[1].response}` : uploadImg"
+        :title="`${dataInfo.specId.lname} ${dataInfo.specId.sname}`"
+        :titleItalic="dataInfo.specId.name"
+        :textGroup="dataInfo.specId.profession"
         :btnText="btnText"
       />
       <div class="info-specialist__title">
         Когда косметолог и пациент в одной команде, происходят грандиозные
         перемены.
       </div>
-      <info-specialist-card />
+      <info-specialist-card
+        v-if="dataInfo.img"
+        :title="dataInfo.title" 
+        :subtitle="dataInfo.subtitle" 
+        :subtexts="dataInfo.subtexts" 
+        :img="dataInfo.img[0].response"/>
       <info-accordion :infoAccordion="infoStAccordion"/>
       <info-cards />
       <info-blog />
       <info-form />
+    </div>
+    <div v-else class="nodata">
+      <img src="@/assets/img/nodata.jpg" alt="nodata">
     </div>
   </div>
 </template>
@@ -36,27 +45,61 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import router from "../../../router";
+import { useRoute } from "vue-router";
+import router from "@/router/index";
+import loader from "../../../components/loader.vue";
 import aboutTop from "../../../components/about/about-comp/about-top.vue";
-import infoImg from "@/assets/img/infoSpecialImg.png";
+import uploadImg from "@/assets/img/upload-img.png";
 import infoSpecialistCard from "./comp/infoSpecialistCard.vue";
 import infoAccordion from "./comp/infoAccordion.vue";
 import infoCards from "./comp/info-cards.vue";
 import infoBlog from "./comp/info-blog.vue";
 import infoForm from "./comp/info-form.vue"
 
+const dataInfo = ref({})
+
+const btnText = ref('записатция')
 //store
-import { infoSpecialistStore } from "../../../stores/specialist/info-specialist";
-const { title, titleItalic, textGroup, btnText } = storeToRefs(
-  infoSpecialistStore()
-);
+
+import { useHelperStore } from "../../../stores/admin/helpers/index";
+const {url} = storeToRefs(useHelperStore())
 
 import { useAccordionStore } from "../../../stores/accordion/accordion";
 const {infoStAccordion} = storeToRefs(useAccordionStore())
+
+import {useLoaderStore} from '@/stores/loader/loader'
+const {loaderToggle} = storeToRefs(useLoaderStore())
+const {setLoaderToggle} = useLoaderStore()
+
+import {useApiStore} from '@/stores/admin/helpers/api'
+const {notPage} = storeToRefs(useApiStore())
+const {setNotPage} = useApiStore()
+
+import {useViewSpecStore} from '../../../stores/data/viewspec'
+const {get_viewSpec} = useViewSpecStore()
 //store
 
-onMounted(()=> {
+
+
+
+const providerSpec = async () => {
+  await get_viewSpec(useRoute().params.id)
+  .then(res => {
+    if(res) {
+      dataInfo.value = {...res.data}
+      console.log(dataInfo.value);
+      setLoaderToggle(false)
+      setNotPage(true)
+    } else {
+      setLoaderToggle(false)
+    }
+  })
+}
+
+onMounted(async ()=> {
+  setLoaderToggle(true)
   window.scrollTo(0, 0)
+  providerSpec()
 })
 </script>
 
@@ -64,7 +107,13 @@ onMounted(()=> {
 @import "@/styles/vars/colors.scss";
 .info-specialist {
   background-color: #F9FAFF;
-  position: relative;
+  .nodata {
+    text-align: center;
+    img {
+      max-width: 600px;
+      border-radius: 50%;
+    }
+  }
   .container {
     position: relative;
     .info-card, .demo-collapse {

@@ -1,6 +1,6 @@
 <template>
   <div class="services">
-    <loader />
+  
     <div class="wrapper">
       <div class="phone">
         <img src="@/assets/logo/phone2.png" alt="" />
@@ -37,7 +37,6 @@
 import router from "@/router/index.js";
 import servicesBanner from "@/views/services/comp/services-banner.vue";
 import forma from "@/components/form/forma.vue";
-import loader from "../../components/page/loader/loader.vue";
 
 import {ref, onMounted} from 'vue'
 import { storeToRefs } from "pinia";

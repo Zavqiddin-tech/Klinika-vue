@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <loader />
+
     <div class="wrapper">
       <a href="tel:+998931234567">
         <div class="phone">
@@ -44,7 +44,6 @@ import comment from "../../components/comments/comment.vue";
 import contact from "../../components/contact/contact.vue";
 import raiting from "../../components/raiting/raiting.vue";
 import forma from "../../components/form/forma.vue";
-import loader from "../../components/page/loader/loader.vue";
 
 import specialist4 from "@/assets/img/specialist-4.png";
 const persons = ref([

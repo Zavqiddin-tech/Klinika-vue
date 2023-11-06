@@ -18,20 +18,21 @@ import sidebar from "../dashboard/components/sidebar/sidebar.vue";
 <style lang="scss">
 .dashboard {
   max-width: 1600px;
-  margin: auto;
-
+  height: 100vh;
+  margin: auto;;
   &__main {
-    min-height: 90vh;
+    height: 90vh;
     display: flex;
     .sidebar {
       width: 250px;
-      height: 90vh;
+      height: 100%;
+      overflow: hidden;
     }
   }
   &__content {
     width: calc(100vw - 250px);
     padding: 16px;
-    background-color: #F9FAFB;
+    overflow: scroll;
   }
 }
 </style>
