@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { useApiStore } from "../admin/helpers/api";
+import { useApiStore } from "@/stores/admin/helpers/api";
 import { ElNotification } from "element-plus";
 
 export const useServiceStore = defineStore('service', ()=> {

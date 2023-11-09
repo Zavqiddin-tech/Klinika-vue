@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { useApiStore } from "../admin/helpers/api";
+import { useApiStore } from "@/stores/admin/helpers/api";
 import { ElNotification } from "element-plus";
 
 export const useMoreServiceStore = defineStore('moreService', ()=> {
@@ -51,23 +51,23 @@ export const useMoreServiceStore = defineStore('moreService', ()=> {
 
   // bitta xizmatni olish
   const get_moreService = async (_id) => {
-    console.log(_id);
     return await api.getAxios({
-      url: `serviceitem/${_id}`,
+      url: `serviceitem/find/${_id}`,
     });
   };
 
   //ma'lumotni yangilab saqlash
   const save_moreService = async (data) => {
+    console.log(data);
     await api
       .putAxios({
         url: "serviceitem",
         data,
       })
       .then((res) => {
-        moreServices.value = moreServices.value.map((moreServicesStatus) => {
-          if (moreServicesStatus._id == res.data._id) return res.data;
-          return moreServicesStatus;
+        moreServices.value = moreServices.value.map((item) => {
+          if (item._id == res.data._id) return res.data;
+          return item;
         });
         ElNotification({
           title: "Обновлено",

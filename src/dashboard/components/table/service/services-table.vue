@@ -69,11 +69,11 @@ const emit = defineEmits([
 import { storeToRefs } from "pinia";
 import router from "@/router/index";
 
-import {useHelperStore} from '../../../stores/admin/helpers/index'
+import {useHelperStore} from '@/stores/admin/helpers/index'
 const {url} = storeToRefs(useHelperStore())
-import { useDialogStore } from "../../../stores/dialog/dialog";
+import { useDialogStore } from "@/stores/dialog/dialog";
 const {setToggle, setEditToggle} = useDialogStore()
-import { useServiceStore } from "../../../stores/data/service";
+import { useServiceStore } from "@/stores/data/service/service";
 const { services } = storeToRefs(useServiceStore());
 const {status_service, delete_service} = useServiceStore()
 

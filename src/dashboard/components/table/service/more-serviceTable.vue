@@ -4,6 +4,7 @@
       <el-table-column label="image">
         <template #default="scope">
           <el-image
+          @click="nextPage(scope.row._id)"
             v-if="scope.row.image"
             class="table-img"
             style="width: 50px; height: 50px"
@@ -70,10 +71,11 @@
     'edit'
   ])
   import { storeToRefs } from "pinia";
+  import router from '@/router/index'
   
-  import {useHelperStore} from '../../../stores/admin/helpers/index'
-  import { useDialogStore } from "../../../stores/dialog/dialog";
-  import { useMoreServiceStore } from "../../../stores/data/more-service";
+  import {useHelperStore} from '@/stores/admin/helpers/index'
+  import { useDialogStore } from "@/stores/dialog/dialog";
+  import { useMoreServiceStore } from "@/stores/data/service/more-service";
   const {url} = storeToRefs(useHelperStore())
   const {setToggle, setEditToggle} = useDialogStore()
   const { moreServices } = storeToRefs(useMoreServiceStore());
@@ -85,7 +87,9 @@
       status_moreService(id)
   }
   const remove = (id) => {
-      delete_moreService(id)
+      if(confirm('удалить')) {
+        delete_moreService(id)
+      }
   }
   const editProf = (_id)=> {
     emit('edit', _id)
@@ -93,6 +97,9 @@
     setEditToggle(true)
   }
   
+  const nextPage = (id) => {
+    router.push(`/more-serviceDetail/${id}`)
+  }
   </script>
   
   <style lang="scss"></style>

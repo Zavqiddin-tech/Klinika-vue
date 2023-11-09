@@ -57,13 +57,13 @@ import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { ElMessage, ElNotification } from "element-plus";
 
-import servicesTable from '../../components/table/services-table.vue'
+import servicesTable from '../../components/table/service/services-table.vue'
 
 // store
 import { useHelperStore } from "@/stores/admin/helpers/index";
 import { useTokenStore } from "@/stores/admin/user/token";
 import { useDialogStore } from "@/stores/dialog/dialog";
-import { useServiceStore } from "../../../stores/data/service";
+import { useServiceStore } from "@/stores/data/service/service";
 const { url } = storeToRefs(useHelperStore());
 const { header } = storeToRefs(useTokenStore());
 const { toggle, editToggle } = storeToRefs(useDialogStore());

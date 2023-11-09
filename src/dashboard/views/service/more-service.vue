@@ -45,7 +45,7 @@
           :action="`${url}/img`"
           :headers="header.headers"
           list-type="picture-card"
-          :limit="5"
+          :limit="1"
           :before-upload="handleBefore"
           :on-preview="handlePreview"
         >
@@ -67,18 +67,18 @@
 import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import moreServiceTable from "../../components/table/more-serviceTable.vue";
+import moreServiceTable from "../../components/table/service/more-serviceTable.vue";
 
 //store
 import { useHelperStore } from "@/stores/admin/helpers";
 import { useTokenStore } from "@/stores/admin/user/token";
 import { useDialogStore } from "@/stores/dialog/dialog";
-import {useMoreServiceStore} from '@/stores/data/more-service'
+import {useMoreServiceStore} from '@/stores/data/service/more-service'
 const { url } = storeToRefs(useHelperStore());
 const { header } = storeToRefs(useTokenStore());
 const { toggle, editToggle } = storeToRefs(useDialogStore());
 const { setToggle, setEditToggle } = useDialogStore();
-const {get_all_moreServices, new_moreService, get_moreService} = useMoreServiceStore()
+const {get_all_moreServices, new_moreService, save_moreService, get_moreService} = useMoreServiceStore()
 //store
 
 const moreServiceForm = ref();
@@ -164,7 +164,13 @@ const addSpecialist = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      new_moreService(moreService.value);
+      if(editToggle.value) {
+        console.log('yangilandi');
+        save_moreService(moreService.value)
+      } else {
+        console.log(moreService.value);
+        new_moreService(moreService.value);
+      }
       handleClose();
       moreService.value = {};
     } else {
@@ -186,10 +192,14 @@ const edit = (val) => {
 }
 watch(editToggle, async()=> {
   if(editToggle.value) {
-    console.log(id.value);
     await get_moreService(id.value)
     .then(res => {
-      console.log(res);
+      moreService.value = {...res.data}
+      if(moreService.value.image) {
+        moreService.value.image.forEach((item)=> {
+          item.url = `${url.value}/${item.response}`
+        })
+      }
     })
   }
 })

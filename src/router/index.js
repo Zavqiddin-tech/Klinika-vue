@@ -70,6 +70,11 @@ const router = createRouter({
           name: 'more-service',
           component: ()=> import("@/dashboard/views/service/more-service.vue")
         },
+        {
+          path: 'more-serviceDetail/:id',
+          name: 'more-serviceDetail',
+          component: ()=> import("@/dashboard/views/service/more-serviceDetail.vue")
+        },
       ]
     },
     {
