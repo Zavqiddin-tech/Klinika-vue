@@ -15,6 +15,7 @@
       <div class="breadcrumb">
         <span>Главная</span>
         <span>Услуги</span>
+        <span>Стоимость услуг</span>
       </div>
       <div class="title">Стоимость услуг</div>
       <infoAccordion :infoAccordion="infoPriceAccordion" />

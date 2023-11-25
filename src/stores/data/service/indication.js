@@ -3,32 +3,32 @@ import { defineStore } from "pinia";
 import { useApiStore } from "@/stores/admin/helpers/api";
 import { ElNotification } from "element-plus";
 
-export const useProcessStore = defineStore("process", () => {
-  const process = ref([]);
+export const useIndicationStore = defineStore("indication", () => {
+  const indications = ref([]);
 
   const api = useApiStore();
 
-  // barcha muammolarni olib beradi
-  const get_all_process = async (id) => {
+  // barcha indicationlarni olib beradi
+  const get_all_indication = async (id) => {
     await api
       .getAxios({
-        url: `process/${id}`,
+        url: `procedure/${id}`,
       })
       .then((res) => {
-        process.value = [...res.data];
+        indications.value = {...res.data}
       });
   };
 
-  // yangi muammo qo'shish
-  const new_process = async (data) => {
+  // yangi indication qo'shish
+  const new_indication = async (data) => {
     await api
       .postAxios({
-        url: "process",
+        url: "procedure",
         data,
       })
       .then((res) => {
         console.log(res);
-        process.value = [res.data, ...process.value];
+        indications.value = [res.data, ...indications.value];
         ElNotification({
           title: "Успешный",
           message: "добавлена ​​новая эксперт",
@@ -37,25 +37,25 @@ export const useProcessStore = defineStore("process", () => {
       });
   };
 
-  // bitta muammoni olish
-  const get_process = async (_id) => {
+  // bitta indication olish
+  const get_indication = async (_id) => {
     console.log(_id);
     return await api.getAxios({
-      url: `process/find/${_id}`,
+      url: `procedure/find/${_id}`,
     });
   };
 
   //ma'lumotni yangilab saqlash
-  const save_process = async (data) => {
+  const save_indication = async (data) => {
     console.log(data);
     await api
       .putAxios({
-        url: "process",
+        url: "procedure",
         data,
       })
       .then((res) => {
         console.log(res);
-        process.value = process.value.map((item) => {
+        indications.value = indications.value.map((item) => {
           if (item._id == res.data._id) return res.data;
           return item;
         });
@@ -67,33 +67,33 @@ export const useProcessStore = defineStore("process", () => {
       });
   };
 
-  // xizmatni o'chirish
-  const delete_process = async (_id) => {
+  // indicationni o'chirish
+  const delete_indication = async (_id) => {
     await api
       .deleteAxios({
-        url: `process/${_id}`,
+        url: `procedure/${_id}`,
       })
       .then(() => {
-        process.value = process.value.filter((item) => {
+        indications.value = indications.value.filter((item) => {
           if (item._id == _id) return false;
           return item;
         });
       });
   };
 
-  // xizmat holatini o'zgartirish
-  const status_process = async (_id) => {
+  // incication holatini o'zgartirish
+  const status_indication = async (_id) => {
     let res = await api.getAxios({
-      url: `process/change/${_id}`,
+      url: `procedure/change/${_id}`,
     });
     if (res.status == 200) {
-      process.value = process.value.map((processStatus) => {
-        if (processStatus._id == _id)
+      indications.value = indications.value.map((indicationStatus) => {
+        if (indicationStatus._id == _id)
           return {
-            ...processStatus,
-            status: processStatus.status == 0 ? 1 : 0,
+            ...indicationStatus,
+            status: indicationStatus.status == 0 ? 1 : 0,
           };
-        return processStatus;
+        return indicationStatus;
       });
       ElNotification({
         title: "Обновлено",
@@ -104,12 +104,12 @@ export const useProcessStore = defineStore("process", () => {
   };
 
   return {
-    process,
-    get_all_process,
-    new_process,
-    get_process,
-    save_process,
-    delete_process,
-    status_process,
+    indications,
+    get_all_indication,
+    new_indication,
+    get_indication,
+    save_indication,
+    delete_indication,
+    status_indication,
   };
 });

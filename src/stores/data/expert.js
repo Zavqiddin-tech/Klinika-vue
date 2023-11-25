@@ -2,24 +2,38 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useApiStore } from "../admin/helpers/api";
 import { ElNotification } from "element-plus";
+import { useLoadingStore } from "@/stores/loading/loading";
+const {setLoading} = useLoadingStore()
 
 export const useExpertsStore = defineStore("expertession", () => {
   const experts = ref([]);
+  const expertsAll = ref([])
   const expertsCount = ref(0);
   const expertsActive = ref([])
 
   const api = useApiStore();
 
+  // barcha expertlarni frontga chiqarish
+  const get_all_expertsAll = async () => {
+    await api.getAxios({
+      url: "specialist/all",
+    }).then((res) => {
+      console.log(res.data);
+      expertsAll.value = [...res.data] 
+      setLoading(false)
+    })
+  };
+  
   // barcha expertlarni olib beardi
   const get_all_experts = async () => {
     await api.getAxios({
       url: "specialist",
     }).then((res) => {
-      experts.value = [...res.data.specialists];
+      experts.value = [...res.data.specialists]
       expertsCount.value = res.data.count;
     })
   };
-  
+
   
   // barcha Aktive expertlarni olib beardi
   const get_active_experts = async () => {
@@ -114,9 +128,11 @@ export const useExpertsStore = defineStore("expertession", () => {
   };
 
   return {
+    expertsAll,
     experts,
     expertsActive,
     expertsCount,
+    get_all_expertsAll,
     get_all_experts,
     get_active_experts,
     new_expert,

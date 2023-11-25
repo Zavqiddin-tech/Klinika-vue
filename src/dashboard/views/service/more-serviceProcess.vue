@@ -70,6 +70,7 @@
 import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
+const paramsId = useRoute().params.id
 
 // swiper
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -97,7 +98,7 @@ const {
 
 const processObjRef = ref();
 const processObj = ref({
-  serviceItemId: useRoute().params.id,
+  serviceItemId: paramsId,
 });
 const rules = ref({
   title: [
@@ -127,7 +128,9 @@ const rules = ref({
 const handleClose = () => {
   setProcessToggle(false);
   setEditProcess(false);
-  processObj.value = {};
+  processObj.value = {
+  serviceItemId: paramsId,
+  };
 };
 
 const remove = (id) => {

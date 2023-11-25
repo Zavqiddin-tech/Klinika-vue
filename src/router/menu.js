@@ -133,6 +133,7 @@ export const dashMenuLink = [
     path: "/dashboard",
     name: "dashboard",
     component: () => import("../dashboard/views/dash-sidebar/dash-basic.vue"),
+    meta: { secure: true }
   },
   {
     title: "Специалисты",
@@ -140,6 +141,7 @@ export const dashMenuLink = [
     path: "/dash-specialist",
     name: "dash-specialist",
     component: () => import("../dashboard/views/dash-sidebar/dash-specialist.vue"),
+    meta: { secure: true }
   },
   {
     title: "Услуги",
@@ -147,6 +149,7 @@ export const dashMenuLink = [
     path: "/dash-services",
     name: "dash-services",
     component: () => import("../dashboard/views/dash-sidebar/dash-services.vue"),
+    meta: { secure: true }
   },
   {
     title: "Цены",
@@ -154,6 +157,7 @@ export const dashMenuLink = [
     path: "/dash-prices",
     name: "dash-prices",
     component: () => import("../dashboard/views/dash-sidebar/dash-prices.vue"),
+    meta: { secure: true }
   },
   {
     title: "Профессии",
@@ -161,5 +165,6 @@ export const dashMenuLink = [
     path: "/dash-prof",
     name: "dash-prof",
     component: () => import("../dashboard/views/dash-sidebar/dash-prof.vue"),
+    meta: { secure: true }
   },
 ];

@@ -138,7 +138,6 @@ onMounted(async () => {
 .more-spec {
   font-family: "Inter", sans-serif;
   color: #333;
-  background-color: #eff0f2;
   &__nav {
     display: flex;
     width: calc(100% - 250px);

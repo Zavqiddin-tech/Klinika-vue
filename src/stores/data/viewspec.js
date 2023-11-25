@@ -6,12 +6,18 @@ import { ElNotification } from "element-plus";
 export const useViewSpecStore = defineStore("viewSpecession", () => {
   const oneSpec = ref({});
   const api = useApiStore();
-  
-  const doctorID = ref("");
-  const setDoctorID = (val)=> {
-    doctorID.value = val
-  }
 
+  const doctorID = ref("");
+  const setDoctorID = (val) => {
+    doctorID.value = val;
+  };
+
+  // bittasini front uchun
+  const get_viewSpecAll = async (_id) => {
+    return await api.getAxios({
+      url: `viewspec/all/${_id}`,
+    });
+  };
 
   // yangi shifokor qo'shish
   const new_viewSpec = async (data) => {
@@ -33,16 +39,15 @@ export const useViewSpecStore = defineStore("viewSpecession", () => {
   const get_viewSpec = async (_id) => {
     return await api.getAxios({
       url: `viewspec/${_id}`,
-    })
+    });
   };
 
   //ma'lumotni yangilab saqlash
   const save_viewSpec = async (data) => {
-    await api
-      .putAxios({
-        url: "viewspec",
-        data,
-      })
+    await api.putAxios({
+      url: "viewspec",
+      data,
+    });
   };
 
   //  o'chirish
@@ -56,9 +61,10 @@ export const useViewSpecStore = defineStore("viewSpecession", () => {
   return {
     oneSpec,
     doctorID,
+    get_viewSpecAll,
+    get_viewSpec,
     setDoctorID,
     new_viewSpec,
-    get_viewSpec,
     save_viewSpec,
     delete_viewSpec,
   };

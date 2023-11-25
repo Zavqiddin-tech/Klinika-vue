@@ -20,7 +20,7 @@
       <div class="title">Услуги</div>
       <div class="services-items">
         <services-banner
-          v-for="obj in servicesArray"
+          v-for="obj in services"
           :obj="obj"
         />
         <forma
@@ -38,18 +38,15 @@ import router from "@/router/index.js";
 import servicesBanner from "@/views/services/comp/services-banner.vue";
 import forma from "@/components/form/forma.vue";
 
-import {ref, onMounted} from 'vue'
+import { onMounted } from 'vue'
 import { storeToRefs } from "pinia";
-import { useServicesStore } from "@/stores/services/services";
-const { servicesArray } = storeToRefs(useServicesStore());
-const { setServicesAboutObj } = useServicesStore();
-const servicesAbout = (val) => {
-  setServicesAboutObj(val);
-  router.push("/services-detail/:id");
-};
+import {useServiceStore} from '@/stores/data/service/service'
+const {get_all_servicesAll} = useServiceStore()
+const {services} = storeToRefs(useServiceStore())
 
 onMounted(()=> {
   window.scrollTo(0, 0)
+  get_all_servicesAll()
 })
 </script>
 

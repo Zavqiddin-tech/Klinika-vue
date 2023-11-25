@@ -17,9 +17,19 @@ export const useServiceStore = defineStore('service', ()=> {
   // barcha xizmatlarni olib beardi
   const get_all_services = async () => {
     await api.getAxios({
-      url: "service",
+      url: "service"
     }).then((res) => {
       services.value = [...res.data.services];
+      servicesCount.value = res.data.count;
+    })
+  };
+
+  // barcha xizmatlarni olib beardi front uchun
+  const get_all_servicesAll = async () => {
+    await api.getAxios({
+      url: "service/all"
+    }).then((res) => {
+      services.value = [...res.data];
       servicesCount.value = res.data.count;
     })
   };
@@ -120,6 +130,7 @@ export const useServiceStore = defineStore('service', ()=> {
     services,
     servicesActive,
     servicesCount,
+    get_all_servicesAll,
     get_all_services,
     get_active_services,
     new_service,

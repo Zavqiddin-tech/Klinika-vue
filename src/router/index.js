@@ -20,7 +20,7 @@ const router = createRouter({
         ...menuLink,
         {
           path: 'specialist/:id',
-          component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue')
+          component: ()=> import('@/views/specialist/info-specialist/info-specialist.vue'),
         },
         {
           path: 'services-detail/specialist/:id',
@@ -39,7 +39,7 @@ const router = createRouter({
           component: ()=> import('@/views/stock/stock-page/stock-order.vue')
         },
         {
-          path: 'stock-order:detail',
+          path: 'stock-order-detail',
           component: ()=> import('@/views/stock/stock-page/stock-order-detail.vue')
         },
       ]
@@ -52,28 +52,33 @@ const router = createRouter({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: ()=> import("../dashboard/views/dash-sidebar/dash-basic.vue")
+          component: ()=> import("../dashboard/views/dash-sidebar/dash-basic.vue"),
+          meta: { secure: true }
         },
         ...dashMenuLink,
         {
           path: 'more-spec/:id',
           name: 'more-spec',
-          component: ()=> import("@/dashboard/views/specialist/more-spec.vue")
+          component: ()=> import("@/dashboard/views/specialist/more-spec.vue"),
+          meta: { secure: true }
         },
         {
           path: 'more-specForm/:id',
           name: 'more-specForm',
-          component: ()=> import("@/dashboard/views/specialist/more-specForm.vue")
+          component: ()=> import("@/dashboard/views/specialist/more-specForm.vue"),
+          meta: { secure: true }
         },
         {
           path: 'more-service/:id',
           name: 'more-service',
-          component: ()=> import("@/dashboard/views/service/more-service.vue")
+          component: ()=> import("@/dashboard/views/service/more-service.vue"),
+          meta: { secure: true }
         },
         {
           path: 'more-serviceDetail/:id',
           name: 'more-serviceDetail',
-          component: ()=> import("@/dashboard/views/service/more-serviceDetail.vue")
+          component: ()=> import("@/dashboard/views/service/more-serviceDetail.vue"),
+          meta: { secure: true }
         },
       ]
     },
@@ -86,12 +91,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next)=> {
-  if(['login','main'].includes(to.name)) {
+  if(to.meta.secure) {
+    const authStore = useAuthStore()
+    authStore.checkUser()
     next()
   }
   else {
-    const authStore = useAuthStore()
-    authStore.checkUser()
     next()
   }
 })

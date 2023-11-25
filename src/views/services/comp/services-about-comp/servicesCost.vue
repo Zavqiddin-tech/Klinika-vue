@@ -1,8 +1,6 @@
 <template>
   <div class="services-cost">
-    <router-link to="/price-services">
-      <div class="title">Стоимость услуги</div></router-link
-    >
+   
     <infoAccordion :infoAccordion="infoCostAccordion" />
   </div>
 </template>

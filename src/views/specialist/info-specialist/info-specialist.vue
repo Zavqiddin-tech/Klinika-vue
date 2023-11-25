@@ -1,7 +1,6 @@
 <template>
-  <loader v-if="loaderToggle"/>
   <div class="info-specialist">
-    <div class="container" v-if="notPage">
+    <div class="container">
       <div class="line-star">
         <img src="../../../assets/logo/line-star2.png" alt="">
       </div>
@@ -13,6 +12,7 @@
         <span>Наши специалисты</span>
         <span>Бекетова Екатерина Николаевна</span>
       </div>
+      <sketelon />
       <about-top v-if="dataInfo.img"
         class="info-specialist__banner"
         :infoImg="dataInfo.img[1] ? `${url}/${dataInfo.img[1].response}` : uploadImg"
@@ -36,9 +36,6 @@
       <info-blog />
       <info-form />
     </div>
-    <div v-else class="nodata">
-      <img src="@/assets/img/nodata.jpg" alt="nodata">
-    </div>
   </div>
 </template>
 
@@ -46,8 +43,7 @@
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import router from "@/router/index";
-import loader from "../../../components/loader.vue";
+import sketelon from "@/components/skeleton/sketelon.vue";
 import aboutTop from "../../../components/about/about-comp/about-top.vue";
 import uploadImg from "@/assets/img/upload-img.png";
 import infoSpecialistCard from "./comp/infoSpecialistCard.vue";
@@ -60,44 +56,35 @@ const dataInfo = ref({})
 
 const btnText = ref('записатция')
 //store
-
+import {useLoadingStore} from '@/stores/loading/loading'
+const {setLoading} = useLoadingStore()
 import { useHelperStore } from "../../../stores/admin/helpers/index";
 const {url} = storeToRefs(useHelperStore())
 
 import { useAccordionStore } from "../../../stores/accordion/accordion";
 const {infoStAccordion} = storeToRefs(useAccordionStore())
 
-import {useLoaderStore} from '@/stores/loader/loader'
-const {loaderToggle} = storeToRefs(useLoaderStore())
-const {setLoaderToggle} = useLoaderStore()
-
-import {useApiStore} from '@/stores/admin/helpers/api'
-const {notPage} = storeToRefs(useApiStore())
-const {setNotPage} = useApiStore()
-
-import {useViewSpecStore} from '../../../stores/data/viewspec'
-const {get_viewSpec} = useViewSpecStore()
+import {useViewSpecStore} from '@/stores/data/viewspec'
+import { SassColor } from "sass";
+const {get_viewSpecAll} = useViewSpecStore()
 //store
 
 
 
 
 const providerSpec = async () => {
-  await get_viewSpec(useRoute().params.id)
+  await get_viewSpecAll(useRoute().params.id)
   .then(res => {
-    if(res) {
+    if(res.data) {
       dataInfo.value = {...res.data}
-      console.log(dataInfo.value);
-      setLoaderToggle(false)
-      setNotPage(true)
-    } else {
-      setLoaderToggle(false)
+      console.log(res.data);
+      setLoading(false)
     }
   })
 }
 
 onMounted(async ()=> {
-  setLoaderToggle(true)
+  setLoading(true)
   window.scrollTo(0, 0)
   providerSpec()
 })

@@ -11,33 +11,20 @@
           <img src="@/assets/logo/phone2.png" alt="" />
         </div>
     </div>
-      <servicesBanner :obj="servicesAboutObj" />
+      <servicesBanner :obj="dataItem" />
       <div class="title">О процедуре</div>
       <ul class="services-about__texts">
-        <li class=" text">
-          Фракционный микроигольчатый RF-лифтинг – это процедура омоложения,
-          которая запускает процесс обновления кожи за счет воздействия
-          радиочастотных импульсов, нагревающих глубокие слои кожи. RF-лифтинг
-          проводится с помощью специальных золотых микроигл.
-        </li>
-        <li class=" text">
-          Благодаря нагреванию иглы по всей длине процедура не оставляет следов
-          и шрамов, кожа быстро заживает. И такое свойство дает омолаживающий
-          эффект: стимулируется выработка эластина и коллагена, кожа очищается,
-          улучшается тонус тканей, корректируются морщины и рубцы постакне.
-        </li>
-        <li class=" text">
-          Фракционный микроигольчатый RF-лифтинг проводят на самых разных зонах
-          лица и тела, в том числе и самых чувствительных.
+        <li class="text">
+          {{ dataItem.text }}
         </li>
       </ul>
-      <analitic :array="servicesAboutAnalitic" />
-      <prob-solution />
-      <services-process :process="process" />
-      <specialists :persons="persons" title="Наши специалисты" text="Все специалисты"/>
-      <indications />
-      <infoAccordion :infoAccordion="infoSrAccordion"/>
-      <servicesCost />
+      <analitic :obj="dataItem" />
+      <prob-solution :problems="dataProblem"/>
+      <services-process :process="dataProcess" />
+      <specialists :persons="expertsAll"/>
+      <indications :procedure="dataProcedure"/>
+      <specAccordion :question="dataQuestion"/>
+      <priceAccordion :price="dataPrice" :title="dataItem.title"/>
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -49,54 +36,51 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { storeToRefs } from "pinia";
+import {storeToRefs} from 'pinia'
+import { useRoute } from "vue-router";
+const dataItem = ref({})
+const dataProblem = ref([])
+const dataProcess = ref([]) 
+const dataProcedure = ref({})
+const dataQuestion = ref([])
+const dataPrice = ref([])
+
 import servicesBanner from "./services-banner.vue";
-import analitic from "../../../components/page/analistic/analitic.vue";
+import analitic from "@/components/page/analistic/analitic.vue";
 import probSolution from "./services-about-comp/probSolution.vue";
 import servicesProcess from "./services-about-comp/services-process.vue";
-import specialists from "@/components/specialists/specialists.vue";
 import indications from "./services-about-comp/indications.vue";
-import infoAccordion from "../../specialist/info-specialist/comp/infoAccordion.vue";
-import servicesCost from "./services-about-comp/servicesCost.vue";
+import specAccordion from "../../specialist/info-specialist/comp/specAccordion.vue";
+import priceAccordion from "../../specialist/info-specialist/comp/priceAccordion.vue"
+import specialists from "@/components/specialists/specialists.vue";
+
 import forma from "@/components/form/forma.vue";
 
-import { useServicesStore } from "../../../stores/services/services";
-const { servicesAboutObj, process } = storeToRefs(useServicesStore());
-
-import { useAnaliticStore } from "../../../stores/analitic/analitic";
-const { servicesAboutAnalitic } = useAnaliticStore();
-
-import { useAccordionStore } from "../../../stores/accordion/accordion";
-const {infoSrAccordion} = storeToRefs(useAccordionStore())
-
-import specialist4 from '@/assets/img/specialist-4.png'
-const persons = ref([
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
-    },
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
-    },
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет'
-    },
-    {
-        img: specialist4,
-        title: 'Бекетова Екатерина Николаевна',
-        text: 'Дерматовенеролог cтаж 11 лет',
-        profession: "+ 2 специальности"
-    },
-])
 
 
-onMounted(()=> {
+import { useMoreServiceStore } from "@/stores/data/service/more-service";
+const {get_moreServicesAll} = useMoreServiceStore()
+import {useExpertsStore} from '@/stores/data/expert'
+const {expertsAll} = storeToRefs(useExpertsStore())
+const {get_all_expertsAll} = useExpertsStore()
+
+
+
+
+
+onMounted(async ()=> {
   window.scrollTo(0, 0)
+  get_all_expertsAll()
+  await get_moreServicesAll(useRoute().params.id)
+  .then(res => {
+    console.log(res.data);
+    dataItem.value = {...res.data.serviceItem}
+    dataProblem.value = [...res.data.serviceItemProblem]
+    dataProcess.value = [...res.data.serviceProcess]
+    dataProcedure.value = {...res.data.procedure[0]}
+    dataQuestion.value = [...res.data.serviceQuestion]
+    dataPrice.value = [...res.data.servicePrice]
+  })
 })
 </script>
 

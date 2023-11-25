@@ -4,7 +4,7 @@
     <div class="specialists-info">
       <div class="specialists-title">{{ name }} {{ lname }} {{ sname }}</div>
       <div class="specialists-text" >
-        <span v-for="item of profs">
+        <span v-for="item of profession">
           {{ item.title }}
         </span> 
       </div>
@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup>
-defineProps(["img", "name", "lname", "sname", "profs"]);
+defineProps(["img", "name", "lname", "sname", "profession"]);
 
 </script>
 <style lang="scss">

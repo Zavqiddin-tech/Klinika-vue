@@ -1,10 +1,42 @@
 <template>
   <div class="analitic">
-    <el-row>
-      <el-col :span="array.length == 3 ? 8 : 6" :xs="12" v-for="item in array">
+    <el-row v-if="obj">
+      <el-col :span="8" :xs="12">
         <div class="analitic-item">
-          <div class="analitic-number">{{ item.number }}</div>
-          <div class="analitic-title">{{ item.text }}</div>
+          <div class="analitic-number">{{ obj.seans }}</div>
+          <div class="analitic-title">минут занимает один сеанс</div>
+        </div>
+      </el-col>
+      <el-col :span="8" :xs="12">
+        <div class="analitic-item">
+          <div class="analitic-number">{{ obj.procedure }}</div>
+          <div class="analitic-title">процедура для видимого эффекта</div>
+        </div>
+      </el-col>
+      <el-col :span="8" :xs="12">
+        <div class="analitic-item">
+          <div class="analitic-number">{{ obj.result }}</div>
+          <div class="analitic-title">года сохраняется результат</div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row v-else>
+      <el-col :span="8" :xs="12">
+        <div class="analitic-item">
+          <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
+          <div class="analitic-title">минут занимает один сеанс</div>
+        </div>
+      </el-col>
+      <el-col :span="8" :xs="12">
+        <div class="analitic-item">
+          <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
+          <div class="analitic-title">процедура для видимого эффекта</div>
+        </div>
+      </el-col>
+      <el-col :span="8" :xs="12">
+        <div class="analitic-item">
+          <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
+          <div class="analitic-title">года сохраняется результат</div>
         </div>
       </el-col>
     </el-row>
@@ -12,9 +44,8 @@
 </template>
 
 <script setup>
-const props = defineProps(['array'])
+const props = defineProps(["obj"]);
 </script>
-
 
 <style lang="scss">
 @import "@/styles/vars/colors.scss";
@@ -25,10 +56,15 @@ const props = defineProps(['array'])
   box-shadow: 0px 0px 16px 0px rgba(230, 230, 230, 0.5);
   .el-row {
     .el-col {
-        border-right: 1px solid $brownBlack;
+      border-right: 1px solid $brownBlack;
     }
     .el-col:last-child {
-        border-right: unset;
+      border-right: unset;
+    }
+  }
+  &-item {
+    .el-skeleton {
+      padding: 20px;
     }
   }
   &-number {
@@ -43,32 +79,28 @@ const props = defineProps(['array'])
   }
 }
 
-
-
-
 @media (max-width: 1000px) {
   .analitic {
     margin-top: 40px;
   }
- .analitic-number {
-  font-size: 38px;
- }
- .analitic-title {
-  font-size: 16px;
- }
+  .analitic-number {
+    font-size: 38px;
+  }
+  .analitic-title {
+    font-size: 16px;
+  }
 }
-
 
 @media (max-width: 1000px) {
   .analitic {
     margin-top: 50px;
   }
- .analitic-number {
-  font-size: 30px;
- }
- .analitic-title {
-  font-size: 14px;
- }
+  .analitic-number {
+    font-size: 30px;
+  }
+  .analitic-title {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -97,5 +129,4 @@ const props = defineProps(['array'])
     }
   }
 }
-
 </style>

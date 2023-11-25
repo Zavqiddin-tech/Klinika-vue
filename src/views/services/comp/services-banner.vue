@@ -5,19 +5,12 @@
       <el-col :span="12" :xs="24">
         <div class="services-banner__info">
           <div class="title-vs-italic">
-            <span>{{ obj.titleItalic }}</span>
             {{ obj.title }}
           </div>
           <div class="text light">
-            {{ obj.text }}
+            {{ obj.subtitle }}
           </div>
           <div class="btn-group">
-            <el-button @click="servicesDetail(obj)"
-              v-if="obj.leftBtn" 
-              round 
-              class="btn-white big"
-              >Подробнее
-            </el-button>
             <el-button @click="servicesModal()" class="btn-info"
               >Записаться</el-button
             >
@@ -25,54 +18,59 @@
         </div>
       </el-col>
       <el-col :span="12" :xs="24">
-        <div class="services-banner__img">
-          <img src="@/assets/img/services-about.png" alt="" />
-          <img :src="obj.img" alt="" />
+        <div class="services-banner__img" v-if="obj.img">
+          <img :src="`${url}/${obj.img[0].response}`" alt="services-img" />
+        </div>
+        <div class="services-banner__img" v-if="obj.image">
+          <img :src="`${url}/${obj.image[0].response}`" alt="services-img" />
         </div>
       </el-col>
     </el-row>
     <div class="services-cards">
-      <el-row>
-        <el-col v-if="obj.cards" :span="6" :xs="10" v-for="item in obj.cards">
+      <el-row :class="openToggle ? 'hiddenBanner' : ''">
+        <el-col :span="6" :xs="10" v-for="item in obj.serviceItem">
           <div class="services-card">
             <div class="services-card__text">
-              {{ item.text }}
+              {{ item.title }}
             </div>
-            <el-button @click="servicesDetail(obj)" class="btn-white" round>Подробнее</el-button>
+            <el-button @click="servicesDetail(item._id)" class="btn-white" round
+              >Подробнее</el-button
+            >
           </div>
         </el-col>
-        <div
-          v-if="obj.bottomBtn"
-          class="width-full mt-25 d-flex justify-center"
-        >
-          <el-button class="btn-white" round
-            >Показать еще</el-button
-          >
-        </div>
       </el-row>
+      <div class="width-full d-flex justify-center">
+        <el-button @click="openCard()" class="btn-white" round>
+          {{ openToggle ? "Показать еще" : "не показывать" }}
+        </el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 const props = defineProps(["obj"]);
-import router from '@/router/index'
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import router from "@/router/index";
 import Dialog from "../../../components/page/dialog/dialog.vue";
 
+import { useHelperStore } from "@/stores/admin/helpers";
 import { useDialogStore } from "@/stores/dialog/dialog";
-const {setRecordDialog} = useDialogStore()
-const servicesModal = ()=> {
-setRecordDialog(true)
-}
+const { url } = storeToRefs(useHelperStore());
+const { setRecordDialog } = useDialogStore();
+const servicesModal = () => {
+  setRecordDialog(true);
+};
 
-
-import { useServicesStore } from "@/stores/services/services";
-const { setServicesAboutObj } = useServicesStore();
-
-const servicesDetail = (val)=> {
-  setServicesAboutObj(val)
-  router.push("/services-detail/:id");
-}
+const openToggle = ref(true);
+const setOpenToggle = () => (openToggle.value = !openToggle.value);
+const openCard = () => {
+  setOpenToggle();
+};
+const servicesDetail = (id) => {
+  router.push(`services-detail/${id}`);
+};
 </script>
 
 <style lang="scss">
@@ -105,7 +103,12 @@ const servicesDetail = (val)=> {
     .el-row {
       margin-left: -12px;
       margin-right: -12px;
+      &.hiddenBanner {
+        flex-wrap: nowrap;
+        overflow: hidden;
+      }
       .el-col {
+        margin-bottom: 30px;
         padding: 0px 12px;
       }
     }

@@ -3,65 +3,23 @@
     <div class="title">Какие проблемы решает</div>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane
-        v-for="item of probMenu"
-        :label="item.title"
-        :name="item.name"
+        v-for="item of problems"
+        :label="item.btnText"
+        :name="item.btnText"
       >
-        <services-banner :obj="item.obj" />
+        <prob-banner :obj="item.datas"/>
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script setup>
+const props = defineProps(['problems'])
 import { ref } from "vue";
-const activeName = ref("first");
+const activeName = ref("Морщины и признаки старения");
 
-import servicesBanner from "../services-banner.vue";
+import probBanner from "./probBanner.vue";
 
-const probMenu = ref([
-  {
-    name: "first",
-    title: "Морщины и признаки старения",
-    obj: {
-      title: "Морщины и признаки старения",
-      text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
-    },
-  },
-  {
-    name: "second",
-    title: "Жирная и проблемная кожа",
-    obj: {
-      title: "Жирная и проблемная кожа",
-      text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
-    },
-  },
-  {
-    name: "third",
-    title: "Повышенная потливость",
-    obj: {
-      title: "Повышенная потливость",
-      text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
-    },
-  },
-  {
-    name: "fourth",
-    title: "Растяжки",
-    obj: {
-      title: "Растяжки",
-      text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
-    },
-  },
-  {
-    name: "fifth",
-    title: "Неровный рельеф кожи",
-    obj: {
-      title: "Неровный рельеф кожи",
-      text: "Фракционный микроигольчатый RF-лифтинг подтягивает и омолаживает кожу. Выработка коллагена и эластина устраняет дряблость и обвисание кожи, повышает ее упругость, корректирует морщины.",
-    },
-  },
-  
-]);
 </script>
 
 <style lang="scss">

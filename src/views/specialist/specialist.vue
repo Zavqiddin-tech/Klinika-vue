@@ -21,7 +21,8 @@
         Врачи-косметологи регулярно повышают свою квалификацию, проходя обучение
         в Москве, Санкт-Петербурге и зарубежных образовательных центрах.
       </div>
-      <specialists-cards :experts="expertsActive" />
+      <sketelon />
+      <specialists-cards :experts="expertsAll" />
     </div>
   </div>
 </template>
@@ -29,18 +30,22 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-
+import sketelon from "@/components/skeleton/sketelon.vue";
 import specialistsCards from "@/components/specialists/specialists-comp/specialists-cards.vue";
 
 // store
-import {useExpertsStore} from '@/stores/data/expert'
-const {get_active_experts} = useExpertsStore()
-const {expertsActive} = storeToRefs(useExpertsStore())
+import { useExpertsStore } from "@/stores/data/expert";
+import {useLoadingStore} from '@/stores/loading/loading'
+const {setLoading} = useLoadingStore()
+const { get_all_expertsAll } = useExpertsStore();
+const { expertsAll } = storeToRefs(useExpertsStore());
+
 // store
 
 onMounted(() => {
+  setLoading(true)
   window.scrollTo(0, 0);
-  get_active_experts()
+  get_all_expertsAll();
 });
 </script>
 

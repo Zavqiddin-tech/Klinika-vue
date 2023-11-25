@@ -12,11 +12,7 @@
     <service-vue />
     <about-vue />
     <div class="main">
-      <specialists
-        :persons="persons"
-        title="Наши специалисты"
-        text="Все специалисты"
-      />
+      <specialists :persons="expertsAll" />
       <comment />
       <contact />
       <raiting />
@@ -27,6 +23,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 const buttonTitle = ref("Подробнее");
 const title = ref("Запишитесь на консультацию");
 const text = ref(
@@ -39,38 +36,19 @@ const agreeText = ref(
 import bannerSlider from "@/components/page/banner/banner-slider.vue";
 import serviceVue from "../../components/service/service.vue";
 import aboutVue from "../../components/about/about.vue";
-import specialists from "../../components/specialists/specialists.vue";
+import specialists from "@/components/specialists/specialists.vue";
 import comment from "../../components/comments/comment.vue";
-import contact from "../../components/contact/contact.vue";
+import contact from "@/components/contact/contact.vue";
 import raiting from "../../components/raiting/raiting.vue";
 import forma from "../../components/form/forma.vue";
 
-import specialist4 from "@/assets/img/specialist-4.png";
-const persons = ref([
-  {
-    img: specialist4,
-    title: "Бекетова Екатерина Николаевна",
-    text: "Дерматовенеролог cтаж 11 лет",
-  },
-  {
-    img: specialist4,
-    title: "Бекетова Екатерина Николаевна",
-    text: "Дерматовенеролог cтаж 11 лет",
-  },
-  {
-    img: specialist4,
-    title: "Бекетова Екатерина Николаевна",
-    text: "Дерматовенеролог cтаж 11 лет",
-  },
-  {
-    img: specialist4,
-    title: "Бекетова Екатерина Николаевна",
-    text: "Дерматовенеролог cтаж 11 лет",
-    profession: "+ 2 специальности",
-  },
-]);
+
 
 // store
+import {useExpertsStore} from '@/stores/data/expert'
+const {expertsAll} = storeToRefs(useExpertsStore())
+const {get_all_expertsAll} = useExpertsStore()
+
 import { specialistStore } from "../../stores/specialist/specialist";
 const { setSpecialist } = specialistStore();
 // store
@@ -78,6 +56,7 @@ const { setSpecialist } = specialistStore();
 onMounted(() => {
   setSpecialist(false);
   window.scrollTo(0, 0)
+  get_all_expertsAll()
 });
 </script>
 

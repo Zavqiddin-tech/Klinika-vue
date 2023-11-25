@@ -69,12 +69,6 @@ const { header } = storeToRefs(useTokenStore());
 const { toggle, editToggle } = storeToRefs(useDialogStore());
 const { setToggle, setEditToggle } = useDialogStore();
 const {get_all_services, new_service, save_service, get_service} = useServiceStore()
-
-
-
-
-
-
 // store
 
 const openDialog = () => {
@@ -144,9 +138,6 @@ const addSpecialist = async (formEl) => {
     }
   });
 };
-
-
-
 
 const id = ref('')
 const edit = (val) => {

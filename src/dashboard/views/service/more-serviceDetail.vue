@@ -56,7 +56,6 @@
           </div>
         </swiper-slide>
       </swiper>
-      <moreServiceProcess />
       <el-dialog
         v-model="problemToggle"
         :title="
@@ -100,6 +99,10 @@
           </el-button>
         </el-form>
       </el-dialog>
+      <moreServiceProcess />
+      <moreIndication />
+      <moreQuestion />
+      <morePrice />
     </div>
   </div>
 </template>
@@ -109,13 +112,16 @@ import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import moreServiceProcess from "./more-serviceProcess.vue";
+import moreIndication from "./more-indication.vue";
+import moreQuestion from "./more-question.vue";
+import morePrice from "./more-price.vue";
 
 // swiper
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay,  Navigation } from "swiper/modules";
 const modules = ref([Autoplay,  Navigation])
 // swiper
 

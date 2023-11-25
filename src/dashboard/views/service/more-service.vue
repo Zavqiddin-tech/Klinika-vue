@@ -15,19 +15,26 @@
       :rules="rules"
       labelPosition="top"
     >
-      <div class="more-service__forms">
-        <div class="more-service__form">
+      <el-row class="more-service__forms">
+        <el-col :span="12" class="more-service__form">
           <el-form-item label="title" prop="title">
             <el-input v-model="moreService.title" />
           </el-form-item>
+          <el-form-item label="О процедуре" prop="text">
+            <el-input 
+              v-model="moreService.text" 
+              :autosize="{ minRows: 2, maxRows: 3 }"
+              type="textarea"
+              placeholder="процедуре"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12" class="more-service__form">
           <el-form-item label="subtitle" prop="subtitle">
             <el-input v-model="moreService.subtitle" />
           </el-form-item>
-          <el-form-item label="text" prop="text">
-            <el-input v-model="moreService.text" />
-          </el-form-item>
-        </div>
-        <div class="more-service__form">
+        </el-col>
+        <el-row class="more-service__form numbers">
           <el-form-item label="seans" prop="seans">
             <el-input-number v-model="moreService.seans" />
           </el-form-item>
@@ -37,8 +44,8 @@
           <el-form-item label="result" prop="result">
             <el-input-number v-model="moreService.result" />
           </el-form-item>
-        </div>
-      </div>
+        </el-row>
+      </el-row>
       <el-form-item label="Картина" prop="image">
         <el-upload
           v-model:file-list="moreService.image"
@@ -60,7 +67,7 @@
       </div>
     </el-form>
   </el-dialog>
-  <moreServiceTable @edit="edit"/>
+  <moreServiceTable @edit="edit" />
 </template>
 
 <script setup>
@@ -73,17 +80,22 @@ import moreServiceTable from "../../components/table/service/more-serviceTable.v
 import { useHelperStore } from "@/stores/admin/helpers";
 import { useTokenStore } from "@/stores/admin/user/token";
 import { useDialogStore } from "@/stores/dialog/dialog";
-import {useMoreServiceStore} from '@/stores/data/service/more-service'
+import { useMoreServiceStore } from "@/stores/data/service/more-service";
 const { url } = storeToRefs(useHelperStore());
 const { header } = storeToRefs(useTokenStore());
 const { toggle, editToggle } = storeToRefs(useDialogStore());
 const { setToggle, setEditToggle } = useDialogStore();
-const {get_all_moreServices, new_moreService, save_moreService, get_moreService} = useMoreServiceStore()
+const {
+  get_all_moreServices,
+  new_moreService,
+  save_moreService,
+  get_moreService,
+} = useMoreServiceStore();
 //store
 
 const moreServiceForm = ref();
 const moreService = ref({
-  serviceId: useRoute().params.id
+  serviceId: useRoute().params.id,
 });
 
 const handleClose = () => {
@@ -164,9 +176,9 @@ const addSpecialist = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      if(editToggle.value) {
-        console.log('yangilandi');
-        save_moreService(moreService.value)
+      if (editToggle.value) {
+        console.log("yangilandi");
+        save_moreService(moreService.value);
       } else {
         console.log(moreService.value);
         new_moreService(moreService.value);
@@ -186,40 +198,46 @@ const addSpecialist = async (formEl) => {
 const openDialog = () => {
   setToggle(true);
 };
-const id = ref('')
+const id = ref("");
 const edit = (val) => {
-  id.value = val
-}
-watch(editToggle, async()=> {
-  if(editToggle.value) {
-    await get_moreService(id.value)
-    .then(res => {
-      moreService.value = {...res.data}
-      if(moreService.value.image) {
-        moreService.value.image.forEach((item)=> {
-          item.url = `${url.value}/${item.response}`
-        })
+  id.value = val;
+};
+watch(editToggle, async () => {
+  if (editToggle.value) {
+    await get_moreService(id.value).then((res) => {
+      moreService.value = { ...res.data };
+      if (moreService.value.image) {
+        moreService.value.image.forEach((item) => {
+          item.url = `${url.value}/${item.response}`;
+        });
       }
-    })
+    });
   }
-})
+});
 
-onMounted(()=> {
-  get_all_moreServices(useRoute().params.id)
-})
+onMounted(() => {
+  get_all_moreServices(useRoute().params.id);
+});
 </script>
 
 <style lang="scss">
 .more-service {
-    &__nav {
-      margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    &__forms {
-        display: flex;
-        justify-content: space-around;
-    }
+  &__nav {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__forms {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  &__form {
+    padding: 0px 10px;
+  }
+  &__form.numbers {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 </style>

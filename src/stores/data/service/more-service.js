@@ -12,6 +12,14 @@ export const useMoreServiceStore = defineStore('moreService', ()=> {
 
 
 
+  // barcha xizmatlarni olib beardi front uchun
+  const get_moreServicesAll = async (id) => {
+    return await api.getAxios({
+      url: `serviceitem/all/${id}`,
+    })
+  };
+
+  
   // barcha xizmatlarni olib beardi
   const get_all_moreServices = async (id) => {
     await api.getAxios({
@@ -117,6 +125,7 @@ export const useMoreServiceStore = defineStore('moreService', ()=> {
   return {
     moreServices,
     moreServicesActive,
+    get_moreServicesAll,
     get_all_moreServices,
     get_active_moreServices,
     new_moreService,

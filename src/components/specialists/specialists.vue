@@ -1,7 +1,7 @@
 <template>
   <div class="specialist">
     <div class="container">
-      <service-top :title="title" :text="text" data="specialists"/>
+      <service-top :title="title" :text="text" data="specialists" />
       <swiper
         :slidesPerView="3"
         :spaceBetween="0"
@@ -18,13 +18,12 @@
             slidesPerView: 1,
             spaceBetween: 0,
           },
-          
+
           530: {
             slidesPerView: 2,
             spaceBetween: 0,
           },
-          
-          
+
           820: {
             slidesPerView: 3,
             spaceBetween: 0,
@@ -34,10 +33,11 @@
       >
         <swiper-slide v-for="item of persons">
           <specialists-card
-            @click="detail()"
-            :img="item.img"
-            :title="item.title"
-            :text="item.text"
+            @click="detail(item._id)"
+            :img="`${url}/${item.avatar[0].response}`"
+            :name="item.name"
+            :lname="item.lname"
+            :sname="item.sname"
             :profession="item.profession"
           />
         </swiper-slide>
@@ -46,45 +46,31 @@
   </div>
 </template>
 
-<script>
+<script setup>
+const props = defineProps(['persons'])
+import {ref} from 'vue'
+import { storeToRefs } from 'pinia';
 import serviceTop from "../service/service-comp/service-top.vue";
 import specialistsCard from "./specialists-comp/specialists-card.vue";
 import router from "@/router/index.js";
-// const title = ref('Наши специалисты')
-// const text = ref('Все специалисты')
+const title = ref("Наши специалисты");
+const text = ref("Все специалисты");
 
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-const title = 'salom'
-export default {
-  props: ["persons", "title", "text"],
-  components: {
-    Swiper,
-    SwiperSlide,
-    serviceTop,
-    specialistsCard,
-  },
-  data() {
-    return {
-      title: 'Наши специалисты',
-      text: 'Все специалисты'
-    }
-  },
-  methods: {
-    detail: function () {
-      router.push("specialist/:id");
-    },
-  },
-  setup() {
-    return {
-      modules: [Autoplay, Pagination, Navigation],
-    };
-  },
+const modules = ref([Autoplay, Pagination, Navigation]);
+
+
+import { useHelperStore } from '../../stores/admin/helpers';
+const {url} = storeToRefs(useHelperStore())
+
+const detail = (id) => {
+  router.push(`specialist/${id}`);
 };
+
 </script>
 
 <style lang="scss">
