@@ -50,6 +50,17 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+@import '@/styles/main.scss';
+.about {
+  &-text {
+    padding: 35px 0px 40px;
+    color: #546272;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 27px; /* 150% */
+  }
+}
 .specialist-section {
   position: relative;
   .container {

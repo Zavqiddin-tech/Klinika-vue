@@ -199,11 +199,6 @@ const addSpecialist = async (formEl) => {
         });
       } else {
         new_viewSpec(moreSpec.value);
-        ElNotification({
-          title: "Успешный",
-          message: "Информация отправлена",
-          type: "success",
-        });
       }
     } else {
       ElNotification({
@@ -256,7 +251,7 @@ const workInput = () => {
   }
 };
 const backPage = () => {
-  router.push(`/more-spec/${moreSpec.value.specId}`);
+  router.push(`/more-spec/${moreSpec.value.specId._id}`);
 };
 onMounted(async () => {
   setDoctorID(false);

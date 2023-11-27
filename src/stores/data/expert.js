@@ -18,7 +18,6 @@ export const useExpertsStore = defineStore("expertession", () => {
     await api.getAxios({
       url: "specialist/all",
     }).then((res) => {
-      console.log(res.data);
       expertsAll.value = [...res.data] 
       setLoading(false)
     })

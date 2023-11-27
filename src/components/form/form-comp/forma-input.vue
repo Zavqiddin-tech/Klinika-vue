@@ -6,13 +6,13 @@
     :rules="rules"
     @submit.prevent="add(priceprodForm)"
   >
-    <el-form-item prop="number">
+    <el-form-item prop="phone">
       <div class="form-input">
         <div class="form-input__img">
           <img src="@/assets/logo/phone.png" alt="" />
         </div>
         <el-input
-          v-model="priceprod.number"
+          v-model="priceprod.phone"
           v-maska
           data-maska="+998 (##) ###-##-##"
           @keypress.enter="add(priceprodForm)"
@@ -33,12 +33,11 @@
       :disabled="buttonForm"
       @click="add(priceprodForm)"
       class="btn-info form-btn"
-      >Отправить</el-button
+      >Отправить gggggg</el-button
     >
   </el-form>
 </template>
 <script setup>
-import phoneIcon from "@/assets/logo/phone.png";
 defineProps(["infoForm"]);
 
 import { ElNotification } from "element-plus";
@@ -49,7 +48,7 @@ const priceprodForm = ref();
 
 import { useFormaStore } from "../../../stores/forma/forma";
 const { switchForm, buttonForm } = storeToRefs(useFormaStore());
-const { setSwitchForm } = useFormaStore();
+const { setSwitchForm, new_consul } = useFormaStore();
 const switchToggle = () => {
   if (switchForm.value) {
     setSwitchForm(true);
@@ -63,11 +62,11 @@ const agreeText = ref(
 const value1 = ref(false);
 
 const priceprod = ref({
-  number: "+998",
+  phone: "+998",
 });
 
 const rules = ref({
-  number: [
+  phone: [
     {
       required: true,
       message: "Введите свой номер телефона",
@@ -86,6 +85,7 @@ const add = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
+      new_consul(priceprod.value)
       ElNotification({
         title: "Номер отправлен",
         message: "Мы свяжемся с вами в ближайшее время",
@@ -94,8 +94,7 @@ const add = async (formEl) => {
       });
       switchForm.value = false
       buttonForm.value =  true
-      priceprod.value = { number: "+998" };
-      handleClose();
+      priceprod.value = { phone: "+998" };
     } else {
       ElNotification({
         title: "Предупреждение",

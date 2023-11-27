@@ -1,5 +1,5 @@
 <template>
-  <div class="more-spec" v-if="expertNames.name">
+  <div class="more-spec" >
     <div class="more-spec__banner"></div>
     <div class="more-spec__top">
       <div class="more-spec__img">
@@ -73,9 +73,6 @@
         </div>
       </el-col>
     </el-row>
-  </div>
-  <div class="no-data" v-else>
-    <img src="@/assets/img/nodata.jpg" alt="">
   </div>
 </template>
 

@@ -2,10 +2,12 @@
   <div class="sidebar">
     <el-menu default-active="1" class="el-menu-vertical-demo" :router="true">
       <el-menu-item v-for="item of dashMenuLink" :index="item.path">
-        <el-icon
-          ><span class="material-symbols-outlined">
+        <el-icon>
+          <span class="material-symbols-outlined">
             {{ item.icon }}
-          </span></el-icon
+          </span>
+          <div v-if="item.icon == 'mail' && unread >= 1" class="sidebar-unread"><span></span></div>
+        </el-icon
         >
         <span>{{ item.title }}</span>
       </el-menu-item>
@@ -19,7 +21,11 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import { dashMenuLink } from "../../../router/menu";
+
+import { useFormaStore } from "@/stores/forma/forma";
+const {unread} = storeToRefs(useFormaStore())
 </script>
 
 <style lang="scss">
@@ -49,6 +55,18 @@ import { dashMenuLink } from "../../../router/menu";
       font-weight: 400;
       color: #fff;
       cursor: pointer;
+    }
+  }
+  &-unread {
+    position: relative;
+    span {
+      top: -12px;
+      left: -7px;
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: #F56C6C;
     }
   }
 }

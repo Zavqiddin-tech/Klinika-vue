@@ -7,7 +7,10 @@
             <form-dash />
         </div>
         <div class="navbar-dash__right">
-            <img src="@/assets/logo/notification.png" alt="">
+            <div class="navbar-dash__notif">
+                <i class='bx bxs-bell'></i>
+                <span v-if="unread >= 1">{{ unread }}</span>
+            </div>
             <div class="navbar-dash__avatar">
                 <img src="@/assets/logo/Avatar.png" alt="">
             </div>
@@ -16,8 +19,12 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import dashLogo from "@/assets/logo/dash-logo.png"
 import formDash from "./form-dash.vue";
+
+import { useFormaStore } from "@/stores/forma/forma";
+const {unread} = storeToRefs(useFormaStore())
 </script>
 
 <style lang="scss">
@@ -49,6 +56,29 @@ import formDash from "./form-dash.vue";
             width: 32px;
             height: 32px;
             border-radius: 50%;
+        }
+        &__notif {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+                font-size: 25px;
+            }
+            span {
+                top: -7px;
+                right: -5px;
+                width: 17px;
+                height: 17px;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+                border-radius: 50%;
+                color: #fff;
+                background-color: #F56C6C;
+            }
         }
     }
 </style>

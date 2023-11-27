@@ -11,8 +11,16 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import navbarDash from "@/dashboard/components/navbar-dash.vue";
 import sidebar from "../dashboard/components/sidebar/sidebar.vue";
+
+import { useFormaStore } from "@/stores/forma/forma";
+const {get_all_consul} = useFormaStore()
+
+onMounted(()=> {
+  get_all_consul()
+})
 </script>
 
 <style lang="scss">

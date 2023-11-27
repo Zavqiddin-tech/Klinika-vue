@@ -167,4 +167,12 @@ export const dashMenuLink = [
     component: () => import("../dashboard/views/dash-sidebar/dash-prof.vue"),
     meta: { secure: true }
   },
+  {
+    title: "Регистрация",
+    icon: 'mail',
+    path: "/dash-regis",
+    name: "dash-regis",
+    component: () => import("../dashboard/views/dash-sidebar/dash-regis.vue"),
+    meta: { secure: true }
+  },
 ];
