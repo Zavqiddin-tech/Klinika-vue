@@ -10,8 +10,7 @@
           {{ subtitle }}
         </div>
         <ul>
-            <li>{{ subtexts }}</li>
-            
+          <li>{{ subtexts }}</li>
         </ul>
       </el-col>
     </el-row>
@@ -19,11 +18,11 @@
 </template>
 
 <script setup>
-const props = defineProps(['title', 'subtitle', 'subtexts', 'img'])
-import { storeToRefs } from 'pinia';
+const props = defineProps(["title", "subtitle", "subtexts", "img"]);
+import { storeToRefs } from "pinia";
 
-import { useHelperStore } from '../../../../stores/admin/helpers';
-const {url} = storeToRefs(useHelperStore())
+import { useHelperStore } from "../../../../stores/admin/helpers";
+const { url } = storeToRefs(useHelperStore());
 </script>
 
 <style lang="scss">
@@ -32,9 +31,19 @@ const {url} = storeToRefs(useHelperStore())
     padding-top: 140px;
     padding-left: 60px;
     ul li {
-        padding-top: 24px;
-        line-height: 40px;
-        font-weight: 200;
+      padding-top: 24px;
+      line-height: 40px;
+      font-weight: 200;
+    }
+  }
+  &__img {
+    overflow: hidden;
+    img {
+      border-radius: 24px;
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      vertical-align: middle;
     }
   }
   &__title {
@@ -50,21 +59,34 @@ const {url} = storeToRefs(useHelperStore())
   }
 }
 
-
 @media (max-width: 1000px) {
   .info-card__img {
     text-align: center;
   }
 }
+@media (max-width: 992px) {
+  .info-card {
+    .info-card__img {
+      img {
+        max-width: 450px;
+      }
+    }
+  }
+}
+@media (max-width: 620px) {
+  .info-card {
+    .info-card__info {
+      padding-left: 0;
+    }
+  }
+}
 @media (max-width: 510px) {
   .info-card {
-    .el-row {
-      .info-card__img {
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+    .info-card__img {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }

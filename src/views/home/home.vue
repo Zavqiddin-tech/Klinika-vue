@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-
     <div class="wrapper">
       <a href="tel:+998931234567">
         <div class="phone">

@@ -15,7 +15,6 @@ export const useQuestionStore = defineStore("question", () => {
         url: `servicequestion/${id}`,
       })
       .then((res) => {
-        console.log(res.data);
         questions.value = [ ...res.data ];
       });
   };

@@ -1,6 +1,5 @@
 <template>
   <div class="services">
-  
     <div class="wrapper">
       <div class="phone">
         <img src="@/assets/logo/phone2.png" alt="" />
@@ -34,10 +33,8 @@
 </template>
 
 <script setup>
-import router from "@/router/index.js";
 import servicesBanner from "@/views/services/comp/services-banner.vue";
 import forma from "@/components/form/forma.vue";
-
 import { onMounted } from 'vue'
 import { storeToRefs } from "pinia";
 import {useServiceStore} from '@/stores/data/service/service'

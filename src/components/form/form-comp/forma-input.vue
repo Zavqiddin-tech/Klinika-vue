@@ -33,7 +33,7 @@
       :disabled="buttonForm"
       @click="add(priceprodForm)"
       class="btn-info form-btn"
-      >Отправить gggggg</el-button
+      >Отправить</el-button
     >
   </el-form>
 </template>

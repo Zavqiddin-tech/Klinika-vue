@@ -23,7 +23,6 @@ export const useFormaStore = defineStore("forma", () => {
         url: "addconsul",
       })
       .then((res) => {
-        console.log(res.data);
         consuls.value = [...res.data.addConsuls];
         unread.value = res.data.countUnread
       });

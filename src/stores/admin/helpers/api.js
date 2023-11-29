@@ -25,7 +25,7 @@ export const useApiStore = defineStore("api", () => {
       })
       .catch((e) => {
         if (e.response.status == 401) {
-          ElMessage.error("Sizga bu sahifaga ruxsat yoq");
+          ElMessage.error("Sizga bu sahifaga ruxsat yo'q");
           router.push({ name: "login" });
           return false;
         }
@@ -50,7 +50,7 @@ export const useApiStore = defineStore("api", () => {
       })
       .catch((e) => {
         ElNotification({
-          title: e.response.data,
+          title: e.response.data?.message,
           message: "Не найдено",
           type: "warning",
         });
@@ -68,7 +68,6 @@ export const useApiStore = defineStore("api", () => {
   };
 
   const deleteAxios = (payload) => {
-    console.log(payload);
     return axios
       .delete(`${url}/${payload.url}`, {
         ...tokenStore.header,

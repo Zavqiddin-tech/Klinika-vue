@@ -140,7 +140,6 @@ const remove = (id) => {
   }
 }
 watch(editPrices, async () => {
-  console.log("edit", editPrices.value);
   if (editPrices.value) {
     await get_prices(editId.value).then((res) => {
       priceObj.value = { ...res.data };
@@ -166,7 +165,6 @@ const add = async (formEl) => {
 
 onMounted(() => {
   get_all_prices(useRoute().params.id);
-  console.log(prices);
 });
 </script>
 

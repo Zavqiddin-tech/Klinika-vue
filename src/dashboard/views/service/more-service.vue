@@ -177,10 +177,8 @@ const addSpecialist = async (formEl) => {
   await formEl.validate((valid) => {
     if (valid) {
       if (editToggle.value) {
-        console.log("yangilandi");
         save_moreService(moreService.value);
       } else {
-        console.log(moreService.value);
         new_moreService(moreService.value);
       }
       handleClose();

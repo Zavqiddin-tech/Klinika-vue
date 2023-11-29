@@ -64,7 +64,6 @@ const regis = async (regisForm) => {
         message: "заполните все поля",
         type: "error",
       });
-      console.log("error submit!", fields);
     }
   });
 };

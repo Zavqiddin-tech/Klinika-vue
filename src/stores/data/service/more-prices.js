@@ -16,7 +16,6 @@ export const usePricesStore = defineStore("prices", () => {
       })
       .then((res) => {
         prices.value = [ ...res.data ];
-        console.log(prices.value);
       });
   };
 

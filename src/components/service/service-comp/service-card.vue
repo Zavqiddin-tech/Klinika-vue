@@ -1,70 +1,80 @@
 <template>
   <div class="service-cards">
     <el-row>
-      <el-col :span="10" :sm="16" :md="10" :xs="22" class="service-card">
+      <el-col :span="10" :sm="16" :md="10" :xs="22" class="service-card" v-if="data[0]">
         <div class="service-box orange">
           <div class="orange-react"></div>
           <div class="service-subtitle">
-            Аппаратная <span>косметология</span>
+           <span>{{ data[0].title }}</span> 
           </div>
           <div class="service-text">
             <ul>
-              <li>Альтера-терапия</li>
-              <li>Фототерапия BBL Hero</li>
-              <li>Гидропилинг HydraFacial MD</li>
-              <li>Лазерная шлифовка</li>
-              <li>Фракционный микроигольчатый RF-лифтинг</li>
-              <li>Микротоки Biogenie</li>
+              <li v-for="item of data[0].serviceItem" @click="nextService(item._id)">
+                {{ item.title }}
+              </li>
             </ul>
           </div>
         </div>
       </el-col>
       <el-col :span="14" :sm="16" :md="14" :xs="21" class="service-card2">
         <el-row>
-          <el-col :span="12" class="service-card">
+          <el-col :span="12" class="service-card" v-if="data[1]">
             <div class="service-box">
               <div class="service-box__bg one"></div>
               <div class="service-subtitle">
-                Инъекционная <span>косметология</span>
+               <span>{{ data[1].title }}</span>
               </div>
               <div class="service-text">
                 <ul>
-                  <li>Биоревитализация</li>
-                  <li>Ботулинотерапия</li>
-                  <li>Контурная пластика</li>
+                  <li v-for="item of data[1].serviceItem" @click="nextService(item._id)">
+                    {{ item.title }}
+                  </li>
                 </ul>
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="service-card">
+          <el-col :span="12" class="service-card" v-if="data[2]">
             <div class="service-box">
-              <div class="service-box__bg two"></div>
+              <div class="service-box__bg one"></div>
               <div class="service-subtitle">
-                Эстетическая <span>косметология</span>
+               <span>{{ data[2].title }}</span>
               </div>
               <div class="service-text">
                 <ul>
-                  <li>Гигиеническая чистка</li>
-                  <li>Перманентный макияж</li>
-                  <li>Пилинги</li>
+                  <li v-for="item of data[2].serviceItem" @click="nextService(item._id)">
+                    {{ item.title }}
+                  </li>
                 </ul>
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="service-card">
+          <el-col :span="12" class="service-card" v-if="data[3]">
             <div class="service-box">
-              <div class="service-box__bg three"></div>
+              <div class="service-box__bg one"></div>
               <div class="service-subtitle">
-                Лазерная <span>косметология</span>
+               <span>{{ data[3].title }}</span>
+              </div>
+              <div class="service-text">
+                <ul>
+                  <li v-for="item of data[3].serviceItem" @click="nextService(item._id)">
+                    {{ item.title }}
+                  </li>
+                </ul>
               </div>
             </div>
           </el-col>
-          <el-col :span="12" class="service-card">
+          <el-col :span="12" class="service-card" v-if="data[4]">
             <div class="service-box">
-              <div class="service-box__bg four"></div>
+              <div class="service-box__bg one"></div>
               <div class="service-subtitle">
-                Мужская <span class="newspan">new</span> <br />
-                <span>косметология</span>
+               <span>{{ data[4].title }}</span>
+              </div>
+              <div class="service-text">
+                <ul>
+                  <li v-for="item of data[4].serviceItem" @click="nextService(item._id)">
+                    {{ item.title }}
+                  </li>
+                </ul>
               </div>
             </div>
           </el-col>
@@ -74,7 +84,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps(['data'])
+import router from '@/router/index';
+const nextService = (_id) => {
+  router.push(`services-detail/${_id}`)
+}
+</script>
 
 <style lang="scss">
 @import '@/styles/vars/phone.scss';

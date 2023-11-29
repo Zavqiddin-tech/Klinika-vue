@@ -8,7 +8,7 @@
             {{ obj.title }}
           </div>
           <div class="text light">
-            {{ obj.subtitle }}
+            {{ obj.text }}
           </div>
           <div class="btn-group">
             <el-button @click="servicesModal()" class="btn-info"
@@ -39,10 +39,12 @@
           </div>
         </el-col>
       </el-row>
-      <div class="width-full d-flex justify-center">
-        <el-button @click="openCard()" class="btn-white" round>
-          {{ openToggle ? "Показать еще" : "не показывать" }}
-        </el-button>
+      <div v-if="obj.serviceItem">
+        <div class="width-full d-flex justify-center" v-if="obj.serviceItem.length >= 5">
+          <el-button @click="openCard()" class="btn-white open-close" round>
+            {{ openToggle ? "Показать еще" : "не показывать" }}
+          </el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -50,10 +52,12 @@
 
 <script setup>
 const props = defineProps(["obj"]);
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import router from "@/router/index";
 import Dialog from "../../../components/page/dialog/dialog.vue";
+
+
 
 import { useHelperStore } from "@/stores/admin/helpers";
 import { useDialogStore } from "@/stores/dialog/dialog";
@@ -71,6 +75,9 @@ const openCard = () => {
 const servicesDetail = (id) => {
   router.push(`services-detail/${id}`);
 };
+
+
+
 </script>
 
 <style lang="scss">
@@ -151,9 +158,77 @@ const servicesDetail = (id) => {
 }
 
 @media (max-width: 768px) {
-  .services-cards {
-    .el-row {
-      display: none;
+  .services-banner {
+    .services-cards {
+      .el-row {
+        justify-content: center;
+        &.hiddenBanner {
+          justify-content: unset;
+          overflow: auto;
+        }
+      }
+    }
+  }
+ .open-close {
+  margin-top: 20px;
+ }
+}
+
+@media (max-width: 500px) {
+  .services-banner {
+    .services-cards {
+      .el-row {
+        .el-col-xs-10 {
+          max-width: 50%;
+          flex: 0 0 50%;
+        }
+      }
+    }
+    
+  }
+  .open-close {
+    margin-top: 20px;
+    display: flex;
+  }
+}
+@media (max-width: 420px) {
+  .services-banner {
+    .services-cards {
+      .el-row {
+        justify-content: center;
+        &.hiddenBanner {
+          justify-content: unset;
+        }
+        .el-col-xs-10 {
+          max-width: 70%;
+          flex: 0 0 70%;
+        }
+      }
+    }
+    
+  }
+}
+@media (max-width: 420px) {
+  .services-banner {
+    .services-cards {
+      .el-row {
+        .el-col-xs-10 {
+          max-width: 100%;
+          flex: 0 0 100%;
+        }
+      }
+    }
+    &__info {
+      text-align: center;
+      .title-vs-italic {
+        width: 100%;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+    }
+    &__img {
+      text-align: center;
     }
   }
 }

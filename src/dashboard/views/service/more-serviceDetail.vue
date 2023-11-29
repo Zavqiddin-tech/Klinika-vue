@@ -3,7 +3,7 @@
     <div class="more-detail__wrapper">
       <div class="more-detail__nav">
         <h2>Какие проблемы решает</h2>
-        <el-button type="success" @click="openDialog('problem')"
+        <el-button type="success" @click="openDialog()"
           >добавить</el-button
         >
       </div>
@@ -212,10 +212,8 @@ const editProblem = (id) => {
   setProblemToggle(true);
   setEditProb(true);
 };
-const openDialog = (val) => {
-  if (val == "problem") {
+const openDialog = () => {
     setProblemToggle(true);
-  }
 };
 
 watch(editProb, async () => {

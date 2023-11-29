@@ -215,9 +215,7 @@ const delForm = (id) => {
 
 const provider = async (id) => {
   await get_viewSpec(id).then((res) => {
-    console.log(res.data);
     moreSpec.value = res.data;
-    console.log(moreSpec.value);
     moreSpec.value.img.forEach((item) => {
       item.url = `${url.value}/${item.response}`;
     });

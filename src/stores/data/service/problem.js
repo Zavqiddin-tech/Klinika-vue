@@ -31,7 +31,7 @@ export const useProblemStore = defineStore('problem', ()=> {
         data,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         problems.value = [res.data, ...problems.value];
         ElNotification({
           title: "Успешный",
