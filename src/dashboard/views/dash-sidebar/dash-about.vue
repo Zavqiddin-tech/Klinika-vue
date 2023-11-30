@@ -1,11 +1,21 @@
 <template>
   <div class="dash-weAbout">
     <div class="dash-weAbout__nav">
-      <h1>Услуги</h1>
-      <el-button type="primary" @click="openDialog()">Добавлять</el-button>
+      <h1>О клинике</h1>
+      <el-button
+        v-if="aboutData[0]"
+        class="btn-edit"
+        type="primary"
+        @click="openEdit()"
+      >
+        изменить <span class="material-symbols-outlined"> edit </span>
+      </el-button>
+      <el-button v-else type="primary" @click="openDialog()">
+        Добавлять
+      </el-button>
       <el-dialog
         v-model="toggle"
-        :title="editToggle ? 'Редактировать эксперта' : 'Добавить эксперта'"
+        :title="editToggle ? 'Редактировать информация' : 'Добавить информация'"
         width="60%"
         :before-close="handleClose"
       >
@@ -36,9 +46,7 @@
                 </el-col>
                 <el-col :span="2" class="addition-switch">
                   <span class="material-symbols-outlined"> add </span>
-                  <el-switch
-                     v-model="item.plus" size="small" 
-                    />
+                  <el-switch v-model="item.plus" size="small" />
                 </el-col>
               </el-row>
             </el-col>
@@ -69,7 +77,45 @@
       </el-dialog>
     </div>
     <div class="dash-weAbout__main">
-        
+      <el-row class="dash-weAbout__boxes">
+        <el-col :span="8">
+          <div class="dash-weAbout__box one">
+            <div class="we-title">Заголовок</div>
+            <div class="we-text" v-if="aboutData[0]">
+              {{ aboutData[0].title }}
+              Центр косметологии Клиники Екатерининская
+            </div>
+            <img src="@/assets/img/we-about1.jpg" alt="" />
+          </div>
+        </el-col>
+        <el-col :span="15">
+          <div class="dash-weAbout__box two">
+            <div class="we-title">Текст</div>
+            <div class="we-text" v-if="aboutData[0]">
+              {{ aboutData[0].text }}
+              В косметологии Клиники Екатерининская работают только
+              врачи-дерматокосметологи и трихологи. Поэтому мы гарантируем
+              профессиональный подход и только самое качественное выполнение
+              услуг. К вашим услугам лазерная и инъекционная косметология,
+              аппаратные методики, профессиональный уход за кожей.
+            </div>
+            <img src="@/assets/img/we-about3.jpg" alt="" />
+          </div>
+        </el-col>
+      </el-row>
+      <el-row v-if="aboutData[0]" class="dash-weAbout__numbers">
+        <el-col :span="6" v-for="list of aboutData[0].arr">
+          <div class="dash-weAbout__number">
+            <div class="we-subtitle">{{ list.title }}</div>
+            <div class="we-number">
+              {{ list.number }}
+              <span v-if="list.plus" class="material-symbols-outlined">
+                add
+              </span>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -89,26 +135,9 @@ const { header } = storeToRefs(useTokenStore());
 const { toggle, editToggle } = storeToRefs(useDialogStore());
 const { setToggle, setEditToggle } = useDialogStore();
 const { aboutData } = storeToRefs(useAboutStore());
-const { get_all_aboutData, new_aboutData } = useAboutStore();
+const { get_all_aboutData, new_aboutData, save_aboutData, get_aboutData } =
+  useAboutStore();
 // store
-
-const openDialog = () => {
-  setToggle(true);
-};
-const handleClose = () => {
-  setToggle(false);
-  setEditToggle(false);
-  weAbout.value = {
-    arr: [{ plus: false }, { plus: false }, { plus: false }, { plus: false }],
-  };
-};
-const handleBefore = (file) => {
-  if (file.size / 1024 > 3000) {
-    ElMessage.error("Yuklanayotgan rasm 3 MB dan oshmasin");
-  }
-};
-
-
 
 const weAboutForm = ref();
 const weAbout = ref({
@@ -138,12 +167,46 @@ const rules = ref({
     },
   ],
 });
+
+const openDialog = () => {
+  setToggle(true);
+};
+const handleClose = () => {
+  weAbout.value = {
+    arr: [{ plus: false }, { plus: false }, { plus: false }, { plus: false }],
+  };
+  setToggle(false);
+  setEditToggle(false);
+};
+const handleBefore = (file) => {
+  if (file.size / 1024 > 3000) {
+    ElMessage.error("Yuklanayotgan rasm 3 MB dan oshmasin");
+  }
+};
+
+const openEdit = () => {
+  setToggle(true);
+  setEditToggle(true);
+};
+
+watch(editToggle, async () => {
+  if (editToggle.value) {
+    await get_aboutData(aboutData.value[0]._id)
+    .then((res) => {
+      weAbout.value = {...res.data}
+      if(weAbout.value.images) {
+        weAbout.value.images.forEach(item => item.url = `${url.value}/${item.response}`)
+      }
+    }
+    )
+  }
+});
 const add = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
       if (editToggle.value) {
-        save_weAbout(weAbout.value);
+        save_aboutData(weAbout.value);
       } else {
         new_aboutData(weAbout.value);
       }
@@ -158,22 +221,86 @@ const add = async (formEl) => {
   });
 };
 
-const id = ref("");
-const edit = (val) => {
-  id.value = val;
-};
-
 onMounted(() => {
-    get_all_aboutData()
+  get_all_aboutData();
 });
 </script>
 
 <style lang="scss">
 .dash-weAbout {
+  
+  &__main {
+    margin-top: 30px;
+  }
+  &__boxes {
+    justify-content: space-between;
+  }
+  &__box {
+    height: 100%;
+    position: relative;
+    padding: 30px;
+    border-radius: 30px;
+    border: 1px solid #333;
+    overflow: hidden;
+    padding-right: 60px;
+    img {
+      position: absolute;
+      width: 100px;
+      right: 5px;
+      top: 5px;
+    }
+  }
+  .we-title {
+    font-size: 20px;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+  .we-text {
+    padding-top: 10px;
+    font-size: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  &__numbers {
+    margin-top: 30px;
+    margin-left: -20px;
+    margin-right: -20px;
+    .el-col {
+      padding: 20px;
+    }
+  }
+  &__number {
+    padding: 20px;
+    border-radius: 30px;
+    border: 1px solid #333;
+  }
+  .we-subtitle {
+    font-size: 22px;
+    text-align: center;
+  }
+  .we-number {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+
   &__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .el-button {
+      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      span {
+        margin-left: 10px;
+        font-size: 16px;
+      }
+    }
   }
   .el-input-number__decrease,
   .el-input-number__increase {
@@ -188,8 +315,12 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     span {
-        font-size: 16px;
+      font-size: 16px;
     }
+  }
+  .btn-group {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>
