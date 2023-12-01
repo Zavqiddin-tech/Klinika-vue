@@ -1,18 +1,14 @@
 <template>
   <div class="about-top">
-    <el-row>
+    <el-row v-if="aboutData[0]">
       <el-col :span="12" :xs="20">
         <div class="about-top__info">
           <div class="about-title">
-            Центр косметологии
-            <span>Клиники Екатерининская</span>
+            {{ aboutData[0].title }}
+            <span></span>
           </div>
           <div class="about-text">
-            В косметологии Клиники Екатерининская работают только
-            врачи-дерматокосметологи и трихологи. Поэтому мы гарантируем
-            профессиональный подход и только самое качественное выполнение
-            услуг. К вашим услугам лазерная и инъекционная косметология,
-            аппаратные методики, профессиональный уход за кожей.
+            {{ aboutData[0].text }}
           </div>
           <el-button round class="btn-info" @click="nextAboutCenter()">{{ button_title }}</el-button>
         </div>
@@ -27,12 +23,22 @@
 </template>
 
 <script setup>
-defineProps(["button_title"]);
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+defineProps(["aboutData", "button_title"]);
 import router from '@/router/index'
 
 const nextAboutCenter = ()=> {
   router.push('/about-center')
 }
+
+import {useAboutStore} from '@/stores/data/dash-about'
+const {aboutData} = storeToRefs(useAboutStore())
+const {get_all_aboutData} = useAboutStore()
+
+onMounted(()=> {
+  get_all_aboutData()
+})
 </script>
 
 <style lang="scss">

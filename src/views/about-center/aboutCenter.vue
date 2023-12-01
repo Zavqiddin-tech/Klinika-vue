@@ -13,7 +13,7 @@
         <span>О центре</span>
       </div>
       <about-banner :button_title="buttonTitle" />
-      <analitic :array="aboutCenterAnalitic" />
+      <analitic :aboutData="aboutData" />
       <flex-items />
       <forma :title="title" :text="text" :agreeText="agreeText" />
     </div>
@@ -21,15 +21,12 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import forma from "../../components/form/forma.vue";
 import aboutBanner from "@/components/page/banner/about-banner.vue";
-import analitic from "../../components/page/analistic/analitic.vue";
+import analitic from "@/components/page/analistic/analitic.vue";
 import flexItems from "./components/flex-items.vue";
-
-import { useAnaliticStore } from "../../stores/analitic/analitic";
-const { aboutCenterAnalitic } = useAnaliticStore();
-
-import { ref, onMounted } from "vue";
 const buttonTitle = ref("Посетить центр");
 const title = ref("Запишитесь на консультацию");
 const text = ref(
@@ -39,8 +36,16 @@ const agreeText = ref(
   "Я соглашаюсь с политикой обработки персональных данных и пользовательским соглашением, а также даю согласие на обработку персональных данных."
 );
 
+
+import {useAboutStore} from '@/stores/data/dash-about'
+const {aboutData} = storeToRefs(useAboutStore())
+const {get_all_aboutData} = useAboutStore()
+
+
+
 onMounted(()=> {
   window.scrollTo(0, 0)
+  get_all_aboutData()
 })
 </script>
 

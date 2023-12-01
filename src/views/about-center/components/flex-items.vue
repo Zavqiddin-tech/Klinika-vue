@@ -1,72 +1,70 @@
 <template>
-  <div class="flex-items">
+  <div class="masonry">
     <div class="title">Место для вашей красоты</div>
-    <el-row class="el-row__main">
-      <el-col :span="24">
-        <el-row>
-          <el-col :span="12">
-            <div class="flex-box">
-              <img src="@/assets/img/flex-1.png" alt="" />
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <el-row>
-              <el-col :span="24">
-                <div class="flex-box">
-                  <img src="@/assets/img/flex-2.png" alt="" />
-                </div>
-              </el-col>
-              <el-col :span="24">
-                <div class="flex-box">
-                  <img src="@/assets/img/flex-3.png" alt="" />
-                </div>
-              </el-col>
-            </el-row>
-          </el-col>
-        </el-row>
-      </el-col>
-      <el-col :span="24">
-        <el-row>
-      <el-col :span="10">
-        <div class="flex-box">
-          <img src="@/assets/img/flex-4.png" alt="" />
-        </div>
-      </el-col>
-      <el-col :span="14">
-        <div class="flex-box">
-          <img src="@/assets/img/flex-5.png" alt="" />
-        </div>
-      </el-col>
-    </el-row>
-      </el-col>
-    </el-row>
+    <div class="m-container" v-if="aboutData[0]">
+      <div class="m-box" v-for="item of aboutData[0].images">
+        <img :src="`${url}/${item.response}`" alt="" />
+      </div>
+    </div>
     <div class="d-flex justify-center">
-        <el-button round class="btn-white__defalut">Показать еще</el-button>
+      <el-button round class="btn-white__defalut">Показать еще</el-button>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import {onMounted} from 'vue'
+import { storeToRefs } from 'pinia';
+
+import { useHelperStore } from '@/stores/admin/helpers';
+import { useAboutStore } from "@/stores/data/dash-about";
+const {url} = storeToRefs(useHelperStore())
+const { aboutData } = storeToRefs(useAboutStore());
+const { get_all_aboutData } = useAboutStore();
+
+onMounted(()=> {
+  get_all_aboutData()
+})
+</script>
 
 <style lang="scss">
-.flex {
-  &-items {
-    padding-top: 60px;
-    position: relative;
-    z-index: 2;
-    .el-row__main {
-      padding-top: 40px;
-      padding-bottom: 24px;
-      margin-left: -12px;
-      margin-right: -12px;
-    }
+.masonry {
+  padding-top: 56px;
+  .title {
+    padding-bottom: 42px;
   }
-  &-box {
-    padding: 12px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
+  .btn-white__defalut {
+    margin-top: 35px;
+  }
+}
+.m-container {
+  position: relative;
+  columns: 4;
+  column-gap: 20px;
+  z-index: 1;
+}
+.m-box {
+  width: 100%;
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+.m-box img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+@media (max-width: 1200px) {
+  .m-container {
+    columns: 3;
+  }
+}
+@media (max-width: 768px) {
+  .m-container {
+    columns: 2;
+  }
+}
+@media (max-width: 480px) {
+  .m-container {
+    columns: 1;
   }
 }
 </style>

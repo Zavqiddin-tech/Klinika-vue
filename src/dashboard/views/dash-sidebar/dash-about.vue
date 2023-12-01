@@ -57,7 +57,7 @@
               :action="`${url}/img`"
               :headers="header.headers"
               list-type="picture-card"
-              :limit="10"
+              :limit="30"
               :before-upload="handleBefore"
               :on-preview="handlePreview"
             >
@@ -83,7 +83,6 @@
             <div class="we-title">Заголовок</div>
             <div class="we-text" v-if="aboutData[0]">
               {{ aboutData[0].title }}
-              Центр косметологии Клиники Екатерининская
             </div>
             <img src="@/assets/img/we-about1.jpg" alt="" />
           </div>
@@ -93,11 +92,6 @@
             <div class="we-title">Текст</div>
             <div class="we-text" v-if="aboutData[0]">
               {{ aboutData[0].text }}
-              В косметологии Клиники Екатерининская работают только
-              врачи-дерматокосметологи и трихологи. Поэтому мы гарантируем
-              профессиональный подход и только самое качественное выполнение
-              услуг. К вашим услугам лазерная и инъекционная косметология,
-              аппаратные методики, профессиональный уход за кожей.
             </div>
             <img src="@/assets/img/we-about3.jpg" alt="" />
           </div>

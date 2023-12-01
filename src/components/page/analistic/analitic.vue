@@ -1,42 +1,20 @@
 <template>
   <div class="analitic">
-    <el-row v-if="obj">
-      <el-col :span="8" :xs="12">
+    <el-row v-if="aboutData[0]">
+      <el-col :span="6" :xs="12" v-for="item of aboutData[0].arr">
         <div class="analitic-item">
-          <div class="analitic-number">{{ obj.seans }}</div>
-          <div class="analitic-title">минут занимает один сеанс</div>
-        </div>
-      </el-col>
-      <el-col :span="8" :xs="12">
-        <div class="analitic-item">
-          <div class="analitic-number">{{ obj.procedure }}</div>
-          <div class="analitic-title">процедура для видимого эффекта</div>
-        </div>
-      </el-col>
-      <el-col :span="8" :xs="12">
-        <div class="analitic-item">
-          <div class="analitic-number">{{ obj.result }}</div>
-          <div class="analitic-title">года сохраняется результат</div>
+          <div class="analitic-number">
+            {{ item.number }}
+            <span v-if="item.plus" class="material-symbols-outlined"> add </span>
+          </div>
+          <div class="analitic-title">{{ item.title }}</div>
         </div>
       </el-col>
     </el-row>
     <el-row v-else>
-      <el-col :span="8" :xs="12">
+      <el-col :span="6" :xs="12" v-for="anim of 4">
         <div class="analitic-item">
           <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
-          <div class="analitic-title">минут занимает один сеанс</div>
-        </div>
-      </el-col>
-      <el-col :span="8" :xs="12">
-        <div class="analitic-item">
-          <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
-          <div class="analitic-title">процедура для видимого эффекта</div>
-        </div>
-      </el-col>
-      <el-col :span="8" :xs="12">
-        <div class="analitic-item">
-          <div class="analitic-number"><el-skeleton :rows="1" animated /></div>
-          <div class="analitic-title">года сохраняется результат</div>
         </div>
       </el-col>
     </el-row>
@@ -44,7 +22,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["obj"]);
+const props = defineProps(["aboutData"]);
 </script>
 
 <style lang="scss">
@@ -68,9 +46,14 @@ const props = defineProps(["obj"]);
     }
   }
   &-number {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 58px;
     color: $brownBlack;
+    span {
+      font-size: 40px;
+    }
   }
   &-title {
     text-align: center;
