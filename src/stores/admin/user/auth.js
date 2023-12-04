@@ -35,6 +35,7 @@ export const useAuthStore = defineStore("auth", () => {
       url: "auth/checkuser",
     });
     if (res.status == 200) {
+      console.log(res);
       setUser(res.data);
     }
   };

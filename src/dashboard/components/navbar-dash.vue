@@ -2,7 +2,8 @@
     <nav class="navbar-dash">
         <div class="navbar-dash__left">
             <router-link to="/dashboard">
-                <img :src="dashLogo" alt="logo">
+                <!-- <img :src="dashLogo" alt="logo"> -->
+                <div class="navbar-dash__title"><span>Med</span>ments</div>
             </router-link>
             <form-dash />
         </div>
@@ -39,10 +40,19 @@ const {unread} = storeToRefs(useFormaStore())
         align-items: center;
         background-color: #fff;
         border-bottom: 2px solid #E5E7EB;
+        &__title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            span {
+                color: #1577FF;
+            }
+        }
         &__left {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 100px;
             img {
                 cursor: pointer;
             }

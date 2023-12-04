@@ -3,7 +3,7 @@
     <el-table-column lebel="#" type="index" />
     <el-table-column label="ф.и.о">
       <template #default="scope">
-        <div class="d-flex align-center" @click="moreExpert(scope.row._id)">
+        <div class="d-flex align-center">
           <el-image
             class="table-img"
             style="width: 50px; height: 50px"
@@ -35,6 +35,16 @@
             </el-button>
           </template>
         </el-popconfirm>
+      </template>
+    </el-table-column>
+    <el-table-column label="Detail" align="center">
+      <template #default="scope">
+        <span 
+        @click="moreExpert(scope.row._id)"
+         class="material-symbols-outlined table-icon"
+        > 
+         rule_settings 
+        </span>
       </template>
     </el-table-column>
     <el-table-column label="Редактировать" align="right">

@@ -4,7 +4,6 @@
       <el-table-column label="image">
         <template #default="scope">
           <el-image
-          @click="nextPage(scope.row._id)"
             v-if="scope.row.image"
             class="table-img"
             style="width: 50px; height: 50px"
@@ -36,6 +35,16 @@
           </el-popconfirm>
         </template>
       </el-table-column>
+      <el-table-column label="Detail" align="center">
+      <template #default="scope">
+        <span 
+        @click="nextPage(scope.row._id)"
+         class="material-symbols-outlined table-icon"
+        > 
+         rule_settings 
+        </span>
+      </template>
+    </el-table-column>
       <el-table-column label="Редактировать" align="right">
         <template #default="scope">
           <el-dropdown>

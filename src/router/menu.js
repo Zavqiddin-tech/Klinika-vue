@@ -168,11 +168,19 @@ export const dashMenuLink = [
     meta: { secure: true }
   },
   {
-    title: "Заявки",
+    title: "Консультация",
     icon: 'mail',
     path: "/dash-regis",
     name: "dash-regis",
     component: () => import("../dashboard/views/dash-sidebar/dash-regis.vue"),
+    meta: { secure: true }
+  },
+  {
+    title: "Заявки",
+    icon: 'app_registration',
+    path: "/dash-consul",
+    name: "dash-consul",
+    component: () => import("../dashboard/views/dash-sidebar/dash-consul.vue"),
     meta: { secure: true }
   },
   {

@@ -1,25 +1,25 @@
 <template>
   <el-dialog
-    v-model="recordDialog"
+    v-model="recordSpec"
     title="Записаться"
     width="500px"
     :before-close="handleClose"
   >
     <el-form
       ref="servisForm"
-      :model="ruleForm"
+      :model="recordForm"
       :rules="rules"
       labelPosition="top"
     >
       <el-form-item label="Имя" prop="name">
-        <el-input v-model="ruleForm.name" />
+        <el-input v-model="recordForm.name" />
       </el-form-item>
-      <el-form-item label="Фамилия" prop="surname">
-        <el-input v-model="ruleForm.surname" />
+      <el-form-item label="Фамилия" prop="lname">
+        <el-input v-model="recordForm.lname" />
       </el-form-item>
-      <el-form-item label="Номер телефона" prop="number">
+      <el-form-item label="Номер телефона" prop="phone">
         <el-input
-          v-model="ruleForm.number"
+          v-model="recordForm.phone"
           v-maska
           data-maska="+998 (##) ###-##-##"
         />
@@ -28,8 +28,8 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="handleClose()">отмена</el-button>
-        <el-button @click="serviceAdd(servisForm)" type="primary">
-            отправлять
+        <el-button @click="consultAdd(servisForm)" type="primary">
+          отправлять
         </el-button>
       </span>
     </template>
@@ -39,12 +39,16 @@
 <script setup>
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
+import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { vMaska } from "maska";
+const id = useRoute().params.id
 
-import { useDialogStore } from "../../../stores/dialog/dialog";
-const { recordDialog } = storeToRefs(useDialogStore());
-const { setRecordDialog } = useDialogStore();
+import { useDialogStore } from "@/stores/dialog/dialog";
+import { useRecordDoctorStore } from "@/stores/data/recordDoctor";
+const { recordSpec } = storeToRefs(useDialogStore());
+const { setRecordSpec } = useDialogStore();
+const { new_record } = useRecordDoctorStore();
 
 const notifWarning = () => {
   ElNotification({
@@ -54,20 +58,13 @@ const notifWarning = () => {
     position: "bottom-left",
   });
 };
-const successWarning = () => {
-  ElNotification({
-    title: "Успешно",
-    message: "Информация отправлена",
-    type: "success",
-    position: "bottom-left",
-  });
-};
 
 const servisForm = ref();
-let ruleForm = ref({
-  number: "+998",
+let recordForm = ref({
+  specialistId: useRoute().params.id,
+  type: 1,
+  phone: "+998",
 });
-
 const rules = ref({
   name: [
     {
@@ -80,7 +77,7 @@ const rules = ref({
       message: "имя должно состоять более чем из 3 букв",
     },
   ],
-  surname: [
+  lname: [
     {
       required: true,
       message: "Введите ваше фамилия",
@@ -91,7 +88,7 @@ const rules = ref({
       message: "Фамилия должно состоять более чем из 3 букв",
     },
   ],
-  number: [
+  phone: [
     {
       required: true,
       message: "Введите свой номер телефона",
@@ -105,17 +102,20 @@ const rules = ref({
     },
   ],
 });
-
 const handleClose = () => {
-  setRecordDialog(false);
-  ruleForm.value = {number: "+998"}
+  setRecordSpec(false);
+  recordForm.value = {
+    specialistId: id,
+    type: 1,
+    phone: "+998",
+  };
 };
-const serviceAdd = async (formEl) => {
+const consultAdd = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      successWarning();
-      ruleForm = ref({
+      new_record(recordForm.value);
+      recordForm = ref({
         number: "+998",
       });
       handleClose();
@@ -124,15 +124,12 @@ const serviceAdd = async (formEl) => {
     }
   });
 };
-
 </script>
 
 <style lang="scss">
-
-
 @media (max-width: 500px) {
-    .el-dialog {
-        width: 95%;
-    }
+  .el-dialog {
+    width: 95%;
+  }
 }
 </style>

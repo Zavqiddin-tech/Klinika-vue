@@ -15,7 +15,7 @@
               </span>
             </ul>
           </div>
-          <el-button round class="btn-info"> {{ btnText }} </el-button>
+          <el-button @click="recordConsul()" round class="btn-info"> {{ btnText }} </el-button>
         </div>
       </el-col>
       <el-col :span="12" :xs="18">
@@ -29,6 +29,13 @@
 
 <script setup>
 defineProps(['title', 'titleItalic', 'infoImg', 'textGroup', 'btnText'])
+
+import { useDialogStore } from "@/stores/dialog/dialog";
+const { setRecordSpec } = useDialogStore();
+
+const recordConsul = ()=> {
+  setRecordSpec(true)
+}
 </script>
 
 <style lang="scss">

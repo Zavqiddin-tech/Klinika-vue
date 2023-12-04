@@ -1,6 +1,7 @@
 <template>
   <div class="services-banner">
-    <Dialog />
+    <recordService :data="obj"/>
+    {{ temporary }}
     <el-row>
       <el-col :span="12" :xs="24">
         <div class="services-banner__info">
@@ -11,7 +12,7 @@
             {{ obj.text }}
           </div>
           <div class="btn-group">
-            <el-button @click="servicesModal()" class="btn-info"
+            <el-button @click="servicesModal(obj)" class="btn-info"
               >Записаться</el-button
             >
           </div>
@@ -33,8 +34,9 @@
             <div class="services-card__text">
               {{ item.title }}
             </div>
-            <el-button @click="servicesDetail(item._id)" class="btn-white" round
-              >Подробнее</el-button
+            <el-button @click="servicesDetail(item._id)" class="btn-white" round>
+              Подробнее
+            </el-button
             >
           </div>
         </el-col>
@@ -55,16 +57,23 @@ const props = defineProps(["obj"]);
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import router from "@/router/index";
-import Dialog from "../../../components/page/dialog/dialog.vue";
+import recordService from "@/components/page/dialog/recordService.vue";
 
 
 
 import { useHelperStore } from "@/stores/admin/helpers";
 import { useDialogStore } from "@/stores/dialog/dialog";
+import {useRecordServiceStore} from "@/stores/data/recordService"
 const { url } = storeToRefs(useHelperStore());
-const { setRecordDialog } = useDialogStore();
-const servicesModal = () => {
-  setRecordDialog(true);
+const { setRecordSpec } = useDialogStore();
+const {setTemporary} = useRecordServiceStore()
+
+
+
+
+const servicesModal = (e) => {
+  setRecordSpec(true)
+  setTemporary(e)
 };
 
 const openToggle = ref(true);

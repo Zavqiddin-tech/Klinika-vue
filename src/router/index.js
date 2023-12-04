@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { menuLink } from "./menu";
 import { dashMenuLink } from './menu';
 
-import { useAuthStore } from '../stores/admin/user/auth';
+import { useAuthStore } from '@/stores/admin/user/auth';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

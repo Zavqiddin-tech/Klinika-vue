@@ -74,7 +74,7 @@
 import { ref, onMounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import moreServiceTable from "../../components/table/service/more-serviceTable.vue";
+import moreServiceTable from "@/dashboard/components/table/service/more-serviceTable.vue";
 
 //store
 import { useHelperStore } from "@/stores/admin/helpers";

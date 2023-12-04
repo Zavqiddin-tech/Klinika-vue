@@ -29,7 +29,7 @@
             <el-input v-model="weAbout.title" />
           </el-form-item>
           <el-form-item label="text" prop="text">
-            <el-input v-model="weAbout.text" />
+            <el-input v-model="weAbout.text" type="textarea" :rows="5"/>
           </el-form-item>
           <el-row class="addition justify-between">
             <el-col :span="11" v-for="item of weAbout.arr">

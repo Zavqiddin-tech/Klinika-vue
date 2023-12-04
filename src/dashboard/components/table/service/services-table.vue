@@ -1,10 +1,9 @@
 <template>
   <el-table :data="services" style="width: 100%">
-    <el-table-column lebel="#" type="index"/>
+    <el-table-column lebel="#" type="index" />
     <el-table-column>
       <template #default="scope">
         <el-image
-        @click="nextPage(scope.row._id)"
           class="table-img"
           style="width: 50px; height: 50px"
           :src="`${url}/${scope.row.img[0].response}`"
@@ -14,7 +13,7 @@
       </template>
     </el-table-column>
     <el-table-column prop="title" label="Услуги" />
-    <el-table-column prop="text" label="О сервисе" />
+    <el-table-column prop="text" label="О сервисе" width="300px" />
     <el-table-column prop="status" label="Статус">
       <template #default="scope">
         <el-popconfirm
@@ -30,6 +29,16 @@
             </el-button>
           </template>
         </el-popconfirm>
+      </template>
+    </el-table-column>
+    <el-table-column label="Detail" align="center">
+      <template #default="scope">
+        <span 
+        @click="nextPage(scope.row._id)"
+         class="material-symbols-outlined table-icon"
+        > 
+         rule_settings 
+        </span>
       </template>
     </el-table-column>
     <el-table-column label="Редактировать" align="right">
@@ -63,38 +72,45 @@
 </template>
 
 <script setup>
-const emit = defineEmits([
-  'edit'
-])
+const emit = defineEmits(["edit"]);
 import { storeToRefs } from "pinia";
 import router from "@/router/index";
 
-import {useHelperStore} from '@/stores/admin/helpers/index'
-const {url} = storeToRefs(useHelperStore())
+import { useHelperStore } from "@/stores/admin/helpers/index";
+const { url } = storeToRefs(useHelperStore());
 import { useDialogStore } from "@/stores/dialog/dialog";
-const {setToggle, setEditToggle} = useDialogStore()
+const { setToggle, setEditToggle } = useDialogStore();
 import { useServiceStore } from "@/stores/data/service/service";
 const { services } = storeToRefs(useServiceStore());
-const {status_service, delete_service} = useServiceStore()
-
-
+const { status_service, delete_service } = useServiceStore();
 
 const changeStatus = (id) => {
-    status_service(id)
-}
+  status_service(id);
+};
 const remove = (id) => {
-    delete_service(id)
-}
-const editProf = (_id)=> {
-  emit('edit', _id)
-  setToggle(true)
-  setEditToggle(true)
-}
+  if (confirm("Удаление")) {
+    delete_service(id);
+  }
+};
+const editProf = (_id) => {
+  emit("edit", _id);
+  setToggle(true);
+  setEditToggle(true);
+};
 
-
-const nextPage = (id)=> {
-  router.push(`/more-service/${id}`)
-}
+const nextPage = (id) => {
+  router.push(`/more-service/${id}`);
+};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.table-icon {
+  font-size: 25px;
+  transition: 0.5s;
+  cursor: pointer;
+  &:hover {
+    transform: rotate(360deg);
+    color: #1577FF;
+  }
+}
+</style>
