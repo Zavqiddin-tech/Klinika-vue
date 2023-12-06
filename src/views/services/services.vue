@@ -33,16 +33,23 @@
 </template>
 
 <script setup>
-import servicesBanner from "@/views/services/comp/services-banner.vue";
-import forma from "@/components/form/forma.vue";
 import { onMounted } from 'vue'
 import { storeToRefs } from "pinia";
+import servicesBanner from "@/views/services/comp/services-banner.vue";
+import forma from "@/components/form/forma.vue";
+
 import {useServiceStore} from '@/stores/data/service/service'
+import { useRecordServiceStore } from "@/stores/data/recordService";
+
+
 const {get_all_servicesAll} = useServiceStore()
 const {services} = storeToRefs(useServiceStore())
+const { setDetailToggle } = useRecordServiceStore()
+
 
 onMounted(()=> {
   window.scrollTo(0, 0)
+  setDetailToggle(true)
   get_all_servicesAll()
 })
 </script>

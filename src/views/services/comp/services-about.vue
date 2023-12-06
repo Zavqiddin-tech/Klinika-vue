@@ -59,10 +59,14 @@ import forma from "@/components/form/forma.vue";
 
 
 import { useMoreServiceStore } from "@/stores/data/service/more-service";
-const {get_moreServicesAll} = useMoreServiceStore()
 import {useExpertsStore} from '@/stores/data/expert'
+import { useRecordServiceStore } from "@/stores/data/recordService";
+
+const {get_moreServicesAll} = useMoreServiceStore()
 const {expertsAll} = storeToRefs(useExpertsStore())
 const {get_all_expertsAll} = useExpertsStore()
+const { setDetailToggle } = useRecordServiceStore();
+
 
 
 
@@ -70,6 +74,7 @@ const {get_all_expertsAll} = useExpertsStore()
 
 onMounted(async ()=> {
   window.scrollTo(0, 0)
+  setDetailToggle(false)
   get_all_expertsAll()
   await get_moreServicesAll(useRoute().params.id)
   .then(res => {

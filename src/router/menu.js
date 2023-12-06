@@ -137,7 +137,7 @@ export const dashMenuLink = [
   },
   {
     title: "Специалисты",
-    icon: 'groups',
+    icon: 'diversity_1',
     path: "/dash-specialist",
     name: "dash-specialist",
     component: () => import("../dashboard/views/dash-sidebar/dash-specialist.vue"),
@@ -161,7 +161,7 @@ export const dashMenuLink = [
   },
   {
     title: "Профессии",
-    icon: 'medication',
+    icon: 'health_metrics',
     path: "/dash-prof",
     name: "dash-prof",
     component: () => import("../dashboard/views/dash-sidebar/dash-prof.vue"),

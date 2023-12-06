@@ -19,9 +19,10 @@ export const useApiStore = defineStore("api", () => {
 
   const getAxios = (payload) => {
     return axios
-      .get(`${url}/${payload.url}`, {
+      .get(`${url}/${payload.url}`,
+      {
         ...tokenStore.header,
-        params: payload.search,
+        params: {...payload.search},
       })
       .catch((e) => {
         if (e.response.status == 401) {

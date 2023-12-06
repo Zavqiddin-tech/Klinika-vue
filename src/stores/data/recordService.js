@@ -9,26 +9,30 @@ export const useRecordServiceStore = defineStore("recordService", () => {
   const recordService = ref([]);
   const api = useApiStore();
 
+  const detailToggle = ref(true)
+  const setDetailToggle = (val) => detailToggle.value = val
+
   const temporary = ref({})
-  const temporaryId = ref('')
   const setTemporary = (val) => {
-    console.log(val._id);
     temporary.value = {...val}
-    temporaryId.value = val._id
   }
 
   // barcha recordServiceServicelarni olib beardi
-  const get_all_recordService = async () => {
+  const get_all_recordService = async (params) => {
+    let obj = { type: params }
     await api.getAxios({
       url: "consult",
+      search: obj
     }).then((res) => {
-      recordService.value = [...res.data]
+      recordService.value = res.data.reviews
+      console.log(recordService.value);
     })
   };
 
 
   // yangi recordService qo'shish
   const new_recordService = async (data) => {
+    console.log(data);
     await api
       .postAxios({
         url: "consult",
@@ -36,7 +40,6 @@ export const useRecordServiceStore = defineStore("recordService", () => {
       })
       .then((res) => {
         console.log(res.data);
-        recordService.value = [res.data, ...recordService.value];
         ElNotification({
           title: "Успешный",
           message: "Отправил",
@@ -87,19 +90,18 @@ export const useRecordServiceStore = defineStore("recordService", () => {
       });
   };
 
-  // recordServiceService holatini o'zgartirish
-  const status_recordService = async (_id) => {
+  // konsultatsiya holatini o'zgartirish
+  const status_consul = async (_id, status) => {
     let res = await api.getAxios({
       url: `consult/change/${_id}`,
+      search: {
+        status: status
+      },
     });
     if (res.status == 200) {
-      recordService.value = recordService.value.map((item) => {
-        if (item._id == _id)
-          return {
-            ...item,
-            status: item.status == 0 ? 1 : 0,
-          };
-        return item;
+      recordService.value = recordService.value.map((list) => {
+        if (list._id == res.data._id) return res.data;
+        return list;
       });
       ElNotification({
         title: "Обновлено",
@@ -112,13 +114,14 @@ export const useRecordServiceStore = defineStore("recordService", () => {
   return {
     recordService,
     temporary,
-    temporaryId,
+    detailToggle,
     setTemporary,
+    setDetailToggle,
     get_all_recordService,
     new_recordService,
     get_recordService,
     save_recordService,
     delete_recordService,
-    status_recordService,
+    status_consul
   };
 });

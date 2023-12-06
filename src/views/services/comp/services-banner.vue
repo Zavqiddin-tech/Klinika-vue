@@ -12,8 +12,11 @@
             {{ obj.text }}
           </div>
           <div class="btn-group">
-            <el-button @click="servicesModal(obj)" class="btn-info"
+            <el-button v-if="detailToggle" @click="servicesModal(obj)" class="btn-info"
               >Записаться</el-button
+            >
+            <el-button v-else @click="servicesModalTwo()" class="btn-info"
+              >Записаться 2</el-button
             >
           </div>
         </div>
@@ -34,7 +37,7 @@
             <div class="services-card__text">
               {{ item.title }}
             </div>
-            <el-button @click="servicesDetail(item._id)" class="btn-white" round>
+            <el-button @click="servicesDetail(item._id, obj)" class="btn-white" round>
               Подробнее
             </el-button
             >
@@ -66,6 +69,7 @@ import { useDialogStore } from "@/stores/dialog/dialog";
 import {useRecordServiceStore} from "@/stores/data/recordService"
 const { url } = storeToRefs(useHelperStore());
 const { setRecordSpec } = useDialogStore();
+const {detailToggle} = storeToRefs(useRecordServiceStore())
 const {setTemporary} = useRecordServiceStore()
 
 
@@ -75,13 +79,17 @@ const servicesModal = (e) => {
   setRecordSpec(true)
   setTemporary(e)
 };
+const servicesModalTwo = () => {
+  setRecordSpec(true)
+};
 
 const openToggle = ref(true);
 const setOpenToggle = () => (openToggle.value = !openToggle.value);
 const openCard = () => {
   setOpenToggle();
 };
-const servicesDetail = (id) => {
+const servicesDetail = (id, obj) => {
+  setTemporary(obj)
   router.push(`services-detail/${id}`);
 };
 

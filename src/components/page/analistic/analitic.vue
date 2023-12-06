@@ -1,6 +1,6 @@
 <template>
   <div class="analitic">
-    <el-row v-if="aboutData[0]">
+    <el-row v-if="aboutData">
       <el-col :span="6" :xs="12" v-for="item of aboutData[0].arr">
         <div class="analitic-item">
           <div class="analitic-number">

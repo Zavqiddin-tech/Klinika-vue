@@ -1,135 +1,166 @@
 <template>
-    <el-dialog
-      v-model="recordSpec"
-      :title="temporaryId"
-      width="500px"
-      :before-close="handleClose"
+  <el-dialog
+    v-model="recordSpec"
+    title="Записаться"
+    width="500px"
+    :before-close="handleClose"
+  >
+    <el-form
+      ref="servisForm"
+      :model="recordForm"
+      :rules="rules"
+      labelPosition="top"
     >
-      <el-form
-        ref="servisForm"
-        :model="recordForm"
-        :rules="rules"
-        labelPosition="top"
-      >
-        <el-form-item label="Имя" prop="name">
-          <el-input v-model="recordForm.name" />
-        </el-form-item>
-        <el-form-item label="Фамилия" prop="lname">
-          <el-input v-model="recordForm.lname" />
-        </el-form-item>
-        <el-form-item label="Номер телефона" prop="phone">
-          <el-input
-            v-model="recordForm.phone"
-            v-maska
-            data-maska="+998 (##) ###-##-##"
+      <el-form-item label="Имя" prop="name">
+        <el-input v-model="recordForm.name" />
+      </el-form-item>
+      <el-form-item label="Фамилия" prop="lname">
+        <el-input v-model="recordForm.lname" />
+      </el-form-item>
+      <el-form-item v-if="detailToggle" label="Выбирать" prop="serviceItemId">
+        <el-select
+          v-model="recordForm.serviceItemId"
+          clearable
+          placeholder="Select"
+        >
+          <el-option
+            v-for="item in temporary.serviceItem"
+            :key="item._id"
+            :label="item.title"
+            :value="item._id"
           />
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="handleClose()">отмена</el-button>
-          <el-button @click="consultAdd(servisForm)" type="primary">
-            отправлять
-          </el-button>
-        </span>
-      </template>
-    </el-dialog>
-  </template>
-  
-  <script setup>
-  import { ref } from "vue";
-  import { storeToRefs } from "pinia";
-  import { ElNotification } from "element-plus";
-  import { vMaska } from "maska";
-  
-  
-  import { useDialogStore } from "@/stores/dialog/dialog";
-  import { useRecordServiceStore } from "@/stores/data/recordService";
-  const { recordSpec } = storeToRefs(useDialogStore());
-  const { setRecordSpec } = useDialogStore();
-  const {temporary, temporaryId} = storeToRefs(useRecordServiceStore())
-  const { new_recordService } = useRecordServiceStore();
-  
-  const notifWarning = () => {
-    ElNotification({
-      title: "Предупреждение",
-      message: "Заполните все поля",
-      type: "warning",
-      position: "bottom-left",
-    });
-  };
+        </el-select>
+      </el-form-item>
+      <el-form-item class="record-mt" label="Номер телефона" prop="phone">
+        <el-input
+          v-model="recordForm.phone"
+          v-maska
+          data-maska="+998 (##) ###-##-##"
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose()">отмена</el-button>
+        <el-button @click="consultAdd(servisForm)" type="primary">
+          отправлять
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
+</template>
 
-  
+<script setup>
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import { useRoute } from "vue-router";
+import { ElNotification } from "element-plus";
+import { vMaska } from "maska";
 
-  const servisForm = ref();
-  let recordForm = ref({
-    
-    serviceId: temporaryId,
+import { useDialogStore } from "@/stores/dialog/dialog";
+import { useRecordServiceStore } from "@/stores/data/recordService";
+const { recordSpec } = storeToRefs(useDialogStore());
+const { setRecordSpec } = useDialogStore();
+const { temporary, detailToggle } = storeToRefs(useRecordServiceStore());
+const { new_recordService } = useRecordServiceStore();
+
+const id = ref('')
+id.value = useRoute().params.id
+
+const servisForm = ref();
+let recordForm = ref({
+  type: 2,
+  phone: "+998",
+});
+const rules = ref({
+  name: [
+    {
+      required: true,
+      message: "Введите ваше имя",
+      trigger: "blur",
+    },
+    {
+      min: 3,
+      message: "имя должно состоять более чем из 3 букв",
+    },
+  ],
+  lname: [
+    {
+      required: true,
+      message: "Введите ваше фамилия",
+      trigger: "blur",
+    },
+    {
+      min: 3,
+      message: "Фамилия должно состоять более чем из 3 букв",
+    },
+  ],
+  phone: [
+    {
+      required: true,
+      message: "Введите свой номер телефона",
+      trigger: "blur",
+    },
+    {
+      min: 19,
+      max: 19,
+      message: "Введите полный номер",
+      trigger: "blur",
+    },
+  ],
+  serviceItemId: [
+    {
+      required: true,
+      message: "Выберите раздел",
+      trigger: "blur",
+    },
+  ],
+});
+const handleClose = () => {
+  setRecordSpec(false);
+  recordForm.value = {
     type: 2,
     phone: "+998",
-  });
-  const rules = ref({
-    name: [
-      {
-        required: true,
-        message: "Введите ваше имя",
-        trigger: "blur",
-      },
-      {
-        min: 3,
-        message: "имя должно состоять более чем из 3 букв",
-      },
-    ],
-    lname: [
-      {
-        required: true,
-        message: "Введите ваше фамилия",
-        trigger: "blur",
-      },
-      {
-        min: 3,
-        message: "Фамилия должно состоять более чем из 3 букв",
-      },
-    ],
-    phone: [
-      {
-        required: true,
-        message: "Введите свой номер телефона",
-        trigger: "blur",
-      },
-      {
-        min: 19,
-        max: 19,
-        message: "Введите полный номер",
-        trigger: "blur",
-      },
-    ],
-  });
-  const handleClose = () => {
-    setRecordSpec(false);
+  };
+};
+
+const consultAdd = async (formEl) => {
+  if (detailToggle.value) {
     recordForm.value = {
-      type: 2,
-      phone: "+998",
+      ...recordForm.value,
+      serviceId: temporary.value._id,
     };
-  };
-  const consultAdd = async (formEl) => {
-    console.log(recordForm.value);
-    if (!formEl) return;
-    await formEl.validate((valid) => {
-      if (valid) {
-        
-      } else {
-        notifWarning();
-      }
-    });
-  };
-  </script>
-  
-  <style lang="scss">
-  @media (max-width: 500px) {
-    .el-dialog {
-      width: 95%;
-    }
+  } else {
+    recordForm.value = {
+      ...recordForm.value,
+      serviceId: temporary.value._id,
+      serviceItemId: id.value,
+    };
   }
-  </style>
-  
+  if (!formEl) return;
+  await formEl.validate((valid) => {
+    if (valid) {
+      new_recordService(recordForm.value);
+      handleClose();
+    } else {
+      ElNotification({
+        title: "Предупреждение",
+        message: "Заполните все поля",
+        type: "warning",
+        position: "bottom-left",
+      });
+    }
+  });
+};
+</script>
+
+<style lang="scss">
+.record-mt {
+  margin-top: 22px;
+}
+@media (max-width: 500px) {
+  .el-dialog {
+    width: 95%;
+  }
+}
+</style>
