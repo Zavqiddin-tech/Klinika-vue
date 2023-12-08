@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="recordSpec"
-    title="Записаться"
+    title="Записать"
     width="500px"
     :before-close="handleClose"
   >
@@ -37,27 +37,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { vMaska } from "maska";
-const id = useRoute().params.id
+const id = useRoute().params.id;
 
-import { useDialogStore } from "@/stores/dialog/dialog";
 import { useRecordDoctorStore } from "@/stores/data/recordDoctor";
-const { recordSpec } = storeToRefs(useDialogStore());
-const { setRecordSpec } = useDialogStore();
-const { new_record } = useRecordDoctorStore();
-
-const notifWarning = () => {
-  ElNotification({
-    title: "Предупреждение",
-    message: "Заполните все поля",
-    type: "warning",
-    position: "bottom-left",
-  });
-};
+import { useRecordServiceStore } from "@/stores/data/recordService";
+const { recordSpec, editRecordSpec, doctorId } = storeToRefs(useRecordDoctorStore());
+const { setRecordSpec, setEditRecordSpec } = useRecordDoctorStore()
+const { new_record, get_record } = useRecordDoctorStore();
+const { save_recordService } = useRecordServiceStore();
 
 const servisForm = ref();
 let recordForm = ref({
@@ -104,23 +96,44 @@ const rules = ref({
 });
 const handleClose = () => {
   setRecordSpec(false);
+  setEditRecordSpec(false);
   recordForm.value = {
     specialistId: id,
     type: 1,
     phone: "+998",
   };
 };
+
+
+watch(editRecordSpec, async ()=> {
+  if (editRecordSpec.value) {
+    await get_record(doctorId.value)
+    .then(res => {
+      recordForm.value = {...res.data}
+    })
+  }
+})
 const consultAdd = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      new_record(recordForm.value);
-      recordForm = ref({
-        number: "+998",
-      });
-      handleClose();
+      if (editRecordSpec.value) {
+        save_recordService(recordForm.value)
+        handleClose()
+      } else {
+        new_record(recordForm.value);
+        recordForm = ref({
+          number: "+998",
+        });
+        handleClose();
+      }
     } else {
-      notifWarning();
+      ElNotification({
+        title: "Предупреждение",
+        message: "Заполните все поля",
+        type: "warning",
+        position: "bottom-left",
+      });
     }
   });
 };

@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 
 export const useDialogStore = defineStore("dialog", () => {
   const recordDialog = ref(false);
-  const recordSpec = ref(false);
   const signDialog = ref(false);
   const regisDialog = ref(false);
   const feedbackDialog = ref(false);
@@ -11,7 +10,6 @@ export const useDialogStore = defineStore("dialog", () => {
   const editToggle = ref(false);
 
   const setRecordDialog = (val) => (recordDialog.value = val);
-  const setRecordSpec = (val) => (recordSpec.value = val);
   const setSignDialog = (val) => (signDialog.value = val);
   const setRegisDialog = (val) => (regisDialog.value = val);
   const setFeedbackDialog = (val) => (feedbackDialog.value = val);
@@ -20,14 +18,12 @@ export const useDialogStore = defineStore("dialog", () => {
 
   return {
     recordDialog,
-    recordSpec,
     signDialog,
     regisDialog,
     feedbackDialog,
     toggle,
     editToggle,
     setRecordDialog,
-    setRecordSpec,
     setSignDialog,
     setRegisDialog,
     setFeedbackDialog,

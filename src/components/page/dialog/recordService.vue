@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    v-model="recordSpec"
+    v-model="recordServi"
     title="Записаться"
     width="500px"
     :before-close="handleClose"
@@ -51,18 +51,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { vMaska } from "maska";
 
-import { useDialogStore } from "@/stores/dialog/dialog";
 import { useRecordServiceStore } from "@/stores/data/recordService";
-const { recordSpec } = storeToRefs(useDialogStore());
-const { setRecordSpec } = useDialogStore();
-const { temporary, detailToggle } = storeToRefs(useRecordServiceStore());
-const { new_recordService } = useRecordServiceStore();
+const { temporary, detailToggle, recordServi, serviId, editRecordServi } = storeToRefs(useRecordServiceStore());
+const { new_recordService, save_recordService, get_recordService, setRecordServi, setEditRecordServi } = useRecordServiceStore();
 
 const id = ref('')
 id.value = useRoute().params.id
@@ -117,12 +114,23 @@ const rules = ref({
   ],
 });
 const handleClose = () => {
-  setRecordSpec(false);
+  setRecordServi(false);
+  setEditRecordServi(false)
   recordForm.value = {
     type: 2,
     phone: "+998",
   };
 };
+
+watch(editRecordServi, async ()=> {
+  if (editRecordServi.value) {
+    await get_recordService(serviId.value)
+    .then(res => {
+      console.log(res.data);
+      recordForm.value = {...res.data}
+    })
+  }
+})
 
 const consultAdd = async (formEl) => {
   if (detailToggle.value) {
@@ -140,8 +148,13 @@ const consultAdd = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      new_recordService(recordForm.value);
-      handleClose();
+      if (editRecordServi.value) {
+        save_recordService(recordForm.value)
+        handleClose();
+      } else {
+        new_recordService(recordForm.value);
+        handleClose();
+      }
     } else {
       ElNotification({
         title: "Предупреждение",

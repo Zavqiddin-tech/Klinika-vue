@@ -1,48 +1,57 @@
 <template>
-  <h1>salomlar</h1>
-  <el-table :data="data" style="width: 100%">
-    <el-table-column prop="name" label="Ism" width="180" />
-    <el-table-column prop="lname" label="Familya" width="180" />
-    <el-table-column label="Shifokor">
-      <template #default="scope">
-        <div class="doctor-line">
-          <span class="material-symbols-outlined"> ecg_heart </span>
-          {{ scope.row.specialistId.name }}
-          {{ scope.row.specialistId.lname }}
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column prop="status" label="Статус">
-      <template #default="scope">
-        <div class="form-status">
-          <el-popconfirm
-            title="Статус изменен!"
-            @confirm="changeStatus(scope.row._id, scope.row.status)"
-          >
-            <template #reference>
-              <el-button :type="statusList[scope.row.status]" round plain>
-                {{ statusText[scope.row.status] }}
-              </el-button>
-            </template>
-          </el-popconfirm>
+  <div v-if="recordService[0]">
+    <div class="consul-title" v-if="recordService[0].type == 1">
+      Shifokorga ariza
+    </div>
+    <div class="consul-title" v-if="recordService[0].type == 2">
+      Xizmatga ariza
+    </div>
+    <el-table
+      v-if="recordService[0].type == 1"
+      :data="recordService"
+      style="min-width: 100%"
+    >
+      <el-table-column prop="name" label="Ism" width="180" />
+      <el-table-column prop="lname" label="Familya" width="180" />
+      <el-table-column label="Shifokor">
+        <template #default="scope">
+          <div class="doctor-line">
+            <span class="material-symbols-outlined"> ecg_heart </span>
+            {{ scope.row.specialistId.name }}
+            {{ scope.row.specialistId.lname }}
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="status" label="Статус">
+        <template #default="scope">
+          <div class="form-status">
+            <el-popconfirm
+              title="Статус изменен!"
+              @confirm="changeStatus(scope.row._id, scope.row.status)"
+            >
+              <template #reference>
+                <el-button :type="statusList[scope.row.status]" round plain>
+                  {{ statusText[scope.row.status] }}
+                </el-button>
+              </template>
+            </el-popconfirm>
 
-          <span class="material-symbols-outlined">
-            {{ statusCheck[scope.row.status] }}
-          </span>
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column label="Редактирование" align="right">
-      <template #default="scope">
-        <div>
-          <el-button type="primary">
-            <el-icon>
-              <editPen @click="editItem(scope.row._id)" />
-            </el-icon>
-          </el-button>
-
-          <!-- delete -->
-          <!-- <el-popconfirm
+            <span class="material-symbols-outlined">
+              {{ statusCheck[scope.row.status] }}
+            </span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="Редактирование" align="right">
+        <template #default="scope">
+          <div>
+            <el-button type="primary" @click="editDoctor(scope.row._id)">
+              <el-icon>
+                <editPen />
+              </el-icon>
+            </el-button>
+            <!-- delete -->
+            <!-- <el-popconfirm
             title="будет удален!"
             @confirm="deleteItem(scope.row._id)"
           >
@@ -54,29 +63,117 @@
               </el-button>
             </template>
           </el-popconfirm> -->
-          <!-- delete -->
-        </div>
-      </template>
-    </el-table-column>
-  </el-table>
+            <!-- delete -->
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-table
+      v-if="recordService[0].type == 2"
+      :data="recordService"
+      style="min-width: 100%"
+    >
+      <el-table-column prop="name" label="Ism" width="180" />
+      <el-table-column prop="lname" label="Familya" width="180" />
+      <el-table-column label="Xizmat">
+        <template #default="scope">
+          <div>
+            {{ scope.row.serviceId.title }}
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="Xizmatning bo'limi">
+        <template #default="scope">
+          <div>
+            {{ scope.row.serviceItemId.title }}
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="status" label="Статус">
+        <template #default="scope">
+          <div class="form-status">
+            <el-popconfirm
+              title="Статус изменен!"
+              @confirm="changeStatus(scope.row._id, scope.row.status)"
+            >
+              <template #reference>
+                <el-button :type="statusList[scope.row.status]" round plain>
+                  {{ statusText[scope.row.status] }}
+                </el-button>
+              </template>
+            </el-popconfirm>
+
+            <span class="material-symbols-outlined">
+              {{ statusCheck[scope.row.status] }}
+            </span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="Редактирование" align="right">
+        <template #default="scope">
+          <div>
+            <el-button type="primary" @click="editService(scope.row._id)">
+              <el-icon>
+                <editPen />
+              </el-icon>
+            </el-button>
+            <!-- delete -->
+            <!--  <el-popconfirm
+            title="будет удален!"
+            @confirm="deleteItem(scope.row._id)"
+          >
+            <template #reference>
+              <el-button type="danger">
+                <el-icon>
+                  <delete />
+                </el-icon>
+              </el-button>
+            </template>
+          </el-popconfirm> -->
+            <!-- delete -->
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script setup>
-const props = defineProps(["data"]);
 import { ref } from "vue";
-const statusList = ref([ "info", "warning", "success"]);
+import { storeToRefs } from "pinia";
+const statusList = ref(["info", "warning", "success"]);
 const statusText = ref(["не видел", "был замечен", "позвонил"]);
 const statusCheck = ref([" ", "check", "done_all"]);
 
 import { useRecordServiceStore } from "@/stores/data/recordService";
-const { delete_recordService, status_consul } = useRecordServiceStore();
+import { useRecordDoctorStore } from "@/stores/data/recordDoctor";
+const { recordService } = storeToRefs(useRecordServiceStore());
+const {
+  delete_recordService,
+  status_consul,
+  setRecordServi,
+  setEditRecordServi,
+  setServiId,
+} = useRecordServiceStore();
+const { setRecordSpec, setEditRecordSpec, setDoctorId } =
+  useRecordDoctorStore();
 
 const deleteItem = (id) => {
   delete_recordService(id);
 };
 const changeStatus = (id, status) => {
-  status_consul(id, status)
-}
+  status_consul(id, status);
+};
+const editDoctor = (id) => {
+  setRecordSpec(true);
+  setEditRecordSpec(true);
+  setDoctorId(id);
+};
+const editService = (id) => {
+  setServiId(id);
+  setRecordServi(true);
+  setEditRecordServi(true)
+};
 </script>
 
 <style lang="scss">
@@ -99,5 +196,10 @@ const changeStatus = (id, status) => {
   span {
     color: red;
   }
+}
+.consul-title {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  color: #546272;
 }
 </style>

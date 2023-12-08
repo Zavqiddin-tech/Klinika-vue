@@ -9,6 +9,13 @@ export const useRecordServiceStore = defineStore("recordService", () => {
   const recordService = ref([]);
   const api = useApiStore();
 
+  const recordServi = ref(false);
+  const editRecordServi = ref(false);
+  const serviId = ref("");
+  const setRecordServi = (val) => (recordServi.value = val);
+  const setEditRecordServi = (val) => (editRecordServi.value = val);
+  const setServiId = (val) => (serviId.value = val);
+
   const detailToggle = ref(true)
   const setDetailToggle = (val) => detailToggle.value = val
 
@@ -99,6 +106,7 @@ export const useRecordServiceStore = defineStore("recordService", () => {
       },
     });
     if (res.status == 200) {
+      console.log(res.data);
       recordService.value = recordService.value.map((list) => {
         if (list._id == res.data._id) return res.data;
         return list;
@@ -112,6 +120,13 @@ export const useRecordServiceStore = defineStore("recordService", () => {
   };
 
   return {
+    recordServi,
+    editRecordServi,
+    serviId,
+    setRecordServi,
+    setEditRecordServi,
+    setServiId,
+
     recordService,
     temporary,
     detailToggle,

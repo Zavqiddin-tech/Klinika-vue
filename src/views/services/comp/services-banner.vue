@@ -65,10 +65,9 @@ import recordService from "@/components/page/dialog/recordService.vue";
 
 
 import { useHelperStore } from "@/stores/admin/helpers";
-import { useDialogStore } from "@/stores/dialog/dialog";
 import {useRecordServiceStore} from "@/stores/data/recordService"
 const { url } = storeToRefs(useHelperStore());
-const { setRecordSpec } = useDialogStore();
+const { setRecordServi } = useRecordServiceStore()
 const {detailToggle} = storeToRefs(useRecordServiceStore())
 const {setTemporary} = useRecordServiceStore()
 
@@ -76,11 +75,11 @@ const {setTemporary} = useRecordServiceStore()
 
 
 const servicesModal = (e) => {
-  setRecordSpec(true)
+  setRecordServi(true)
   setTemporary(e)
 };
 const servicesModalTwo = () => {
-  setRecordSpec(true)
+  setRecordServi(true)
 };
 
 const openToggle = ref(true);

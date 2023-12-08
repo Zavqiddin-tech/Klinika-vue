@@ -12,7 +12,7 @@
         <span>Наши специалисты</span>
         <span>Бекетова Екатерина Николаевна</span>
       </div>
-      <sketelon />
+      <sketelonBanner />
       <about-top
         v-if="dataInfo.img"
         class="info-specialist__banner"
@@ -49,6 +49,7 @@ import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import sketelon from "@/components/skeleton/sketelon.vue";
+import sketelonBanner from "@/components/skeleton/sketelon-banner.vue";
 import aboutTop from "@/components/about/about-comp/about-top.vue";
 import uploadImg from "@/assets/img/upload-img.png";
 import infoSpecialistCard from "./comp/infoSpecialistCard.vue";

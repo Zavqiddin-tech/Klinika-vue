@@ -3,20 +3,27 @@ import { ref } from "vue";
 import { useApiStore } from "../admin/helpers/api";
 import { ElNotification } from "element-plus";
 
-
 export const useRecordDoctorStore = defineStore("recordDoctor", () => {
+  const recordSpec = ref(false);
+  const editRecordSpec = ref(false);
+  const doctorId = ref("");
+  const setRecordSpec = (val) => (recordSpec.value = val);
+  const setEditRecordSpec = (val) => (editRecordSpec.value = val);
+  const setDoctorId = (val) => (doctorId.value = val);
+
   const records = ref([]);
   const api = useApiStore();
-  
+
   // barcha recordlarni olib beardi
   const get_all_records = async () => {
-    await api.getAxios({
-      url: "consult",
-    }).then((res) => {
-      records.value = [...res.data]
-    })
+    await api
+      .getAxios({
+        url: "consult",
+      })
+      .then((res) => {
+        records.value = [...res.data];
+      });
   };
-
 
   // yangi recordService qo'shish
   const new_record = async (data) => {
@@ -51,7 +58,7 @@ export const useRecordDoctorStore = defineStore("recordDoctor", () => {
         data,
       })
       .then((res) => {
-        records.value = records.value.map((item) => {
+        records.value = res.data.map((item) => {
           if (item._id == res.data._id) return res.data;
           return item;
         });
@@ -69,7 +76,7 @@ export const useRecordDoctorStore = defineStore("recordDoctor", () => {
     await api
       .deleteAxios({
         url: `consult/${_id}`,
-      },)
+      })
       .then(() => {
         records.value = records.value.filter((item) => {
           if (item._id == _id) return false;
@@ -101,6 +108,12 @@ export const useRecordDoctorStore = defineStore("recordDoctor", () => {
   };
 
   return {
+    recordSpec,
+    editRecordSpec,
+    doctorId,
+    setRecordSpec,
+    setEditRecordSpec,
+    setDoctorId,
     records,
     get_all_records,
     new_record,

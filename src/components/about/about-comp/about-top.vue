@@ -30,8 +30,8 @@
 <script setup>
 defineProps(['title', 'titleItalic', 'infoImg', 'textGroup', 'btnText'])
 
-import { useDialogStore } from "@/stores/dialog/dialog";
-const { setRecordSpec } = useDialogStore();
+import { useRecordDoctorStore } from "@/stores/data/recordDoctor";
+const { setRecordSpec } = useRecordDoctorStore();
 
 const recordConsul = ()=> {
   setRecordSpec(true)
