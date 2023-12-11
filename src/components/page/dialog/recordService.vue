@@ -17,9 +17,23 @@
       <el-form-item label="Фамилия" prop="lname">
         <el-input v-model="recordForm.lname" />
       </el-form-item>
-      <el-form-item v-if="detailToggle" label="Выбирать" prop="serviceItemId">
+      <el-form-item v-if="editRecordServi" label="Услуги edit" prop="serviceItemId">
         <el-select
-          v-model="recordForm.serviceItemId"
+          v-model="recordForm.serviceId"
+          clearable
+          placeholder="Select"
+        >
+          <el-option
+            v-for="item in temporary.serviceItem"
+            :key="item._id"
+            :label="item.title"
+            :value="item._id"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item v-else-if="detailToggle" label="Услуги" prop="serviceItemId">
+        <el-select
+          v-model="recordForm.serviceId"
           clearable
           placeholder="Select"
         >
@@ -57,12 +71,21 @@ import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { vMaska } from "maska";
 
+import {useServiceStore} from '@/stores/data/service/service'
 import { useRecordServiceStore } from "@/stores/data/recordService";
-const { temporary, detailToggle, recordServi, serviId, editRecordServi } = storeToRefs(useRecordServiceStore());
-const { new_recordService, save_recordService, get_recordService, setRecordServi, setEditRecordServi } = useRecordServiceStore();
+const {get_service} = useServiceStore()
+const { temporary, detailToggle, recordServi, serviId, editRecordServi } =
+  storeToRefs(useRecordServiceStore());
+const {
+  new_recordService,
+  save_recordService,
+  get_recordService,
+  setRecordServi,
+  setEditRecordServi,
+} = useRecordServiceStore();
 
-const id = ref('')
-id.value = useRoute().params.id
+const id = ref("");
+id.value = useRoute().params.id;
 
 const servisForm = ref();
 let recordForm = ref({
@@ -115,22 +138,24 @@ const rules = ref({
 });
 const handleClose = () => {
   setRecordServi(false);
-  setEditRecordServi(false)
+  setEditRecordServi(false);
   recordForm.value = {
     type: 2,
     phone: "+998",
   };
 };
 
-watch(editRecordServi, async ()=> {
+watch(editRecordServi, async () => {
   if (editRecordServi.value) {
-    await get_recordService(serviId.value)
-    .then(res => {
+    await get_recordService(serviId.value).then((res) => {
       console.log(res.data);
-      recordForm.value = {...res.data}
+      recordForm.value = { ...res.data };  
+    });
+    await get_service(recordForm.value.serviceId._id)
+    .then(res => {
     })
   }
-})
+});
 
 const consultAdd = async (formEl) => {
   if (detailToggle.value) {
@@ -149,7 +174,7 @@ const consultAdd = async (formEl) => {
   await formEl.validate((valid) => {
     if (valid) {
       if (editRecordServi.value) {
-        save_recordService(recordForm.value)
+        save_recordService(recordForm.value);
         handleClose();
       } else {
         new_recordService(recordForm.value);

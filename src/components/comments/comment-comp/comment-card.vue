@@ -14,11 +14,7 @@
 defineProps([
     'toggle', 'title', 'text' 
 ])
-import {useDialogStore} from "@/stores/dialog/dialog"
-const {setFeedbackDialog} = useDialogStore()
-const openModal = ()=> {
-    setFeedbackDialog(true)
-}
+
 </script>
 
 <style lang="scss" scoped>

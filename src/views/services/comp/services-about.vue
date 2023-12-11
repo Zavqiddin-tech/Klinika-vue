@@ -18,7 +18,7 @@
           {{ dataItem.text }}
         </li>
       </ul>
-      <analitic :obj="dataItem" />
+      <analiticService :obj="dataItem" />
       <prob-solution :problems="dataProblem"/>
       <services-process :process="dataProcess" />
       <specialists :persons="expertsAll"/>
@@ -46,7 +46,7 @@ const dataQuestion = ref([])
 const dataPrice = ref([])
 
 import servicesBanner from "./services-banner.vue";
-import analitic from "@/components/page/analistic/analitic.vue";
+import analiticService from "@/components/page/analistic/analitic-service.vue";
 import probSolution from "./services-about-comp/probSolution.vue";
 import servicesProcess from "./services-about-comp/services-process.vue";
 import indications from "./services-about-comp/indications.vue";
@@ -75,7 +75,7 @@ const { setDetailToggle } = useRecordServiceStore();
 onMounted(async ()=> {
   window.scrollTo(0, 0)
   setDetailToggle(false)
-  get_all_expertsAll()
+   get_all_expertsAll()
   await get_moreServicesAll(useRoute().params.id)
   .then(res => {
     console.log(res.data);

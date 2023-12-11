@@ -1,7 +1,7 @@
 <template>
   <div class="ques">
     <div class="ques-nav">
-      <h2>Фракционный микроигольчатый RF-лифтинг – это больно?</h2>
+      <h2>Ответы на вопросы</h2>
       <el-button type="success" @click="openDialog()">добавить</el-button>
     </div>
 

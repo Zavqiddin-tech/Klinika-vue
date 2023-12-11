@@ -7,6 +7,9 @@ export const useProfessionStore = defineStore("profession", () => {
   const profs = ref([]);
   const profsCount = ref(0);
   const activeProfs = ref([])
+  const setActiveProfs = (val) => {
+    
+  }
 
   const api = useApiStore();
 
@@ -26,7 +29,7 @@ export const useProfessionStore = defineStore("profession", () => {
       url: "profession/active",
     });
     if (res.status == 200) {
-      activeProfs.value = [...res.data]
+      activeProfs.value = res.data
     }
   };
 
@@ -110,6 +113,7 @@ export const useProfessionStore = defineStore("profession", () => {
     profs,
     profsCount,
     activeProfs,
+    setActiveProfs,
     get_all_profs,
     get_active_profs,
     new_prof,

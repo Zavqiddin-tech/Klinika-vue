@@ -15,14 +15,20 @@
       <el-col :span="8" :sm="11" :md="8" :xs="24">
         <div class="info-blog small">
           <div class="info-blog__title">Для нас важно ваше мнение!</div>
-          <el-button round class="btn-info full"> Оставить отзыв </el-button>
+          <el-button round class="btn-info full" @click="openModal"> Оставить отзыв </el-button>
         </div>
       </el-col>
     </el-row>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useDialogStore } from "@/stores/dialog/dialog";
+const { setFeedbackDialog } = useDialogStore();
+const openModal = () => {
+  setFeedbackDialog(true);
+};
+</script>
 
 <style lang="scss">
 .text.light {
@@ -34,7 +40,7 @@
   &-blogs {
     padding-top: 80px;
     .el-row {
-        padding-top: 40px;
+      padding-top: 40px;
       margin-left: -12px;
       margin-right: -12px;
       .el-col {

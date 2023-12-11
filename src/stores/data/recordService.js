@@ -21,7 +21,7 @@ export const useRecordServiceStore = defineStore("recordService", () => {
 
   const temporary = ref({})
   const setTemporary = (val) => {
-    temporary.value = {...val}
+    temporary.value = val
   }
 
   // barcha recordServiceServicelarni olib beardi

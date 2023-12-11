@@ -5,7 +5,7 @@
       <el-button type="primary" @click="openDialog()">Добавлять</el-button>
       <el-dialog
         v-model="toggle"
-        :title="editToggle ? 'Редактировать эксперта' : 'Добавить эксперта'" 
+        :title="editToggle ? 'Редактировать эксперта' : 'Добавить эксперта'"
         width="30%"
         :before-close="handleClose"
       >
@@ -26,12 +26,12 @@
           </el-form-item>
           <el-form-item label="Выберите профессию" prop="profession">
             <el-select
-              multiple
               v-model="specialist.profession"
               placeholder="Специальность"
+              multiple
               clearable
             >
-              <el-option
+              <el-option 
                 v-for="(item, index) in activeProfs"
                 :key="index"
                 :label="item.title"
@@ -42,7 +42,7 @@
           <el-form-item label="Картина" prop="avatar">
             <el-upload
               v-model:file-list="specialist.avatar"
-              :action="`${url}/img`"  
+              :action="`${url}/img`"
               :headers="header.headers"
               list-type="picture-card"
               :limit="1"
@@ -58,12 +58,14 @@
 
           <div class="btn-group">
             <el-button @click="handleClose">отмена</el-button>
-            <el-button type="primary" @click="addSpecialist(dashSpecialistForm)">добавить</el-button>
+            <el-button type="primary" @click="addSpecialist(dashSpecialistForm)"
+              >добавить</el-button
+            >
           </div>
         </el-form>
       </el-dialog>
     </div>
-    <expertsTable @edit="edit"/>
+    <expertsTable @edit="edit" />
   </div>
 </template>
 
@@ -86,20 +88,20 @@ const { setToggle, setEditToggle } = useDialogStore();
 
 import { useProfessionStore } from "@/stores/data/profession";
 const { activeProfs } = storeToRefs(useProfessionStore());
-const { get_active_profs } = useProfessionStore();
+const { get_active_profs, setActiveProfs } = useProfessionStore();
 
 import { useExpertsStore } from "@/stores/data/expert";
-const {get_all_experts, get_expert, new_expert, save_expert} = useExpertsStore()
+const { get_all_experts, get_expert, new_expert, save_expert } =
+  useExpertsStore();
 // store
-
 
 const openDialog = () => {
   setToggle(true);
 };
 const handleClose = () => {
   setToggle(false);
-  setEditToggle(false)
-  specialist.value = {}
+  setEditToggle(false);
+  specialist.value = {};
 };
 const handleBefore = (file) => {
   if (file.size / 1024 > 500) {
@@ -167,12 +169,11 @@ const rules = ref({
 const addSpecialist = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
-    if (valid) { 
-      if(editToggle.value) {
-        save_expert(specialist.value)
-      }
-      else {
-        new_expert(specialist.value)
+    if (valid) {
+      if (editToggle.value) {
+        save_expert(specialist.value);
+      } else {
+        new_expert(specialist.value);
       }
       handleClose();
       specialist.value = {};
@@ -186,32 +187,25 @@ const addSpecialist = async (formEl) => {
   });
 };
 
-
-
-
-
-
-
-
-const id = ref('')
-const edit = (val)=> {
-  id.value = val
-}
-watch(editToggle, async ()=> {
-  if(editToggle.value) {
-    await get_expert(id.value)
-    .then(res => {
+const id = ref("");
+const edit = (val) => {
+  id.value = val;
+};
+watch(editToggle, async () => {
+  if (editToggle.value) {
+    await get_expert(id.value).then((res) => {
       console.log(res.data);
-       specialist.value = {...res.data}
-       if(specialist.value.avatar) {
-        specialist.value.avatar[0].url = `${url.value}/${specialist.value.avatar[0].response}`
-       }
-    })
+      specialist.value = { ...res.data };
+      if (specialist.value.avatar) {
+        specialist.value.avatar[0].url = `${url.value}/${specialist.value.avatar[0].response}`;
+      }
+      // specialist.value.profession = specialist.value.profession._id
+    });
   }
-})
+});
 onMounted(async () => {
- await get_all_experts()
- await get_active_profs()
+  await get_all_experts();
+  await get_active_profs();
 });
 </script>
 

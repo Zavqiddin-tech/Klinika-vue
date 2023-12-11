@@ -13,9 +13,6 @@
           :toggle="false"
         />
       </el-col>
-      <el-col :span="8" :md="8" :sm="15" :xs="20" >
-        <comment-card text="Для нас важно ваше мнение!" :toggle="true" />
-      </el-col>
     </el-row>
   </div>
 </template>

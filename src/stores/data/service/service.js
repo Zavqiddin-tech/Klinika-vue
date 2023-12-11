@@ -64,6 +64,7 @@ export const useServiceStore = defineStore('service', ()=> {
 
   // bitta xizmatni olish
   const get_service = async (_id) => {
+    console.log(_id);
     return await api.getAxios({
       url: `service/${_id}`,
     });

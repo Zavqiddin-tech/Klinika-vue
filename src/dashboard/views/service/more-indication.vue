@@ -210,6 +210,9 @@ onMounted(() => {
         &:hover {
           text-decoration: underline;
         }
+        &:last-child {
+          display: none;
+        }
       }
     }
   }
