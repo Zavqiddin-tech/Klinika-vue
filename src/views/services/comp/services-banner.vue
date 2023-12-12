@@ -76,6 +76,7 @@ const {setTemporary} = useRecordServiceStore()
 
 const servicesModal = (e) => {
   setRecordServi(true)
+  console.log(e);
   setTemporary(e)
 };
 const servicesModalTwo = () => {
@@ -88,7 +89,6 @@ const openCard = () => {
   setOpenToggle();
 };
 const servicesDetail = (id, obj) => {
-  setTemporary(obj)
   router.push(`services-detail/${id}`);
 };
 

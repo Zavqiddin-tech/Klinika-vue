@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="recordServi"
-    title="Записаться"
+    title="Записаться Услуги"
     width="500px"
     :before-close="handleClose"
   >
@@ -17,31 +17,45 @@
       <el-form-item label="Фамилия" prop="lname">
         <el-input v-model="recordForm.lname" />
       </el-form-item>
-      <el-form-item v-if="editRecordServi" label="Услуги edit" prop="serviceItemId">
+      <el-form-item v-if="editRecordServi" label="Услуги edit 1" prop="serviceId">
         <el-select
           v-model="recordForm.serviceId"
           clearable
           placeholder="Select"
+          @change="selectChange(recordForm.serviceId)"
         >
           <el-option
-            v-for="item in temporary.serviceItem"
+            v-for="item in services"
             :key="item._id"
             :label="item.title"
             :value="item._id"
           />
         </el-select>
       </el-form-item>
-      <el-form-item v-else-if="detailToggle" label="Услуги" prop="serviceItemId">
+      <el-form-item v-if="editRecordServi" label="Услуги edit 2" prop="serviceItemId">
         <el-select
-          v-model="recordForm.serviceId"
+          v-model="recordForm.serviceItemId"
           clearable
           placeholder="Select"
         >
           <el-option
-            v-for="item in temporary.serviceItem"
+            v-for="item in services.serviceItem"
             :key="item._id"
             :label="item.title"
             :value="item._id"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="detailToggle" label="Услуги" prop="serviceId">
+        <el-select
+          v-model="recordForm.serviceItemId"
+          clearable
+          placeholder="Select"
+        >
+          <el-option
+            v-for="item of temporary.serviceItem"
+            :value="item._id"
+            :label="item.title"
           />
         </el-select>
       </el-form-item>
@@ -73,7 +87,7 @@ import { vMaska } from "maska";
 
 import {useServiceStore} from '@/stores/data/service/service'
 import { useRecordServiceStore } from "@/stores/data/recordService";
-const {get_service} = useServiceStore()
+const {services} = storeToRefs(useServiceStore())
 const { temporary, detailToggle, recordServi, serviId, editRecordServi } =
   storeToRefs(useRecordServiceStore());
 const {
@@ -82,6 +96,7 @@ const {
   get_recordService,
   setRecordServi,
   setEditRecordServi,
+  setDetailToggle
 } = useRecordServiceStore();
 
 const id = ref("");
@@ -146,14 +161,14 @@ const handleClose = () => {
 };
 
 watch(editRecordServi, async () => {
+  console.log('services > ', services.value);
   if (editRecordServi.value) {
+    console.log(services.value);
+    setDetailToggle(false)
     await get_recordService(serviId.value).then((res) => {
       console.log(res.data);
-      recordForm.value = { ...res.data };  
+      recordForm.value = { ...res.data, serviceId: res.data.serviceId._id, serviceItemId: res.data.serviceItemId._id };  
     });
-    await get_service(recordForm.value.serviceId._id)
-    .then(res => {
-    })
   }
 });
 
@@ -173,13 +188,13 @@ const consultAdd = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      if (editRecordServi.value) {
+      /* if (editRecordServi.value) {
         save_recordService(recordForm.value);
         handleClose();
       } else {
         new_recordService(recordForm.value);
         handleClose();
-      }
+      } */
     } else {
       ElNotification({
         title: "Предупреждение",
@@ -190,6 +205,10 @@ const consultAdd = async (formEl) => {
     }
   });
 };
+
+const selectChange = (e)=> {
+  console.log('salom', e);
+}
 </script>
 
 <style lang="scss">

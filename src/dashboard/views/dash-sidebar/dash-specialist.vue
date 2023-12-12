@@ -5,7 +5,7 @@
       <el-button type="primary" @click="openDialog()">Добавлять</el-button>
       <el-dialog
         v-model="toggle"
-        :title="editToggle ? 'Редактировать эксперта' : 'Добавить эксперта'"
+        :title="editToggle ? 'Редактировать Специалист' : 'Добавить Специалист'"
         width="30%"
         :before-close="handleClose"
       >

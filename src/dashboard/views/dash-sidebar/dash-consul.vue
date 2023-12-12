@@ -18,7 +18,10 @@ import recordDoctor from "@/components/page/dialog/recordDoctor.vue"
 import recordService from "@/components/page/dialog/recordService.vue"
 import consulTable from "@/dashboard/components/table/consul-table.vue";
 
+import {useServiceStore} from '@/stores/data/service/service'
 import {useRecordServiceStore} from '@/stores/data/recordService'
+const {get_all_servicesAll} = useServiceStore()
+const {services} = storeToRefs(useServiceStore())
 const {get_all_recordService} = useRecordServiceStore()
 
 const doctorRequest = (e) => {
@@ -30,7 +33,8 @@ const serviceRequest = (e) => {
 
 
 onMounted(()=> {
-    get_all_recordService(1)
+    get_all_recordService(2)
+    get_all_servicesAll()
 })
 </script>
 

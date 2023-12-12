@@ -37,7 +37,7 @@
         @click="nextPage(scope.row._id)"
          class="material-symbols-outlined table-icon"
         > 
-         rule_settings 
+         page_info
         </span>
       </template>
     </el-table-column>
@@ -106,10 +106,8 @@ const nextPage = (id) => {
 <style lang="scss">
 .table-icon {
   font-size: 25px;
-  transition: 0.5s;
   cursor: pointer;
   &:hover {
-    transform: rotate(360deg);
     color: #1577FF;
   }
 }

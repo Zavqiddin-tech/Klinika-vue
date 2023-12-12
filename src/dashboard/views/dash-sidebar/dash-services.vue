@@ -5,7 +5,7 @@
       <el-button type="primary" @click="openDialog()">Добавлять</el-button>
       <el-dialog
         v-model="toggle"
-        :title="editToggle ? 'Редактировать эксперта' : 'Добавить эксперта'"
+        :title="editToggle ? 'Редактировать Услугa' : 'Добавить Услугa'"
         width="30%"
         :before-close="handleClose"
       >
@@ -15,10 +15,10 @@
           :rules="rules"
           labelPosition="top"
         >
-          <el-form-item label="Имя" prop="title">
+          <el-form-item label="Услугa" prop="title">
             <el-input v-model="service.title" />
           </el-form-item>
-          <el-form-item label="Фамилия" prop="text">
+          <el-form-item label="об услуге" prop="text">
             <el-input v-model="service.text" />
           </el-form-item>
           <el-form-item label="Картина" prop="img">

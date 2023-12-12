@@ -32,7 +32,6 @@ export const useRecordServiceStore = defineStore("recordService", () => {
       search: obj
     }).then((res) => {
       recordService.value = res.data.reviews
-      console.log(recordService.value);
     })
   };
 
@@ -70,6 +69,7 @@ export const useRecordServiceStore = defineStore("recordService", () => {
         data,
       })
       .then((res) => {
+        console.log(res.data);
         recordService.value = recordService.value.map((item) => {
           if (item._id == res.data._id) return res.data;
           return item;

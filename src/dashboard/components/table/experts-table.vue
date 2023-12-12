@@ -43,7 +43,7 @@
         @click="moreExpert(scope.row._id)"
          class="material-symbols-outlined table-icon"
         > 
-         rule_settings 
+         page_info
         </span>
       </template>
     </el-table-column>
@@ -118,5 +118,12 @@ const moreExpert = (id) => {
 .table-img {
   margin-right: 10px;
   border-radius: 50%;
+}
+.table-icon {
+  font-size: 25px;
+  cursor: pointer;
+  &:hover {
+    color: #1577FF;
+  }
 }
 </style>
