@@ -1,5 +1,8 @@
 <template>
   <div class="dash">
+    <video autoplay loop muted plays-inline class="background-clip">
+      <source src="@/assets/clinic-video.mp4" type="video/mp4">
+    </video>
     <h1>Overview</h1>
     <div class="dash-main">
       <el-row class="dash-analitic">
@@ -49,6 +52,19 @@ onMounted(() => {
 
 <style lang="scss">
 .dash {
+  height: 100%;
+  padding: 0 10px;
+  position: relative;
+  border-radius: 5px;
+  h1 {
+    text-align: right;
+  }
+  .background-clip {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
   overflow-x: hidden;
   &-main {
     padding-top: 30px;
@@ -59,21 +75,10 @@ onMounted(() => {
     margin-right: -20px;
     .el-col {
       padding: 0 20px;
-      &:nth-child(1) {
         .dash-analitic__box {
-          background-color: #ebeef8;
+          background-color: rgba(255, 255, 255, 0.5);
+          backdrop-filter: blur(10px);
         }
-      }
-      &:nth-child(2) {
-        .dash-analitic__box {
-          background-color: #f9f4e7;
-        }
-      }
-      &:nth-child(3) {
-        .dash-analitic__box {
-          background-color: #e7f4f9;
-        }
-      }
     }
     &__box {
       height: 200px;
@@ -113,6 +118,23 @@ onMounted(() => {
           }
         }
       }
+    }
+  }
+}
+
+@media (min-aspect-ratio:16/9) {
+  .dash {
+    .background-clip {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+@media (max-aspect-ratio:16/9) {
+  .dash {
+    .background-clip {
+      width: auto;
+      height: 100%;
     }
   }
 }

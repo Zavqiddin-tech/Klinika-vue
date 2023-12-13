@@ -21,6 +21,7 @@ export const useRecordServiceStore = defineStore("recordService", () => {
 
   const temporary = ref({})
   const setTemporary = (val) => {
+    console.log(val);
     temporary.value = val
   }
 

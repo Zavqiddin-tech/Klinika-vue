@@ -17,7 +17,11 @@
       <el-form-item label="Фамилия" prop="lname">
         <el-input v-model="recordForm.lname" />
       </el-form-item>
-      <el-form-item v-if="editRecordServi" label="Услуги edit 1" prop="serviceId">
+      <el-form-item
+        v-if="editRecordServi"
+        label="Услуги edit 1"
+        prop="serviceId"
+      >
         <el-select
           v-model="recordForm.serviceId"
           clearable
@@ -32,14 +36,19 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item v-if="editRecordServi" label="Услуги edit 2" prop="serviceItemId">
+      <el-form-item
+        v-if="editRecordServi"
+        label="Услуги edit 2"
+        prop="serviceItemId"
+      >
         <el-select
+          v-if="secondArr[0]"
           v-model="recordForm.serviceItemId"
           clearable
           placeholder="Select"
         >
           <el-option
-            v-for="item in services.serviceItem"
+            v-for="item in secondArr[0].serviceItem"
             :key="item._id"
             :label="item.title"
             :value="item._id"
@@ -85,9 +94,11 @@ import { useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { vMaska } from "maska";
 
-import {useServiceStore} from '@/stores/data/service/service'
+const secondArr = ref([]);
+
+import { useServiceStore } from "@/stores/data/service/service";
 import { useRecordServiceStore } from "@/stores/data/recordService";
-const {services} = storeToRefs(useServiceStore())
+const { services } = storeToRefs(useServiceStore());
 const { temporary, detailToggle, recordServi, serviId, editRecordServi } =
   storeToRefs(useRecordServiceStore());
 const {
@@ -96,7 +107,7 @@ const {
   get_recordService,
   setRecordServi,
   setEditRecordServi,
-  setDetailToggle
+  setDetailToggle,
 } = useRecordServiceStore();
 
 const id = ref("");
@@ -161,24 +172,40 @@ const handleClose = () => {
 };
 
 watch(editRecordServi, async () => {
-  console.log('services > ', services.value);
+  console.log("services > ", services.value);
   if (editRecordServi.value) {
-    console.log(services.value);
-    setDetailToggle(false)
+    setDetailToggle(false);
     await get_recordService(serviId.value).then((res) => {
-      console.log(res.data);
-      recordForm.value = { ...res.data, serviceId: res.data.serviceId._id, serviceItemId: res.data.serviceItemId._id };  
+      recordForm.value = {
+        ...res.data,
+        serviceId: res.data.serviceId._id,
+        serviceItemId: res.data.serviceItemId._id,
+      };
+      secondArr.value = services.value.filter(
+        (item) => item._id == res.data.serviceId._id
+      );
     });
   }
 });
 
+const selectChange = async (e) => {
+  recordForm.value.serviceItemId = ''
+  secondArr.value = services.value.filter(item => item._id == e)
+};
+
+
 const consultAdd = async (formEl) => {
   if (detailToggle.value) {
+    console.log("salom 1");
     recordForm.value = {
       ...recordForm.value,
       serviceId: temporary.value._id,
     };
+  }
+  if (editRecordServi.value) {
+    // XIzmatga arizani edit holati uchun bo'sh qoldirilishi kerak bo'ldi
   } else {
+    console.log("salom 2222");
     recordForm.value = {
       ...recordForm.value,
       serviceId: temporary.value._id,
@@ -188,13 +215,13 @@ const consultAdd = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      /* if (editRecordServi.value) {
+      if (editRecordServi.value) {
         save_recordService(recordForm.value);
         handleClose();
       } else {
         new_recordService(recordForm.value);
         handleClose();
-      } */
+      }
     } else {
       ElNotification({
         title: "Предупреждение",
@@ -206,9 +233,7 @@ const consultAdd = async (formEl) => {
   });
 };
 
-const selectChange = (e)=> {
-  console.log('salom', e);
-}
+
 </script>
 
 <style lang="scss">
