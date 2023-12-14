@@ -1,7 +1,8 @@
 <template>
   <div class="demo-collapse">
+    
     <div
-      v-for="item in infoAccordion"
+      v-for="item in priceArr"
       :class="item.active ? 'demo-accordion active' : 'demo-accordion'"
       @click="openAccor(item.id, item.author)"
     >
@@ -47,8 +48,8 @@
 </template>
 
 <script setup>
-const props = defineProps(["infoAccordion"]);
-import { useAccordionStore } from "../../../../stores/accordion/accordion";
+const props = defineProps(["priceArr"]);
+import { useAccordionStore } from "@/stores/accordion/accordion";
 const { setInfoAccordion } = useAccordionStore();
 
 const openAccor = (id, author) => {

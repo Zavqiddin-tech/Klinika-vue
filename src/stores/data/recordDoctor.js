@@ -21,7 +21,7 @@ export const useRecordDoctorStore = defineStore("recordDoctor", () => {
         url: "consult",
       })
       .then((res) => {
-        records.value = [...res.data];
+        records.value = [...res.data.reviews];
       });
   };
 

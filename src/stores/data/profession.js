@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { useApiStore } from "../admin/helpers/api";
+import { useApiStore } from "@/stores/admin/helpers/api";
 import { ElNotification } from "element-plus";
 
 export const useProfessionStore = defineStore("profession", () => {
@@ -29,7 +29,7 @@ export const useProfessionStore = defineStore("profession", () => {
       url: "profession/active",
     });
     if (res.status == 200) {
-      activeProfs.value = res.data
+      activeProfs.value = [...res.data]
     }
   };
 

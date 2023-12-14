@@ -1,5 +1,5 @@
 <template>
-     <router-link to="/price-services">
+     <router-link to="/prices">
       <div class="title">Стоимость услуги</div></router-link
     >
   <div class="price-collapse">

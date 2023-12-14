@@ -1,18 +1,85 @@
 <template>
   <div class="dash">
     <video autoplay loop muted plays-inline class="background-clip">
-      <source src="@/assets/clinic-video.mp4" type="video/mp4">
+      <source src="@/assets/clinic-video.mp4" type="video/mp4" />
     </video>
     <h1>Overview</h1>
     <div class="dash-main">
       <el-row class="dash-analitic">
-        <el-col v-for="i of 3" :span="8">
+        <el-col :span="8">
           <div class="dash-analitic__box">
             <el-row>
               <el-col :span="12">
                 <div class="static-box one">
-                  <span>Total Doctor's</span>
-                  <div class="static-number">225</div>
+                  <span>Всего врачей</span>
+                  <div class="static-number">
+                    <span class="material-symbols-outlined"> diversity_1 </span>
+                    {{ experts.length }}
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="static-box two">
+                  <div class="uzex-top">+60%</div>
+                  <div class="uzex-bottom">
+                    <div class="uzex-number">
+                      <span class="material-symbols-outlined up">
+                        arrow_drop_up </span
+                      >100
+                    </div>
+                    <div class="uzex-number">
+                      <span class="material-symbols-outlined down">
+                        arrow_drop_down </span
+                      >20
+                    </div>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <div class="dash-analitic__box">
+            <el-row>
+              <el-col :span="12">
+                <div class="static-box one">
+                  <span>Всего профессий</span>
+                  <div class="static-number">
+                    <span class="material-symbols-outlined"> cardiology </span>
+                    {{ profs.length }}
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="static-box two">
+                  <div class="uzex-top">+60%</div>
+                  <div class="uzex-bottom">
+                    <div class="uzex-number">
+                      <span class="material-symbols-outlined up">
+                        arrow_drop_up </span
+                      >100
+                    </div>
+                    <div class="uzex-number">
+                      <span class="material-symbols-outlined down">
+                        arrow_drop_down </span
+                      >20
+                    </div>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <div class="dash-analitic__box">
+            <el-row>
+              <el-col :span="12">
+                <div class="static-box one">
+                  <span>Заявки</span>
+                  <div class="static-number">
+                    <span class="material-symbols-outlined"> box </span>
+                    {{  doctor + service }}
+                  </div>
                 </div>
               </el-col>
               <el-col :span="12">
@@ -41,12 +108,32 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { useProfessionStore } from "@/stores/data/profession";
-const { get_all_profs } = useProfessionStore();
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+const doctor = ref('')
+const service = ref('')
 
-onMounted(() => {
-  get_all_profs();
+import { useExpertsStore } from "@/stores/data/expert";
+import { useProfessionStore } from "@/stores/data/profession";
+import {useRecordServiceStore} from '@/stores/data/recordService'
+import {useRecordDoctorStore} from '@/stores/data/recordDoctor'
+const { get_all_experts } = useExpertsStore();
+const { experts } = storeToRefs(useExpertsStore());
+const { get_all_profs } = useProfessionStore();
+const {profs} = storeToRefs(useProfessionStore())
+const {get_all_recordService} = useRecordServiceStore()
+const {recordService} = storeToRefs(useRecordServiceStore())
+const {get_all_records} = useRecordDoctorStore()
+const {records} = storeToRefs(useRecordDoctorStore())
+
+
+onMounted(async () => {
+  await get_all_experts();
+  await get_all_profs();
+  await get_all_records()
+  await get_all_recordService(2)
+  service.value = recordService.value.length 
+  doctor.value =  records.value.length
 });
 </script>
 
@@ -75,22 +162,29 @@ onMounted(() => {
     margin-right: -20px;
     .el-col {
       padding: 0 20px;
-        .dash-analitic__box {
-          background-color: rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(10px);
-        }
+      .dash-analitic__box {
+        background-color: rgba(240, 240, 240, 0.5);
+        backdrop-filter: blur(10px);
+      }
     }
     &__box {
       height: 200px;
       padding: 20px 10px;
       border-radius: 20px;
       span {
-        color: #1577FF;
+        color: #006aff;
         font-size: 15px;
       }
       .static-number {
         font-size: 35px;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        span {
+          font-size: 35px;
+          color: #fff;
+        }
       }
     }
     .static-box {
@@ -102,7 +196,7 @@ onMounted(() => {
           display: flex;
         }
         .uzex-top {
-          color: #62CC7F;
+          color: #62cc7f;
         }
         .uzex-number {
           display: flex;
@@ -110,10 +204,10 @@ onMounted(() => {
           span {
             font-size: 30px;
             &.up {
-            color: #62CC7F;
+              color: #62cc7f;
             }
             &.down {
-              color: #F16C84;
+              color: #f16c84;
             }
           }
         }
@@ -122,7 +216,7 @@ onMounted(() => {
   }
 }
 
-@media (min-aspect-ratio:16/9) {
+@media (min-aspect-ratio: 16/9) {
   .dash {
     .background-clip {
       width: 100%;
@@ -130,7 +224,7 @@ onMounted(() => {
     }
   }
 }
-@media (max-aspect-ratio:16/9) {
+@media (max-aspect-ratio: 16/9) {
   .dash {
     .background-clip {
       width: auto;

@@ -31,8 +31,8 @@ const router = createRouter({
           component: ()=> import('@/views/services/comp/services-about.vue')
         },
         {
-          path: 'price-services',
-          component: ()=> import('@/views/services/price-services.vue')
+          path: 'price',
+          component: ()=> import('@/views/prices/price.vue')
         },
         {
           path: 'stock-order',
