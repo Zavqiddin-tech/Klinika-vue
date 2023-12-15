@@ -9,7 +9,8 @@ export const useMoreServiceStore = defineStore('moreService', ()=> {
 
     const api = useApiStore()
 
-
+    const probActive = ref('')
+    const setProbActive = val => probActive.value = val
 
 
   // barcha xizmatlarni olib beardi front uchun
@@ -123,8 +124,10 @@ export const useMoreServiceStore = defineStore('moreService', ()=> {
 
 
   return {
+    probActive,
     moreServices,
     moreServicesActive,
+    setProbActive,
     get_moreServicesAll,
     get_all_moreServices,
     get_active_moreServices,

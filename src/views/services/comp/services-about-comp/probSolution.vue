@@ -14,11 +14,16 @@
 </template>
 
 <script setup>
-const props = defineProps(['problems'])
 import { ref } from "vue";
-const activeName = ref("Морщины и признаки старения");
-
+import {storeToRefs} from "pinia"
 import probBanner from "./probBanner.vue";
+import { useMoreServiceStore } from "@/stores/data/service/more-service";
+const {probActive} = storeToRefs(useMoreServiceStore())
+
+const props = defineProps(['problems'])
+const activeName = ref('');
+activeName.value = probActive
+
 
 </script>
 

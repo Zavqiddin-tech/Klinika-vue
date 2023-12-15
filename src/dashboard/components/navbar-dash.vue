@@ -2,16 +2,18 @@
     <nav class="navbar-dash">
         <div class="navbar-dash__left">
             <router-link to="/dashboard">
-                <!-- <img :src="dashLogo" alt="logo"> -->
                 <div class="navbar-dash__title"><span>Med</span>ments</div>
             </router-link>
             <form-dash />
         </div>
         <div class="navbar-dash__right">
-            <div class="navbar-dash__notif">
-                <i class='bx bxs-bell'></i>
-                <span v-if="unread >= 1">{{ unread }}</span>
-            </div>
+            <router-link to="dash-regis">
+                <div class="navbar-dash__notif">
+                    <i class='bx bxs-bell'></i>
+                    <span v-if="unread >= 1">{{ unread }}</span>
+                </div>
+
+            </router-link>
             <div class="navbar-dash__avatar">
                 <img src="@/assets/logo/Avatar.png" alt="">
             </div>
@@ -21,7 +23,6 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
-import dashLogo from "@/assets/logo/dash-logo.png"
 import formDash from "./form-dash.vue";
 
 import { useFormaStore } from "@/stores/forma/forma";

@@ -62,7 +62,7 @@ import { useMoreServiceStore } from "@/stores/data/service/more-service";
 import {useExpertsStore} from '@/stores/data/expert'
 import { useRecordServiceStore } from "@/stores/data/recordService";
 
-const {get_moreServicesAll} = useMoreServiceStore()
+const {get_moreServicesAll, setProbActive} = useMoreServiceStore()
 const {expertsAll} = storeToRefs(useExpertsStore())
 const {get_all_expertsAll} = useExpertsStore()
 const { setDetailToggle } = useRecordServiceStore();
@@ -86,6 +86,8 @@ onMounted(async ()=> {
     dataQuestion.value = [...res.data.serviceQuestion]
     dataPrice.value = [...res.data.servicePrice]
   })
+  setProbActive(dataProblem.value[0].btnText)
+  console.log(dataProblem.value);
 })
 </script>
 

@@ -2,6 +2,8 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useAccordionStore = defineStore("accordion", () => {
+
+
   const infoStAccordion = ref([
     {
       id: 1,
@@ -628,6 +630,7 @@ export const useAccordionStore = defineStore("accordion", () => {
         }
       });
     }
+
     if (author == "infoPrice") {
       infoPriceAccordion.value.forEach((item) => {
         if (id == item.id) {

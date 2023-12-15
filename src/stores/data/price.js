@@ -7,7 +7,7 @@ export const usePriceStore = defineStore('price', ()=> {
 
 
     const api = useApiStore()
-
+    
 
     const get_all_price = async () => {
         return await api.getAxios({

@@ -18,7 +18,7 @@
           <span>Стоимость услуг</span>
         </div>
         <div class="title">Стоимость услуг</div>
-        <infoAccordion :priceArr="infoPriceAccordion" />
+        <priceAccordion />
       </div>
       <forma
         title="Запишитесь на консультацию"
@@ -30,36 +30,14 @@
   
   <script setup>
   import {ref, onMounted} from 'vue'
-  import { storeToRefs } from "pinia";
   const priceArr = ref([])
 
-  // Shablon uchun
-  import infoAccordion from "../specialist/info-specialist/comp/infoAccordion.vue";
+  import priceAccordion from './priceAccordion.vue';
   import forma from "@/components/form/forma.vue";
-  import { useAccordionStore } from "@/stores/accordion/accordion";
-  const { infoPriceAccordion } = storeToRefs(useAccordionStore());
-  // Shablon uchun
-  
-
-  import {usePriceStore} from "@/stores/data/price"
-  const {get_all_price} = usePriceStore()
 
   
   onMounted(async () => {
     window.scrollTo(0, 0)
-    await get_all_price().then(res => {
-        priceArr.value = [...res.data]
-    })
-    priceArr.value.map(item => {
-        item.active = false
-        return item
-    })
-    priceArr.value.forEach(item => {
-        item.serviceItem.map(list => {
-            list.active = false
-            return list
-        })
-    })
   });
   </script>
   

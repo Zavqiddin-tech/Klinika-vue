@@ -71,7 +71,7 @@
           label-position="top"
           @submit.prevent="add(problemRef)"
         >
-          <el-form-item label="title" prop="title">
+          <el-form-item label="titbfghfghfghle" prop="title">
             <el-input v-model="problem.title" />
           </el-form-item>
           <el-form-item label="text" prop="text">
@@ -145,9 +145,11 @@ const {
 } = useProblemStore();
 // Store
 
+const id = ref('')
+id.value = useRoute().params.id
 const problemRef = ref();
 const problem = ref({
-  serviceItemId: useRoute().params.id,
+  serviceItemId: id.value,
 });
 const rules = ref({
   title: [
@@ -193,10 +195,11 @@ const rules = ref({
   ],
 });
 
+
 const handleClose = () => {
   setProblemToggle(false);
   setEditProb(false);
-  problem.value = {}
+  problem.value = {serviceItemId: id.value}
 };
 
 const remove = (id) => {

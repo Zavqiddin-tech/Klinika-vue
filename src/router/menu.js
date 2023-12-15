@@ -29,10 +29,10 @@ export const menuLink = [
   {
     id: 4,
     title: "Цены",
-    path: "/prices",
-    name: "prices",
+    path: "/price",
+    name: "price",
     active: false,
-    component: () => import("@/views/prices/prices.vue"),
+    component: () => import("@/views/prices/price.vue"),
   },
   {
     id: 5,
@@ -81,10 +81,10 @@ export const useMenuStore = defineStore("menuLink", () => {
     {
       id: 4,
       title: "Цены",
-      path: "/prices",
-      name: "prices",
+      path: "/price",
+      name: "price",
       active: false,
-      component: () => import("@/views/prices/prices.vue"),
+      component: () => import("@/views/prices/price.vue"),
     },
     {
       id: 5,

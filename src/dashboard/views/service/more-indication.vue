@@ -118,7 +118,7 @@ const inputCont = (e) => {
 const handleClose = () => {
   indiObj.value = {
     serviceItemId: paramsId,
-    indications: [{}],
+    indication: [{}],
     contraindication: [{}],
   };
   setIndiToggle(false);
