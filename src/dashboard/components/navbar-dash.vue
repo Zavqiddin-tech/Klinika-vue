@@ -12,7 +12,6 @@
                     <i class='bx bxs-bell'></i>
                     <span v-if="unread >= 1">{{ unread }}</span>
                 </div>
-
             </router-link>
             <div class="navbar-dash__avatar">
                 <img src="@/assets/logo/Avatar.png" alt="">
@@ -75,6 +74,11 @@ const {unread} = storeToRefs(useFormaStore())
             align-items: center;
             i {
                 font-size: 25px;
+                color: #000;
+                transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                &:hover {
+                    transform: rotate(20deg);
+                }
             }
             span {
                 top: -7px;

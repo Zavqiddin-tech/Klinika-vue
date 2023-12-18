@@ -6,26 +6,46 @@
           <span class="material-symbols-outlined">
             {{ item.icon }}
           </span>
-          <div v-if="item.icon == 'mail' && unread >= 1" class="sidebar-unread"><span></span></div>
-        </el-icon
-        >
+          <div v-if="item.icon == 'mail' && unread >= 1" class="sidebar-unread">
+            <span></span>
+          </div>
+        </el-icon>
         <span>{{ item.title }}</span>
       </el-menu-item>
     </el-menu>
     <div class="sidebar-bottom">
-      <span class="material-symbols-outlined"> support_agent </span>
-      <span class="material-symbols-outlined"> settings </span>
-      <span class="material-symbols-outlined"> logout </span>
+      <span class="material-symbols-outlined" @click="support()"> support_agent </span>
+      <router-link to="/setting" class="d-flex">
+        <span class="material-symbols-outlined"> settings </span>
+      </router-link>
+      <span class="material-symbols-outlined" @click="logOut()"> logout </span>
     </div>
   </div>
 </template>
 
 <script setup>
 import { storeToRefs } from "pinia";
+import cookies from "vue-cookies";
+
 import { dashMenuLink } from "../../../router/menu";
 
 import { useFormaStore } from "@/stores/forma/forma";
-const {unread} = storeToRefs(useFormaStore())
+const { unread } = storeToRefs(useFormaStore());
+
+import {useAuthStore} from "@/stores/admin/user/auth"
+const {checkUser} = useAuthStore()
+const logOut = () => {
+  if(confirm("Chiqish")) {
+    cookies.remove("clinik-token")
+    cookies.remove("clinik-user")
+    checkUser()
+    location.reload()
+  }
+};
+
+const support = ()=> {
+  alert("🔴 Hozircha Support bo'limi mavjud emas❗")
+}
 </script>
 
 <style lang="scss">
@@ -38,7 +58,7 @@ const {unread} = storeToRefs(useFormaStore())
     border-right: 0;
     &-item {
       font-size: 16px;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
     }
   }
   &-bottom {
@@ -54,7 +74,12 @@ const {unread} = storeToRefs(useFormaStore())
       font-size: 25px;
       font-weight: 400;
       color: #fff;
+      transition: 0.2s;
       cursor: pointer;
+      &:hover {
+        transform: translateY(-2px);
+        color: #9ac4ff;
+      }
     }
   }
   &-unread {
@@ -66,7 +91,7 @@ const {unread} = storeToRefs(useFormaStore())
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background-color: #F56C6C;
+      background-color: #f56c6c;
     }
   }
 }

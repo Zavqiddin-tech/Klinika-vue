@@ -80,6 +80,12 @@ const router = createRouter({
           component: ()=> import("@/dashboard/views/service/more-serviceDetail.vue"),
           meta: { secure: true }
         },
+        {
+          path: 'setting',
+          name: 'setting',
+          component: ()=> import("@/dashboard/views/setting.vue"),
+          meta: { secure: true }
+        },
       ]
     },
     {

@@ -151,14 +151,14 @@ export const dashMenuLink = [
     component: () => import("../dashboard/views/dash-sidebar/dash-services.vue"),
     meta: { secure: true }
   },
-  {
+  /* {
     title: "Цены",
     icon: 'paid',
     path: "/dash-prices",
     name: "dash-prices",
     component: () => import("../dashboard/views/dash-sidebar/dash-prices.vue"),
     meta: { secure: true }
-  },
+  }, */
   {
     title: "Профессии",
     icon: 'health_metrics',

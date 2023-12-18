@@ -8,6 +8,7 @@ export const useDialogStore = defineStore("dialog", () => {
   const feedbackDialog = ref(false);
   const toggle = ref(false);
   const editToggle = ref(false);
+  
 
   const setRecordDialog = (val) => (recordDialog.value = val);
   const setSignDialog = (val) => (signDialog.value = val);
