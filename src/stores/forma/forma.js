@@ -4,6 +4,11 @@ import { useApiStore } from "../admin/helpers/api";
 import { ElNotification } from "element-plus";
 
 
+const f = new Intl.DateTimeFormat('eng-us', {
+  dataStyle: 'short',
+  timeStyle: 'full'
+})
+
 export const useFormaStore = defineStore("forma", () => {
   const switchForm = ref(false);
   const buttonForm = ref(true);
@@ -25,7 +30,12 @@ export const useFormaStore = defineStore("forma", () => {
         url: "addconsul",
       })
       .then((res) => {
-        consuls.value = [...res.data.addConsuls];
+        consuls.value = res.data.addConsuls.map(item => {
+          return {
+             ...item, 
+             createdTime: new Date(item.createdTime).toLocaleString()
+            }
+        })
         unread.value = res.data.countUnread
       });
   };

@@ -7,10 +7,9 @@
 
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import messageTable from '../../components/table/message-table.vue';
-
 
 import {useFormaStore} from '@/stores/forma/forma'
 const {consuls, unread} = storeToRefs(useFormaStore())

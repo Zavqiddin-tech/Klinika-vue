@@ -3,7 +3,7 @@
     <recordDoctor />
     <recordService />
     <h1>Consult</h1>
-    <el-button-group>
+    <el-button-group class="dash-consul__btns">
       <el-button type="primary" @click="doctorRequest(1)">Shifokor qabuli</el-button>
       <el-button type="primary" @click="serviceRequest(2)">Xizmat qabuli</el-button>
     </el-button-group>
@@ -33,7 +33,7 @@ const serviceRequest = (e) => {
 
 
 onMounted(()=> {
-    get_all_recordService(2)
+    get_all_recordService()
     get_all_servicesAll()
 })
 </script>
@@ -41,8 +41,11 @@ onMounted(()=> {
 <style lang="scss">
 .dash {
   &-consul {
-    .title {
+    h1 {
       padding-bottom: 30px;
+    }
+    &__btns {
+      padding-bottom: 20px;
     }
   }
 }
