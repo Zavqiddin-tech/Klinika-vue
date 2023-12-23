@@ -1,7 +1,7 @@
 <template>
     <el-table :data="moreServices" style="width: 100%">
-      <el-table-column lebel="#" type="index"/>
-      <el-table-column label="image">
+      <el-table-column fixed label="#" type="index"/>
+      <el-table-column fixed label="image" width="90">
         <template #default="scope">
           <el-image
             v-if="scope.row.image"
@@ -12,12 +12,12 @@
           />
         </template>
       </el-table-column>
-      <el-table-column prop="title" label="title" />
-      <el-table-column prop="subtitle" label="subtitle" />
-      <el-table-column prop="text" label="text" />
-      <el-table-column prop="seans" label="seans" />
-      <el-table-column prop="result" label="result" />
-      <el-table-column prop="procedure" label="procedure" />
+      <el-table-column prop="title" label="title" width="150"/>
+      <el-table-column prop="subtitle" label="subtitle" width="200"/>
+      <el-table-column prop="text" label="text" width="200"/>
+      <el-table-column prop="seans" label="seans" align="center"/>
+      <el-table-column prop="result" label="result" align="center"/>
+      <el-table-column prop="procedure" label="procedure" align="center" width="100"/>
       <el-table-column prop="status" label="status">
         <template #default="scope">
           <el-popconfirm
@@ -41,11 +41,11 @@
         @click="nextPage(scope.row._id)"
          class="material-symbols-outlined table-icon"
         > 
-         rule_settings 
+         page_info 
         </span>
       </template>
     </el-table-column>
-      <el-table-column label="Редактировать" align="right">
+      <el-table-column label="Редактировать" width="130" align="right">
         <template #default="scope">
           <el-dropdown>
             <el-button>

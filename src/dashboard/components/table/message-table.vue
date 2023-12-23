@@ -1,9 +1,9 @@
 <template>
   <el-table :data="consuls" style="width: 100%">
-    <el-table-column lebel="#" type="index" />
-    <el-table-column prop="phone" label="Номер телефона" />
-    <el-table-column prop="createdTime" label="Дата" />
-    <el-table-column prop="status" label="Статус">
+    <el-table-column label="#" type="index" fixed />
+    <el-table-column prop="phone" label="Номер телефона" fixed width="170" />
+    <el-table-column prop="createdTime" label="Дата" width="170" />
+    <el-table-column prop="status" label="Статус" width="170" >
       <template #default="scope">
         <div class="form-status">
           <el-popconfirm

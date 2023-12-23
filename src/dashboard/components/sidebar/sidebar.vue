@@ -68,8 +68,9 @@ const support = ()=> {
     justify-content: center;
     align-items: flex-end;
     gap: 20px;
-    clip-path: polygon(0 25%, 100% 80%, 100% 100%, 0 100%);
-    background-color: rgb(53, 53, 53);
+    background-image: url('@/assets/wave-4.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
     span {
       font-size: 25px;
       font-weight: 400;

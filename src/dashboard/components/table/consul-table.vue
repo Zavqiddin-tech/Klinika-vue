@@ -11,9 +11,10 @@
       :data="recordService"
       style="min-width: 100%"
     >
-      <el-table-column prop="name" label="Ism" width="180" />
-      <el-table-column prop="lname" label="Familya" width="180" />
-      <el-table-column label="Shifokor">
+      <el-table-column label="#" type="index" fixed/>
+      <el-table-column prop="name" label="Ism" width="110" />
+      <el-table-column prop="lname" label="Familya" width="110" />
+      <el-table-column label="Shifokor" width="210">
         <template #default="scope">
           <div class="doctor-line">
             <span class="material-symbols-outlined"> ecg_heart </span>
@@ -22,7 +23,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="Статус">
+      <el-table-column prop="status" label="Статус" >
         <template #default="scope">
           <div class="form-status">
             <el-popconfirm
@@ -42,7 +43,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="Редактирование" align="right">
+      <el-table-column label="Редактировать" align="right" width="130">
         <template #default="scope">
           <div>
             <el-button type="primary" @click="editDoctor(scope.row._id)">
@@ -73,23 +74,24 @@
       :data="recordService"
       style="min-width: 100%"
     >
-      <el-table-column prop="name" label="Ism" width="180" />
-      <el-table-column prop="lname" label="Familya" width="180" />
-      <el-table-column label="Xizmat">
+      <el-table-column label="#" type="index" fixed />
+      <el-table-column prop="name" label="Ism" width="150" />
+      <el-table-column prop="lname" label="Familya" width="150" />
+      <el-table-column label="Xizmat" width="200">
         <template #default="scope">
           <div>
             {{ scope.row.serviceId.title }}
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="Xizmatning bo'limi">
+      <el-table-column label="Xizmatning bo'limi" width="150">
         <template #default="scope">
           <div>
-            {{ scope.row.serviceItemId.title }}
+            
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="Статус">
+      <el-table-column prop="status" label="Статус" width="150">
         <template #default="scope">
           <div class="form-status">
             <el-popconfirm
@@ -109,7 +111,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="Редактирование" align="right">
+      <el-table-column label="Редактировать" align="right" width="130">
         <template #default="scope">
           <div>
             <el-button type="primary" @click="editService(scope.row._id)">
@@ -174,6 +176,7 @@ const editService = (id) => {
   setRecordServi(true);
   setEditRecordServi(true)
 };
+console.log(recordService);
 </script>
 
 <style lang="scss">
@@ -202,4 +205,6 @@ const editService = (id) => {
   font-family: "Poppins", sans-serif;
   color: #546272;
 }
+
+
 </style>

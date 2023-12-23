@@ -1,6 +1,6 @@
 <template>
   <el-table :data="services" style="width: 100%">
-    <el-table-column lebel="#" type="index" />
+    <el-table-column fixed label="#" type="index"/>
     <el-table-column>
       <template #default="scope">
         <el-image
@@ -12,7 +12,7 @@
         />
       </template>
     </el-table-column>
-    <el-table-column prop="title" label="Услуги" />
+    <el-table-column prop="title" label="Услуги" width="250"/>
     <el-table-column prop="text" label="О сервисе" width="300px" />
     <el-table-column prop="status" label="Статус">
       <template #default="scope">
@@ -41,7 +41,7 @@
         </span>
       </template>
     </el-table-column>
-    <el-table-column label="Редактировать" align="right">
+    <el-table-column label="Редактировать" width="130" align="right">
       <template #default="scope">
         <el-dropdown>
           <el-button>

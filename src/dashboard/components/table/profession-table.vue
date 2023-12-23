@@ -1,7 +1,7 @@
 <template>
   <el-table :data="profs" style="width: 100%">
-    <el-table-column lebel="#" type="index"/>
-    <el-table-column prop="title" label="Специальности" />
+    <el-table-column label="#" type="index" fixed/>
+    <el-table-column prop="title" fixed width="160" label="Специальности" />
     <el-table-column prop="status" label="Статус">
       <template #default="scope">
         <el-popconfirm
@@ -19,7 +19,7 @@
         </el-popconfirm>
       </template>
     </el-table-column> 
-    <el-table-column label="Редактировать" align="right">
+    <el-table-column label="Редактировать" width="130" align="right">
       <template #default="scope">
         <el-dropdown>
           <el-button>

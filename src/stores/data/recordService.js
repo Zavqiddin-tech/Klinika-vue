@@ -32,6 +32,7 @@ export const useRecordServiceStore = defineStore("recordService", () => {
       url: "consult",
       search: obj
     }).then((res) => {
+      console.log(res.data);
       recordService.value = res.data.reviews
     })
   };

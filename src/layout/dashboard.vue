@@ -29,9 +29,11 @@ onMounted(()=> {
 .dashboard {
   max-width: 1600px;
   height: 100vh;
+  overflow: hidden;
   margin: auto;;
   &__main {
     height: 90vh;
+    overflow: hidden;
     display: flex;
     .sidebar {
       width: 250px;

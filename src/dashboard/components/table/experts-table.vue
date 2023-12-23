@@ -1,7 +1,7 @@
 <template>
   <el-table :data="experts" style="width: 100%">
-    <el-table-column lebel="#" type="index" />
-    <el-table-column label="ф.и.о">
+    <el-table-column  label="#" type="index" fixed/>
+    <el-table-column fixed label="ф.и.о" width="250">
       <template #default="scope">
         <div class="d-flex align-center">
           <el-image
@@ -15,7 +15,7 @@
         </div>
       </template>
     </el-table-column>
-    <el-table-column label="Специальность">
+    <el-table-column label="Специальность" width="200">
       <template #default="scope">
         <p v-for="item of scope.row.profession">{{ item.title }}</p>
       </template>
