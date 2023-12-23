@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import {onMounted} from 'vue'
 import { storeToRefs } from "pinia";
 const props = defineProps(['title', 'titleItalick', 'text', 'img', 'buttonText'])
 import router from "@/router/index.js"
@@ -38,11 +37,31 @@ const routerStock = ()=> {
     router.push("/stock-order")
   }
 }
-
-
 </script>
 
 <style lang="scss">
+.about-title {
+    width: 400px;
+    color: #546272;
+    font-family: Cormorant Garamond;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 44px;
+    span {
+      font-family: "Manrope";
+      font-style: normal;
+      font-size: 30px;
+    }
+  }
+  .about-text {
+    padding: 35px 0px 40px;
+    color: #546272;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 27px; 
+  }
     @media (max-width: 768px) {
       .stock-img {
         text-align: center;

@@ -44,7 +44,6 @@
           (861) 202-0-202
         </div>
       </div>
-      <specialists :persons="stockPersons" />
       <forma
         title="Запишитесь на консультацию"
         text="Укажите свой номер телефона. Мы свяжемся с вами в ближайшее время."
@@ -57,14 +56,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import stockBanner from "./stock-banner.vue";
-import specialists from "@/components/specialists/specialists.vue";
 import forma from "@/components/form/forma.vue";
 import router from "@/router/index.js";
 import stockImg from "@/assets/img/stock-girl.png";
 
-import { useStock } from "@/stores/stock/stock.js";
 import { specialistStore } from "@/stores/specialist/specialist.js";
-const { stockPersons } = useStock();
 const { setSpecialist } = specialistStore();
 
 const text = ref(
